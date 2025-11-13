@@ -1,0 +1,133 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class LibrarySystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HashMap<String, Book> library = new HashMap<>();
+
+        while (true) {
+            // Display menu
+            System.out.println("\nLibrary System Menu:");
+            System.out.println("1. Add Books");
+            System.out.println("2. Borrow Books");
+            System.out.println("3. Return Books");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+            
+            switch (choice) {
+                case 1:
+                    addBooks(scanner, library);
+                    break;
+                case 2:
+                    borrowBooks(scanner, library);
+                    break;
+                case 3:
+                    returnBooks(scanner, library);
+                    break;
+                case 4:
+                    System.out.println("Exiting the program. Goodbye!");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+                    break;
+            }
+        }
+    }
+
+    // Function to add books to the library
+    private static void addBooks(Scanner scanner, HashMap<String, Book> library) {
+        System.out.print("Enter book title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter author: ");
+        String author = scanner.nextLine();
+        System.out.print("Enter quantity: ");
+        int quantity = scanner.nextInt();
+
+        if (library.containsKey(title)) {
+            Book existingBook = library.get(title);
+            existingBook.setQuantity(existingBook.getQuantity() + quantity);
+            System.out.println("Quantity updated for existing book: " + title);
+        } else {
+            Book newBook = new Book(title, author, quantity);
+            library.put(title, newBook);
+            System.out.println("New book added to the library: " + title);
+        }
+    }
+
+    // Function to borrow books from the library
+    private static void borrowBooks(Scanner scanner, HashMap<String, Book> library) {
+        System.out.print("Enter book title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter number of books to borrow: ");
+        int numToBorrow = scanner.nextInt();
+
+        if (library.containsKey(title)) {
+            Book book = library.get(title);
+            if (book.getQuantity() >= numToBorrow) {
+                book.setQuantity(book.getQuantity() - numToBorrow);
+                System.out.println("Borrowed " + numToBorrow + " books of " + title);
+            } else {
+                System.out.println("Insufficient quantity of " + title + " in the library.");
+            }
+        } else {
+            System.out.println("Book not found in the library.");
+        }
+    }
+
+    // Function to return books to the library
+    private static void returnBooks(Scanner scanner, HashMap<String, Book> library) {
+        System.out.print("Enter book title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter number of books to return: ");
+        int numToReturn = scanner.nextInt();
+
+        if (library.containsKey(title)) {
+            Book book = library.get(title);
+            book.setQuantity(book.getQuantity() + numToReturn);
+            System.out.println("Returned " + numToReturn + " books of " + title + " to the library");
+        } else {
+            System.out.println("Book not found in the library.");
+        }
+    }
+}
+
+class Book {
+    private String title;
+    private String author;
+    private int quantity;
+
+    public Book(String title, String author, int quantity) {
+        this.title = title;
+        this.author = author;
+        this.quantity = quantity;
+    }
+
+    // Getters and setters
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+}

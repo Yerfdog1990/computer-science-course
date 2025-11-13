@@ -1,0 +1,83 @@
+package cs;
+import java.util.ArrayList;
+public class StockAnalysis {
+	//Determine average stock
+	public static float AveragePrice(float[]StockPrices) {
+		float sum = 0;
+		for (float price : StockPrices) {
+			sum+=price;
+		}
+		return sum/StockPrices.length;
+		}
+	//Determine maximum Stock
+	public static float MaximumPrice(float[]StockPrices) {
+		float MaxPrice = StockPrices[0];
+		for (float price:StockPrices) {
+			if (price>MaxPrice) {
+			MaxPrice = price;
+			}
+		}
+	return MaxPrice;
+	}
+	//Occurence count of a particular price
+public static int CountOccurences(float[]StockPrices, float targetPrice) {
+	int count = 0;
+	for (float price: StockPrices) {
+		if (price == targetPrice) {
+			count++;
+		}
+	}
+	return count;
+}	
+	// Cummulative sum of stock prices using ArrayList
+public static ArrayList<Float>CalculateCumulativeSum(ArrayList<Float>StockPrices){
+	ArrayList<Float>CumulativeSum = new ArrayList<>();
+	float sum = 0;
+	for (float price : StockPrices) {
+		sum+= price;
+		CumulativeSum.add(sum);
+	}
+	return CumulativeSum;
+}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//Array of stock prices
+		float[]PriceArray = {25.0f, 30.5f, 15.0f, 23.5f, 45.0f, 19.5f, 32.0f, 34.0f, 12.5f, 56.0f};
+		
+		//ArrayList of stock prices
+		ArrayList<Float>PriceList = new ArrayList<>();
+		PriceList.add(25.5f);
+		PriceList.add(30.5f);
+		PriceList.add(15.0f);
+		PriceList.add(23.5f);
+		PriceList.add(45.0f);
+		PriceList.add(19.5f);
+		PriceList.add(32.0f);
+		PriceList.add(34.0f);
+		PriceList.add(12.5f);
+		PriceList.add(56.0f);
+		
+		//Average stock
+		float averagePrice = AveragePrice(PriceArray);
+		System.out.println("Average Price of Stock: " +averagePrice);
+		
+		//Maximum Stock Price
+		float maximum_Price =  MaximumPrice(PriceArray);
+		System.out.println("Maximum Stock Price: " +maximum_Price);
+		
+		//Find occurence count of a specific price
+		float targetPrice = 19.5f;
+		int occurences = CountOccurences(PriceArray, targetPrice);
+		System.out.println("Occurences of " + targetPrice + ": " + occurences);
+		
+		//Cumulative sum of stock prices
+		ArrayList<Float>CumulativeSum = CalculateCumulativeSum(PriceList);
+		System.out.println("Cumulative sum of stock prices: " + CumulativeSum);
+		
+		
+
+	}
+
+}
+

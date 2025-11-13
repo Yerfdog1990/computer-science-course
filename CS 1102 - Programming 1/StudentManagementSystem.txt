@@ -1,0 +1,126 @@
+package cs;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+public class StudentManagementSystem extends JFrame {
+	private ArrayList<Student> students; // List to store student records
+
+    // GUI components
+    private JLabel titleLabel;
+    private JTextField nameField, ageField, idField;
+    private JButton addButton, viewButton;
+    private JTextArea displayArea;
+
+    public StudentManagementSystem() {
+        setTitle("Student Management System");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        // Initialize the list of students
+        students = new ArrayList<>();
+
+        // Components initialization
+        titleLabel = new JLabel("Student Management System");
+        JLabel nameLabel = new JLabel("Name:");
+        JLabel ageLabel = new JLabel("Age:");
+        JLabel idLabel = new JLabel("Student ID:");
+        nameField = new JTextField(20);
+        ageField = new JTextField(5);
+        idField = new JTextField(10);
+        addButton = new JButton("Add Student");
+        viewButton = new JButton("View Students");
+        displayArea = new JTextArea(20, 40);
+
+        // Add components to the frame
+        add(titleLabel);
+        add(nameLabel);
+        add(nameField);
+        add(ageLabel);
+        add(ageField);
+        add(idLabel);
+        add(idField);
+        add(addButton);
+        add(viewButton);
+        add(displayArea);
+
+        // Event listeners
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addStudent();
+            }
+        });
+
+        viewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                viewStudents();
+            }
+        });
+
+        pack();
+        setVisible(true);
+    }
+
+    // Method to add student details to the list
+    private void addStudent() {
+        String name = nameField.getText();
+        int age = Integer.parseInt(ageField.getText());
+        int id = Integer.parseInt(idField.getText());
+        students.add(new Student(name, age, id));
+        displayArea.append("Student Added: " + name + ", Age: " + age + ", ID: " + id + "\n");
+        clearFields();
+    }
+
+    // Method to display all students in the JTextArea
+    private void viewStudents() {
+        displayArea.setText("");
+        if (students.isEmpty()) {
+            displayArea.append("No students available.");
+        } else {
+            displayArea.append("List of Students:\n");
+            for (Student student : students) {
+                displayArea.append("Name: " + student.getName() + ", Age: " + student.getAge() + ", ID: " + student.getId() + "\n");
+            }
+        }
+    }
+
+    // Method to clear input fields after adding a student
+    private void clearFields() {
+        nameField.setText("");
+        ageField.setText("");
+        idField.setText("");
+    }
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new StudentManagementSystem();
+            }
+        });
+    }
+}
+
+class Student {
+    private String name;
+    private int age;
+    private int id;
+
+    public Student(String name, int age, int id) {
+        this.name = name;
+        this.age = age;
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getId() {
+        return id;
+    }
+}

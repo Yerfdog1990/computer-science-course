@@ -1,0 +1,85 @@
+package textio;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+class Employee {
+    private String name;
+    private int age;
+    private String department;
+    private double salary;
+
+    public Employee(String name, int age, String department, double salary) {
+        this.name = name;
+        this.age = age;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{name='" + name + "', age=" + age + ", department='" + department + "', salary=" + salary + '}';
+    }
+}
+
+public class EmployeeData {
+
+    public static void main(String[] args) {
+        // Creating a sample dataset
+        List<Employee> employees = Arrays.asList(
+                new Employee("John", 28, "HR", 50000),
+                new Employee("Alice", 35, "Engineering", 75000),
+                new Employee("Bob", 40, "Finance", 60000),
+                new Employee("Eva", 25, "Marketing", 55000)
+                // Add more employees as needed
+        );
+
+        // Step 1: Read the dataset and store it in a collection
+        List<String> concatenatedStrings = employees.stream()
+                // Step 2: Use the Function interface to concatenate name and department
+                .map(concatenateNameAndDepartment())
+                // Step 3: Generate a new collection with the concatenated strings
+                .collect(Collectors.toList());
+
+        // Print the concatenated strings
+        System.out.println("Concatenated Strings: " + concatenatedStrings);
+
+        // Step 4: Find the average salary of all employees
+        double averageSalary = employees.stream()
+                .mapToDouble(Employee::getSalary)
+                .average()
+                .orElse(0.0);
+
+        System.out.println("Average Salary of Employees: " + averageSalary);
+
+        // Step 5: Incorporate a filter function to include only employees above a certain age threshold
+        int ageThreshold = 30;
+        List<Employee> aboveThresholdEmployees = employees.stream()
+                .filter(employee -> employee.getAge() > ageThreshold)
+                .collect(Collectors.toList());
+
+        System.out.println("Employees above " + ageThreshold + " years old: " + aboveThresholdEmployees);
+    }
+
+    // Function to concatenate name and department
+    private static Function<Employee, String> concatenateNameAndDepartment() {
+        return employee -> employee.getName() + " - " + employee.getDepartment();
+    }
+}

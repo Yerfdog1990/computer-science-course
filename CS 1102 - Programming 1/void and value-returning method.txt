@@ -1,0 +1,41 @@
+Value returning method:
+package cs;
+
+public class Welcome {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	int i = 34, j = 45, k = max(i, j);
+	System.out.println("The maximum number between " + i + " and " + j + " is : " + k);
+	}
+	public static int max(int num1, int num2) {
+	int result;
+	if (num1 > num2)
+		result = num1;
+		else
+			result = num2;
+	return result;
+	
+	}
+}
+
+Void method:
+package cs;
+
+public class Welcome {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	int i = 304, j = 45;
+	printmax(i, j);
+	}
+	public static void printmax(int num1, int num2) {
+	int result;
+	if (num1 > num2)
+		result = num1;
+		else
+			result = num2;
+	System.out.println("The maximum number between " +num1+ " and " +num2+ " is : " +result);
+	
+	}
+}
