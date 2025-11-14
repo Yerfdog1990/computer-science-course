@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Principles of Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Chosen Palette: Calm Harmony */
+        /* Background: #F8FAFC (Slate 50) */
+        /* Content/Card: #FFFFFF (White) */
+        /* Primary Text: #1E293B (Slate 900) */
+        /* Secondary Text: #64748B (Slate 500) */
+        /* Accent Blue: #3B82F6 (Blue 500) */
+        /* Darker Blue: #1D4ED8 (Blue 700) */
+        /* Light Blue: #DBEAFE (Blue 100) */
+        /* Border: #E2E8F0 (Slate 200) */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Slate 50 */
+            color: #1E293B; /* Slate 900 */
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        .container-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 280px;
+            background-color: #FFFFFF;
+            padding: 2rem;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            flex-shrink: 0;
+            border-right: 1px solid #E2E8F0; /* Slate 200 */
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 2rem 4rem;
+            overflow-y: auto;
+        }
+        .nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background-color: #DBEAFE; /* Light Blue */
+            color: #1D4ED8; /* Darker Blue */
+            border-radius: 0.75rem; /* rounded-xl */
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .nav-link:hover {
+            background-color: #BFDBFE; /* Blue 200 */
+            transform: translateX(5px);
+        }
+        .section-card {
+            background-color: #FFFFFF;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #E2E8F0; /* Slate 200 */
+        }
+        .section-card h2 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700;
+            color: #1D4ED8; /* Darker Blue */
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #BFDBFE; /* Blue 200 */
+            padding-bottom: 0.75rem;
+        }
+        .section-card h3 {
+            font-size: 1.75rem; /* text-3xl */
+            font-weight: 600;
+            color: #3B82F6; /* Accent Blue */
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .example-box {
+            background-color: #EFF6FF; /* Blue 50 */
+            border-left: 5px solid #60A5FA; /* Blue 400 */
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+            border-radius: 0.75rem; /* rounded-lg */
+            font-style: italic;
+            color: #1E40AF; /* Blue 800 */
+        }
+        .example-box strong {
+            color: #1C3983; /* Blue 900 */
+        }
+        .read-more-btn {
+            background-color: #3B82F6; /* Accent Blue */
+            color: #FFFFFF;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .read-more-btn:hover {
+            background-color: #1D4ED8; /* Darker Blue */
+        }
+        .hidden-content {
+            display: none;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px; /* Max width for charts */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Base height for charts */
+            max-height: 450px; /* Max height for charts */
+            background-color: #FFFFFF;
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E2E8F0; /* Slate 200 */
+            margin-top: 2rem;
+        }
+        @media (max-width: 1024px) { /* Adjust for smaller screens */
+            .container-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                border-right: none;
+                border-bottom: 1px solid #E2E8F0;
+            }
+            .sidebar nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-link {
+                margin: 0.5rem;
+            }
+            .main-content {
+                padding: 1.5rem;
+            }
+            .section-card {
+                padding: 1.5rem;
+            }
+            .section-card h2 {
+                font-size: 1.75rem;
+            }
+            .section-card h3 {
+                font-size: 1.25rem;
+            }
+            .chart-container {
+                height: 300px;
+                max-height: 400px;
+            }
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+            .section-card {
+                padding: 1rem;
+            }
+            .section-card h2 {
+                font-size: 1.5rem;
+            }
+            .section-card h3 {
+                font-size: 1.125rem;
+            }
+            .chart-container {
+                height: 250px;
+                max-height: 350px;
+            }
+        }
+    </style>
+    <!-- Application Structure Plan:
+    The application is structured as a single-page interactive web application (SPA) with a fixed sidebar navigation and a scrollable main content area.
+    This structure was chosen for usability to provide persistent navigation, allowing users to quickly jump between the seven main thematic sections of the report.
+    Each section within the main content area is a self-contained card, making information digestible.
+    Interactive elements include smooth scrolling for navigation, expandable "Read More" sections for detailed examples, and dynamic charts to visualize key quantitative and comparative data.
+    The user flow is primarily explorative, allowing non-linear access to information based on user interest, enhancing understanding and synthesis.
+    -->
+    <!-- Visualization & Content Choices:
+    1. Report Info: "Main reasons for a lapse of ethics" (from "Developing Your Values-Based Leadership Skills")
+       Goal: Inform about common causes of ethical lapses.
+       Viz/Presentation Method: Bar Chart (Chart.js, Canvas).
+       Interaction: Static chart.
+       Justification: Bar charts are effective for comparing discrete categories.
+       Library/Method: Chart.js
+
+    2. Report Info: "Top 5 Challenge Trends" and "Top 5 Solution Trends" (from "Global Trends")
+       Goal: Inform and compare the two sets of trends.
+       Viz/Presentation Method: Two separate Horizontal Bar Charts (Chart.js, Canvas).
+       Interaction: Static charts.
+       Justification: Horizontal bar charts are suitable for displaying categories with potentially long labels and comparing magnitudes.
+       Library/Method: Chart.js
+
+    3. Report Info: "GLOBE Project Cultural Dimensions" (from "Globalization and Principles of Management")
+       Goal: Illustrate the concept of cultural dimensions and allow for a conceptual comparison of hypothetical country profiles.
+       Viz/Presentation Method: Radar Chart (Chart.js, Canvas) showing hypothetical "scores" for two contrasting countries across selected dimensions.
+       Interaction: Static chart.
+       Justification: Radar charts are effective for showing multiple variables for a few items, highlighting differences in profiles, making abstract cultural concepts more tangible.
+       Library/Method: Chart.js
+
+    4. Textual Content: All summary text and examples from the report.
+       Goal: Provide detailed information and context.
+       Viz/Presentation Method: Standard HTML paragraphs, headings, and lists within styled div containers.
+       Interaction: Smooth scrolling via navigation links; expandable "Read More" toggles for longer example boxes to maintain a clean initial view.
+       Justification: Standard text is best for narrative and detailed explanations, enhanced by interactive toggles for progressive disclosure.
+       Library/Method: Vanilla JS for scrolling and toggles.
+
+    5. Navigation: Sidebar links.
+       Goal: Enable quick movement between sections.
+       Viz/Presentation Method: HTML <a> tags within a <nav> element.
+       Interaction: Smooth scroll to target section.
+       Justification: Standard and intuitive navigation pattern for a single-page application.
+       Library/Method: Vanilla JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body>
+<div class="container-layout">
+    <aside class="sidebar">
+        <h1 class="text-2xl font-bold text-center mb-6 text-1D4ED8">Chapter 1 Insights</h1>
+        <nav>
+            <ul>
+                <li><a href="#section1" class="nav-link">Introduction to Management</a></li>
+                <li><a href="#section2" class="nav-link">Case Study: Goodwill Industries</a></li>
+                <li><a href="#section3" class="nav-link">Leadership, Entrepreneurship & Strategy</a></li>
+                <li><a href="#section4" class="nav-link">P-O-L-C Framework</a></li>
+                <li><a href="#section5" class="nav-link">Economic, Social, Environmental Performance</a></li>
+                <li><a href="#section6" class="nav-link">Individual & Group Performance</a></li>
+                <li><a href="#section7" class="nav-link">Your Survivor’s Guide</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="text-center mb-10">
+            <h1 class="text-5xl font-extrabold text-1D4ED8 mb-4">Chapter 1: Principles of Management</h1>
+            <p class="text-xl text-64748B">An interactive guide to the foundations of management and personal development.</p>
+        </header>
+
+        <!-- Section 1: Introduction to Principles of Management -->
+        <section id="section1" class="section-card">
+            <p class="text-64748B mb-6">This section introduces the fundamental concept of management, its core activities, and the foundational P-O-L-C framework, along with the various roles managers play in organizations.</p>
+            <h2>Introduction to Principles of Management</h2>
+            <p class="mb-4">Management is a dynamic field, constantly evolving to meet the demands of a changing world. At its core, management is defined as "the art of getting things done through the efforts of other people." This involves creatively solving problems and coordinating efforts within individuals, groups, and organizations.</p>
+            <p class="mb-4">The principles of management are the means by which managers actually manage, that is, get things done through others—individually, in groups, or in organizations. These activities typically "plan, organize, and control the operations of the basic elements of [people], materials, machines, methods, money and markets, providing direction and coordination, and giving leadership to human efforts, so as to achieve the sought objectives of the enterprise." For this reason, principles of management are often discussed or learned using a framework called P-O-L-C, which stands for planning, organizing, leading, and controlling.</p>
+            <p class="mb-4">Managers are required in all activities of organizations, from budgeting and designing to selling and financing. Everyone employed in an organization is affected by management principles, processes, policies, and practices. Even independent consultants function as managers, as they get most things done through their clients. If they have their own staff, they become managers in the fullest sense, developing business plans, hiring, training, organizing, motivating staff, establishing internal policies, and representing their group to external parties.</p>
+            <h3>The Nature of Managerial Work (Mintzberg's Roles):</h3>
+            <p class="mb-4">Managers are responsible for efficiently completing activities with and through other people and achieving firm goals via the four basic management functions: planning, organizing, leading, and controlling. Henry Mintzberg's famous study in the early 1970s identified 10 roles common to all managers, divided into three groups:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Interpersonal Roles:</strong> Primarily concerned with interpersonal relationships.
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Figurehead:</strong> Represents the organization in formal matters (e.g., CEO signing documents, supervisor representing team to higher management).</li>
+                        <li><strong>Leader:</strong> Defines relationships between the manager and employees, motivating and directing subordinates.</li>
+                        <li><strong>Liaison:</strong> Interacts with peers and people outside the organization to gain favors and information (e.g., top manager networking, supervisor maintaining routine work flow).</li>
+                    </ul>
+                </li>
+                <li><strong>Informational Roles:</strong> Primarily concerned with the information aspects of managerial work.
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Monitor:</strong> Receives and collects information (e.g., scanning industry news, reviewing reports).</li>
+                        <li><strong>Disseminator:</strong> Transmits special information into the organization (e.g., sharing market insights with team).</li>
+                        <li><strong>Spokesperson:</strong> Disseminates the organization’s information into its environment (e.g., CEO as industry expert, supervisor as departmental expert).</li>
+                    </ul>
+                </li>
+                <li><strong>Decisional Roles:</strong> Make significant use of the information gathered.
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Entrepreneur:</strong> Initiates change within the organization (e.g., developing new projects or services).</li>
+                        <li><strong>Disturbance Handler:</strong> Deals with threats to the organization (e.g., resolving conflicts, addressing crises).</li>
+                        <li><strong>Resource Allocator:</strong> Chooses where the organization will expend its efforts and resources.</li>
+                        <li><strong>Negotiator:</strong> Negotiates on behalf of the organization (e.g., contract negotiations, resolving disputes).</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="mb-4">While supervisory managers perform these roles with different emphasis (e.g., less figurehead, more disturbance handler), the leader role is crucial at all levels. Managerial work is fast-paced and fragmented, but it is the lifeblood of most organizations, choreographing and motivating individuals to achieve amazing things.</p>
+            <div class="example-box">
+                <strong>Example:</strong> A project manager (a type of manager) needs to apply all these roles. In a meeting with clients, they act as a <strong>Figurehead</strong>. When motivating their team to meet a tight deadline, they are in the <strong>Leader</strong> role. Collaborating with other department heads on resource sharing is the <strong>Liaison</strong> role. Reviewing project progress reports is the <strong>Monitor</strong> role, while communicating updates to stakeholders is the <strong>Spokesperson</strong> role. If a new market opportunity arises, they act as an <strong>Entrepreneur</strong> to propose a new feature. When a team member conflict arises, they become a <strong>Disturbance Handler</strong>. Deciding how to allocate budget to different project phases is the <strong>Resource Allocator</strong> role, and negotiating terms with a vendor is the <strong>Negotiator</strong> role.
+            </div>
+        </section>
+
+        <!-- Section 2: Case in Point: Doing Good as a Core Business Strategy -->
+        <section id="section2" class="section-card">
+            <p class="text-64748B mb-6">Explore how social responsibility can be a central business strategy, using Goodwill Industries International as a prime example of balancing mission with operational success.</p>
+            <h2>Case in Point: Doing Good as a Core Business Strategy (Goodwill Industries)</h2>
+            <p class="mb-4">Goodwill Industries International, a nonprofit organization founded in Boston in 1902, exemplifies how a strong social mission can be integrated into a core business strategy. A young missionary, Edgar J. Helms, began by enlisting struggling immigrants to clean and repair clothing and goods for sale, providing them with basic education and language training. His philosophy was a "hand up," not a "hand out."</p>
+            <p class="mb-4">Today, with over 2,300 retail locations worldwide, Goodwill maintains its core mission: to respect the dignity of individuals by eliminating barriers to opportunity through the power of work. A remarkable 84% of its revenue is reinvested into programs that provide employment and career services. In 2008, this amounted to $3.23 billion, resulting in someone getting a job every 42 seconds of every business day.</p>
+            <p class="mb-4">Goodwill is a pioneer in social enterprise, building a culture of respect through its diversity programs. Its employees come from all walks of life, including individuals with disabilities, lack of education, lack of job experience, and even criminal backgrounds. Goodwill provides them with essential work skill development, job placement assistance, and life skills, helping them become productive community members.</p>
+            <p class="mb-4">Despite its decentralized management structure—with 166 independent community-based Goodwill stores—the organization has successfully maintained its core values. For instance, Seattle’s Goodwill focuses on helping the city’s large immigrant population and those lacking basic education, while Goodwill Industries of Kentucky invested in custom software to streamline operations, allowing managers more time to focus on employee development.</p>
+            <p class="mb-4">Innovation has been key to Goodwill's enduring success. Recognizing the evolving demands of the workforce, Goodwill has developed training programs to equip individuals with necessary technology skills, providing career services to 1.5 million people in 2008. The organization has also embraced the digital age, establishing a presence on platforms like Facebook, Twitter, and YouTube. Furthermore, Goodwill's business practices embody the "triple bottom line" of people, planet, and profit. They actively pursue green initiatives, such as a $7.3 million grant from the U.S. Department of Labor to prepare individuals for the rapidly growing green industry, and partnerships like Oregon’s E-Cycles program to prevent improper electronic disposal. Goodwill’s long-standing success demonstrates that diversity, far from being a hindrance, is a significant advantage.</p>
+            <div class="example-box">
+                <strong>Example:</strong> Goodwill's "hand up" philosophy is exemplified by its programs for individuals with criminal backgrounds. Instead of simply providing charity, Goodwill offers basic work skill development, job placement assistance, and life skills. This empowers individuals to gain employment and become self-sufficient, directly addressing a social problem through a sustainable business model. The fact that 84% of its revenue goes back into these programs, resulting in over 172,000 people obtaining employment in 2008, showcases the tangible impact of "doing good as a core business strategy."
+            </div>
+        </section>
+
+        <!-- Section 3: Leadership, Entrepreneurship, and Strategy -->
+        <section id="section3" class="section-card">
+            <p class="text-64748B mb-6">Unpack the critical roles of leadership, entrepreneurship, and strategy as the driving forces behind effective management principles, and understand how they interrelate.</p>
+            <h2>Leadership, Entrepreneurship, and Strategy</h2>
+            <p class="mb-4">The principles of management are deeply informed by three interconnected academic fields: leadership, entrepreneurship, and strategy. Understanding these areas is crucial for any aspiring or current manager.</p>
+            <h3>Leadership:</h3>
+            <p class="mb-4">If management is about getting things done through others, leadership is about "the social and informal sources of influence that you use to inspire action taken by others." It's the ability to mobilize individuals to willingly strive towards a common goal, building an organization's human capital. Leadership also involves understanding when and how to leverage more formal sources of authority and power. In today's competitive landscape, good management increasingly demands good leaders who can inspire and develop their people.</p>
+            <div class="example-box">
+                <strong>Example (P&G):</strong> Procter & Gamble (P&G) provides a prime example of this shift. P&G actively recruits and promotes individuals who demonstrate success through influence rather than direct, coercive authority. Their internal culture has evolved from managers needing to direct staff to individuals who "electrify and inspire those around them." This emphasis on developing people and fostering followership, rather than just having followers, is a key reason P&G consistently ranks among Fortune's most admired companies.
+                <br><br>
+                <strong>Example (Google):</strong> Google, a much younger firm, also champions leadership focused on people development. Its founders, Sergey Brin and Larry Page, built a company where work is challenging and fun. Google prioritizes employees, fostering a culture of team achievements and individual pride. Ideas are rapidly exchanged and implemented, with few hierarchical barriers. Leadership at Google stems from a deep belief that if you provide the right tools to people who want to make a difference, they will.
+            </div>
+            <h3>Entrepreneurship:</h3>
+            <p class="mb-4">Entrepreneurship is defined as "the recognition of opportunities (needs, wants, problems, and challenges) and the use or creation of resources to implement innovative ideas for new, thoughtfully planned ventures." An entrepreneur is the person who engages in this process. It's a dynamic process that goes beyond just having a good idea; it requires converting that idea into actionable steps.</p>
+            <p class="mb-4">Entrepreneurs and entrepreneurship are catalysts for value creation. They identify and create new markets, and foster change in existing ones. The opportunity-driven nature of entrepreneurship is critical: opportunities are typically problems seeking solutions, and "bigger problems will often mean there will be a bigger market for the product or service that the entrepreneur creates." This problem-solving, opportunity-seeking mindset is fundamental to effective management.</p>
+            <div class="example-box">
+                <strong>Example:</strong> Google's continuous success is attributed to its entrepreneurial spirit. Its leaders state their distinction is "anticipating needs not yet articulated by our global audience, then meeting them with products and services that set new standards." This "constant dissatisfaction with the way things are"—a recognition of unmet needs or problems—is the driving force behind their world-leading search engine and other innovations, demonstrating entrepreneurship in action.
+            </div>
+            <h3>Strategy:</h3>
+            <p class="mb-4">An organization has a strategy when it possesses a long-term purpose, articulated in clear goals and objectives, which can be rolled into a coherent plan of action. A "good" or "great" strategy leverages unique resources and capabilities to exploit significant external opportunities. Strategy, therefore, is "the central, integrated, externally-oriented concept of how an organization will achieve its objectives." Strategic management is the body of knowledge that addresses the development and implementation of effective strategies.</p>
+            <p class="mb-4">Strategy is vital for all organizations because, when well-formulated and communicated, it provides leaders and employees with clear guidelines for their daily actions. Simply put, strategy is about making choices: what to do, what not to do, what to start, and what to stop doing.</p>
+            <div class="example-box">
+                <strong>Example:</strong> A technology company might have a strategic goal to become the market leader in renewable energy solutions within five years. To achieve this, their strategy might involve: 1) investing heavily in R&D for next-generation solar panel technology (leveraging unique capabilities), 2) forming strategic partnerships with utility companies for distribution (exploiting external opportunities), and 3) divesting from less profitable legacy product lines (making choices about what to stop doing). This integrated plan guides all departments towards the overarching objective.
+            </div>
+            <h3>Synchronizing Leadership, Entrepreneurship, and Strategy:</h3>
+            <p class="mb-4">These three fields are deeply intertwined in effective management. You can think of them as answering the "who," "what," and "how" questions:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Leadership</strong> helps understand <em>who</em> drives the organization forward and what characteristics define good leadership.</li>
+                <li><strong>Entrepreneurship</strong> answers the big questions about <em>what</em> an organization's purpose might be, by identifying opportunities and solving problems.</li>
+                <li><strong>Strategic Management</strong> ensures that the right choices are made—the <em>how</em>—to exploit those big opportunities effectively.</li>
+            </ul>
+            <p class="mb-4">A real-world job posting for a "Chief of Staff" on Craigslist illustrates this synergy. The ideal candidate is expected to "touch everything at the company, from finance to sales, marketing to operations, recruiting to human resources, accounting to investor relations," and report directly to the CEO. Beyond functional expertise, the ad explicitly seeks someone with "leadership, entrepreneurial, and strategic orientation and skills," demonstrating that these are core requirements for navigating complex organizational growth.</p>
+        </section>
+
+        <!-- Section 4: Planning, Organizing, Leading, and Controlling (P-O-L-C) Framework -->
+        <section id="section4" class="section-card">
+            <p class="text-64748B mb-6">Delve deeper into the four fundamental functions of management—Planning, Organizing, Leading, and Controlling—and understand their interconnected roles in achieving organizational goals.</p>
+            <h2>Planning, Organizing, Leading, and Controlling (P-O-L-C) Framework</h2>
+            <p class="mb-4">The P-O-L-C framework—Planning, Organizing, Leading, and Controlling—is a widely accepted and highly useful way to categorize the activities managers engage in to achieve organizational goals. While critics argue that a manager's day is often fragmented and hectic, the framework still provides a clear and effective means of classifying managerial functions.</p>
+            <h3>Planning:</h3>
+            <p class="mb-4">Planning is the foundational function of management. It involves setting objectives and determining the best course of action to achieve those objectives. Effective planning requires managers to be acutely aware of environmental conditions (economic, competitive, customer-related) and to forecast future conditions. It also demands strong decision-making skills.</p>
+            <p class="mb-4">The planning process typically involves several steps:
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Environmental Scanning:</strong> Being aware of critical contingencies facing the organization.</li>
+                <li><strong>Forecasting:</strong> Predicting future conditions based on current information.</li>
+                <li><strong>Establishing Objectives:</strong> Clearly stating what needs to be achieved and by when.</li>
+                <li><strong>Identifying Alternatives:</strong> Brainstorming various courses of action.</li>
+                <li><strong>Decision Making:</strong> Choosing the best course of action.</li>
+                <li><strong>Formulating Steps & Implementation:</strong> Detailing necessary actions and ensuring plans are put into practice.</li>
+                <li><strong>Evaluation & Corrective Action:</strong> Constantly assessing success and making adjustments.</li>
+            </ul>
+            There are different types of planning based on time horizon and scope:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Strategic Planning:</strong> Long-term (3+ years), organization-wide, focuses on competitive positioning and objective formulation, often based on the organization’s mission. Typically conducted by top management.</li>
+                <li><strong>Tactical Planning:</strong> Intermediate-range (1-3 years), designed to implement the strategic plan with concrete and specific means. Often engaged in by middle-level managers.</li>
+                <li><strong>Operational Planning:</strong> Short-range (less than a year), assumes existing goals and specifies daily action steps to support strategic and tactical plans.</li>
+            </ul>
+            <div class="example-box">
+                <strong>Example (Planning):</strong> A strategic plan for a retail chain might be to "increase market share by 15% in the next five years by expanding into new geographical regions and enhancing the online shopping experience." A tactical plan derived from this might be to "open three new stores in the Northeast region within the next 18 months." An operational plan would then specify daily tasks like "train new store staff on customer service protocols by end of Q3" or "optimize website loading speed by 1 second by next month."
+            </div>
+
+            <h3>Organizing:</h3>
+            <p class="mb-4">Organizing is the management function that involves developing an organizational structure and allocating human resources to ensure the accomplishment of objectives. The organizational structure is the framework within which effort is coordinated, often represented by an organization chart showing the chain of command. Decisions about this structure are referred to as organizational design decisions.</p>
+            <p class="mb-4">Organizing also encompasses the design of individual jobs, determining duties, responsibilities, and how tasks should be carried out. While traditional job design emphasized division of labor and specialization (e.g., screwing lids on jars all day), this can lead to decreased job satisfaction and increased absenteeism. Modern organizations seek a balance, designing jobs based on principles like empowerment, job enrichment, and teamwork.</p>
+            <p class="mb-4">At the organizational level, organizing involves departmentalization—clustering jobs into departments (e.g., by function, product, geography, or customer) to coordinate effort effectively. Many larger organizations use multiple departmentalization methods.</p>
+            <div class="example-box">
+                <strong>Example (Organizing):</strong> HUI Manufacturing, a custom sheet metal fabricator, has moved away from traditional "departments" to focus on listening and responding to customer needs. Instead of rigid functional silos, their organizational design emphasizes cross-functional teams and company-wide meetings, allowing employees to understand customer requirements and collaborate on solutions. This demonstrates a modern approach to organizing that prioritizes flexibility and customer responsiveness over strict specialization, leading to more empowered and engaged employees.
+            </div>
+
+            <h3>Leading:</h3>
+            <p class="mb-4">Leading involves the social and informal sources of influence that managers use to inspire action taken by others. If managers are effective leaders, their subordinates will be enthusiastic about exerting effort to attain organizational objectives. This function draws heavily from the behavioral sciences.</p>
+            <p class="mb-4">Key aspects of leading include:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Understanding Subordinates:</strong> Managers must understand their subordinates’ personalities, values, attitudes, and emotions to lead effectively.</li>
+                <li><strong>Motivation:</strong> Applying motivation theories to energize workers to put forth productive effort.</li>
+                <li><strong>Communication:</strong> Effectively and persuasively communicating to convey vision, goals, and feedback.</li>
+                <li><strong>Leadership Style:</strong> Knowing what makes a manager a good leader and in what situations certain leadership styles are most appropriate and effective.</li>
+            </ul>
+            <div class="example-box">
+                <strong>Example (Leading):</strong> A sales manager notices one of their top performers, usually highly motivated, has become disengaged. Instead of simply demanding more sales (a controlling action), an effective leader would first seek to understand the underlying issue. They might engage in active listening, inquire about the employee's well-being, and explore if there are personal challenges or work-related frustrations. By understanding the employee's values and emotions, the manager can then apply appropriate motivational strategies, such as offering flexible work arrangements, providing new challenges, or simply offering support, thereby inspiring renewed effort.
+            </div>
+
+            <h3>Controlling:</h3>
+            <p class="mb-4">Controlling involves ensuring that performance does not deviate from established standards. It is a critical function that closes the loop in the P-O-L-C framework, as it relies on the existence of plans (which provide standards) and a clear understanding of responsibility for any deviations.</p>
+            <p class="mb-4">The controlling process consists of three steps:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Establishing Performance Standards:</strong> These are often stated in monetary terms (revenue, costs, profits) but can also be non-financial (units produced, number of defects, quality levels, customer service scores).</li>
+                <li><strong>Comparing Actual Performance Against Standards:</strong> This involves measuring performance through various means such as financial statements, sales reports, production results, customer satisfaction surveys, and formal performance appraisals.</li>
+                <li><strong>Taking Corrective Action When Necessary:</strong> Implementing adjustments to bring performance back in line with standards.</li>
+            </ul>
+            <p class="mb-4">It's important to distinguish managerial controlling from behavioral manipulation. This function focuses on ensuring work-related activities align with organizational objectives, not on controlling individuals' personalities or emotions. Traditional control techniques include budget audits (checking actual spending against planned budgets) and performance audits (verifying reported figures against actual performance). While financial criteria are common, managers also control production processes, service delivery procedures, and compliance with company policies.</p>
+            <div class="example-box">
+                <strong>Example (Controlling):</strong> A restaurant manager sets a standard for food waste: "no more than 5% of ingredients should be wasted per week." At the end of the week, they compare actual waste (measured by tracking discarded ingredients) against this 5% standard. If waste is at 8%, they take corrective action, which might involve retraining kitchen staff on portion control, optimizing inventory management, or adjusting ordering quantities based on demand patterns. This ensures that resources are used efficiently and profitability is maintained.
+            </div>
+        </section>
+
+        <!-- Section 5: Economic, Social, and Environmental Performance -->
+        <section id="section5" class="section-card">
+            <p class="text-64748B mb-6">Understand the "triple bottom line" concept, encompassing economic, social, and environmental performance, and explore how these dimensions are increasingly integrated into business strategy.</p>
+            <h2>Economic, Social, and Environmental Performance</h2>
+            <p class="mb-4">Organizational performance is multifaceted, extending beyond mere financial outcomes. It encompasses a firm's success in achieving its objectives across economic, social, and environmental dimensions, collectively known as the "triple bottom line."</p>
+            <h3>Economic Performance:</h3>
+            <p class="mb-4">Traditionally, economic performance primarily refers to a firm's success in generating benefits for its owners, typically measured by profit. Economic profit is the difference between revenue and the opportunity cost of all resources used. In simpler terms, it's when revenues exceed accounting costs. Customer willingness to pay plays a crucial role here; if customers are price-sensitive, cost control becomes paramount for profitability.</p>
+            <div class="example-box">
+                <strong>Example (Economic Performance):</strong> A technology startup develops a new mobile application. Their economic performance is measured by their revenue from app sales and subscriptions, minus all their costs (developer salaries, marketing, server hosting, office rent). If their total revenue for a quarter is $500,000 and their total costs are $300,000, their accounting profit is $200,000. This profit allows them to reinvest, pay investors, and grow. If customers are only willing to pay a low price, the startup must focus heavily on efficient development and marketing to keep costs down and remain profitable.
+            </div>
+
+            <h3>Social and Environmental Performance (Corporate Social Responsibility - CSR):</h3>
+            <p class="mb-4">Beyond economic profit, organizations are increasingly evaluated on their social and environmental performance, often referred to as Corporate Social Responsibility (CSR). CSR is a concept whereby organizations consider the interests of society by taking responsibility for the impact of their activities on various stakeholders: customers, suppliers, employees, shareholders, communities, and the environment. This obligation extends beyond legal compliance, with organizations voluntarily taking steps to improve the quality of life for employees and their families, and for the local community and society at large.</p>
+            <p class="mb-4">Pioneers in CSR, such as Ben & Jerry's and S. C. Johnson, illustrate this commitment:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Ben & Jerry’s:</strong> Since 1989, they have published a "Social Audit" report, aligning their economic, product, and social missions. They believe this keeps them connected to their values and aids in making business decisions that benefit all three aspects.</li>
+                <li><strong>S. C. Johnson:</strong> Committed to being a "good neighbor," they drive global development and growth that benefits people and the planet. Their efforts range from philanthropy and volunteerism to new business models that bring economic growth to impoverished communities.</li>
+            </ul>
+            <div class="example-box">
+                <strong>Example (Social and Environmental Performance):</strong> Patagonia, an outdoor clothing company, is renowned for its strong CSR. Socially, they advocate for fair labor practices in their supply chain and donate 1% of sales to environmental causes. Environmentally, they use recycled materials, encourage customers to repair rather than replace products, and campaign against climate change. This commitment to social and environmental well-being is deeply embedded in their brand and business model, attracting customers and employees who share these values.
+            </div>
+
+            <h3>Integrating Economic, Social, and Environmental Performance (Triple Bottom Line):</h3>
+            <p class="mb-4">The core question is whether it's truly possible to achieve a triple bottom line—where economic, social, and environmental performance mutually reinforce each other. Advocates of CSR argue that this is not only possible but essential for modern business. Evidence suggests a small positive relationship between CSR and shareholder returns, indicating that being "responsible" can also be "good business." For instance, companies offering good wages and benefits attract and retain high-caliber employees, which is simply good management.</p>
+            <p class="mb-4">However, the financial benefits of CSR initiatives can vary significantly by context. While The Body Shop successfully charged premium prices for its ethically and ecologically sustainable products, StarKist's dolphin-safe tuna initiative failed to gain consumer willingness to pay higher prices. This highlights that consumers may be more willing to pay for "public goods" (like environmental preservation) when they also perceive "private benefits" (like personal health from organic produce) or when the company's credibility in its CSR efforts is strong.</p>
+            <p class="mb-4">Some organizations go further, making the solution of an environmental or social problem their primary purpose. Cascade Asset Management (CAM) is a private, for-profit enterprise established to provide environmentally responsible disposal of computers and electronics. Their success is driven by the recognized risks and regulations associated with electronic waste disposal, and their credibility is reinforced by their commitment to high environmental and worker safety standards (e.g., the "Electronic Recyclers Pledge of True Stewardship"). This demonstrates how addressing social and environmental needs can itself be a significant entrepreneurial business opportunity.</p>
+            <div class="chart-container">
+                <canvas id="tripleBottomLineChart"></canvas>
+            </div>
+            <p class="text-sm text-center text-64748B mt-2">Interdependence of Triple Bottom Line Dimensions (Hypothetical).</p>
+        </section>
+
+        <!-- Section 6: Performance of Individuals and Groups -->
+        <section id="section6" class="section-card">
+            <p class="text-64748B mb-6">Understand how individual contributions and group dynamics translate into overall organizational performance, focusing on in-role and extra-role behaviors, and the distinction between groups and teams.</p>
+            <h2>Performance of Individuals and Groups</h2>
+            <p class="mb-4">While principles of management are concerned with organization-level outcomes like economic, social, or environmental performance, these larger achievements are fundamentally built upon the performance of individuals and groups within the organization. Understanding these levels of performance is crucial for effective management.</p>
+            <h3>Individual-Level Performance:</h3>
+            <p class="mb-4">Individual performance encompasses two key dimensions:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>In-role Performance:</strong> These are the tasks and responsibilities explicitly defined in one's job description. It typically involves productivity and quality dimensions, where individuals must meet certain standards to fulfill their formal job duties.</li>
+                <li><strong>Extra-role Performance (Organizational Citizenship Behaviors - OCBs):</strong> These are voluntary, value-adding behaviors that go beyond formal job requirements and are not directly or explicitly recognized by the formal reward system. OCBs are beneficial to the organization and reflect an individual's willingness to contribute beyond the minimum. Management researchers have identified seven common themes of OCBs:</li>
+            </ul>
+            <ul class="list-disc list-inside mb-4 ml-8">
+                <li><strong>Helping Behavior:</strong> Voluntary actions to assist coworkers (e.g., instructing a new hire, helping with backlog, providing advance notice).</li>
+                <li><strong>Sportsmanship:</strong> Maintaining a positive attitude and tolerating inconveniences without complaining.</li>
+                <li><strong>Organizational Loyalty:</strong> Identifying with and defending the organization, contributing to its reputation, and cooperating for its overall interests.</li>
+                <li><strong>Organizational Compliance (Obedience):</strong> Adhering to organizational rules, policies, and procedures; punctuality; stewardship of resources.</li>
+                <li><strong>Individual Initiative (Conscientiousness):</strong> Exceeding minimal requirements in attendance, diligence, and resource conservation.</li>
+                <li><strong>Civic Virtue:</strong> Constructive involvement in the organization's political processes (e.g., attending meetings, staying informed on broader issues).</li>
+                <li><strong>Self-Development:</strong> Voluntarily improving one's knowledge, skills, and abilities to enhance contributions to the organization (e.g., taking advanced courses, staying current in one's field).</li>
+            </ul>
+            <p class="mb-4">Principles of management are concerned with both in-role performance and fostering these valuable OCBs.</p>
+            <div class="example-box">
+                <strong>Example (Individual Performance):</strong> A software developer's <strong>in-role performance</strong> would include writing clean, functional code, meeting project deadlines, and fixing bugs according to specifications. Their <strong>extra-role performance (OCB)</strong> might include staying late to help a struggling colleague debug their code (Helping Behavior), cheerfully accepting a last-minute request to work on a weekend (Sportsmanship), actively participating in company-wide innovation challenges (Civic Virtue), or taking an online course in a new programming language on their own time to benefit future projects (Self-Development). These OCBs significantly enhance the team's and organization's overall effectiveness.
+            </div>
+
+            <h3>Group-Level Performance:</h3>
+            <p class="mb-4">Group-level performance focuses on the outcomes and processes of collections of individuals. Group performance is often understood as the inputs of the group minus any "process loss" that inhibits effective problem-solving or output. A key distinction is made between a "group" and a "team":</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Group:</strong> A collection of individuals who may or may not work towards a common agenda.</li>
+                <li><strong>Team:</strong> A cohesive coalition of people with complementary skills, committed to a common purpose, performance goals, and approach for which they are mutually accountable. Team members are focused on a joint goal or product and are willing to subordinate personal agendas to the team's objective. Teams are typically smaller in size.</li>
+            </ul>
+            <p class="mb-4">The purpose of assembling a team is to achieve goals that would be impossible for individuals working alone or simply by summing individual efforts. Teams are also crucial when multiple skills are needed or when buy-in from key stakeholders is required. Effective teamwork can increase mutual cooperation and lead to improved performance, with the best managers being those who can mold individuals into effective teams.</p>
+            <div class="example-box">
+                <strong>Example (Group vs. Team Performance):</strong> Imagine a marketing department. If each individual designer, copywriter, and social media specialist works on their own campaigns without much interaction, that's a <strong>group</strong>. Their collective output is the sum of individual efforts. However, if they form a <strong>team</strong> for a new product launch, they will have a shared goal (e.g., "achieve 10% market penetration in Q1"). They will collaborate closely, provide feedback on each other's work, and collectively problem-solve, ensuring their individual skills complement each other to achieve the unified launch objective. Any miscommunication or lack of coordination during this collaboration would be a "process loss."
+            </div>
+
+            <h3>Compatibility of Individual and Group Performance:</h3>
+            <p class="mb-4">As a manager, ensuring compatibility between individual and group performance, particularly concerning goals and incentives, is vital. Individual goals should contribute to the group goal, not contradict it. Similarly, incentives need to be aligned; a disconnect occurs when individuals are rewarded for actions inconsistent with the overall group objective (e.g., an engineer perfecting a technology, delaying its release, when customers prioritize timely delivery of the current solution).</p>
+            <p class="mb-4">Firms must carefully match their goals with their reward structures. For example, if an organization aims to increase group performance but rewards individual productivity, it's unlikely to foster a strong team culture.</p>
+            <div class="chart-container">
+                <canvas id="performanceCompatibilityChart"></canvas>
+            </div>
+            <p class="text-sm text-center text-64748B mt-2">Alignment of Individual and Group Goals (Hypothetical).</p>
+        </section>
+
+        <!-- Section 7: Your Principles of Management Survivor’s Guide -->
+        <section id="section7" class="section-card">
+            <p class="text-64748B mb-6">Equip yourself with a personal strategy for learning and developing management skills, starting with understanding your learning style and applying the continuous "Gauge-Discover-Reflect" framework.</p>
+            <h2>Your Principles of Management Survivor’s Guide</h2>
+            <p class="mb-4">Learning and developing management skills requires a personal strategy. This guide outlines a two-part approach: first, assessing your individual learning style, and second, applying the "gauge-discover-reflect" process for continuous self-development.</p>
+            <h3>Assess Your Learning Style:</h3>
+            <p class="mb-4">Understanding how you best process information is fundamental. While intuition can offer some insight, using a survey instrument like the Learning Style Index (LSI) can provide a more objective assessment. The LSI categorizes learning styles along four dimensions:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>Active vs. Reflective Learners:</strong>
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Active:</strong> Learn best by doing, discussing, applying, or explaining to others. Tend to enjoy group work.</li>
+                        <li><strong>Reflective:</strong> Prefer to think about information quietly first, through introspection. Prefer working alone.</li>
+                    </ul>
+                </li>
+                <li><strong>Sensing vs. Intuitive Learners:</strong>
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Sensing:</strong> Prefer facts, established methods, details, and connections to the real world. Dislike complications and surprises.</li>
+                        <li><strong>Intuitive:</strong> Prefer concepts, possibilities, relationships, and innovation. More comfortable with abstractions and mathematical formulations.</li>
+                    </ul>
+                </li>
+                <li><strong>Visual vs. Verbal Learners:</strong>
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Visual:</strong> Remember best what they see (pictures, diagrams, flowcharts, demonstrations).</li>
+                        <li><strong>Verbal:</strong> Get more out of words (written and spoken explanations).</li>
+                    </ul>
+                </li>
+                <li><strong>Sequential vs. Global Learners:</strong>
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Sequential:</strong> Follow logical, stepwise paths, gaining understanding in linear steps. Can do something with material even if not fully understood.</li>
+                        <li><strong>Global:</strong> Learn in large jumps, absorbing material randomly, then suddenly "getting it" (the big picture). May struggle with details until the overall concept is clear.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p class="mb-4">Effective learners can function across these dimensions. Over-reliance on one style can lead to pitfalls (e.g., active learners acting prematurely, reflective learners doing nothing, sensors missing big picture, intuitors missing details, visual learners struggling with verbal information, sequential learners missing overall purpose, global learners rushing without understanding steps).</p>
+            <div class="example-box">
+                <strong>Example (Adapting Learning Style):</strong> If you are a strong <strong>Visual Learner</strong> in a course that relies heavily on lectures and text, you should actively compensate. Instead of just reading, try to create concept maps, draw diagrams, or color-code your notes to visually represent the information. If you're a <strong>Sequential Learner</strong> with an instructor who jumps around, take time to outline lecture material in logical order or ask for missing steps to ensure you build understanding linearly. This proactive adaptation enhances learning effectiveness.
+            </div>
+
+            <h3>Gauge-Discover-Reflect Framework:</h3>
+            <p class="mb-4">This three-stage process provides a continuous cycle for self-development in management skills:</p>
+            <ul class="list-disc list-inside mb-4 ml-4">
+                <li><strong>1. Gauge:</strong>
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Take Stock:</strong> Begin by assessing your current knowledge and capabilities on a topic. Use assessment tools (like LSI or other management assessments) to establish a clear starting point.</li>
+                        <li><strong>Embrace Feedback:</strong> Don't immediately dismiss assessment results that clash with your intuition; use them as opportunities for further exploration and self-reflection. This initial gauging provides a baseline for measuring future progress.</li>
+                    </ul>
+                </li>
+                <li><strong>2. Discover:</strong>
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Learn:</strong> Build your knowledge base about the topic, from mastering facts and definitions to understanding how to strategically apply that knowledge in various management contexts.</li>
+                        <li><strong>Set SMART Goals:</strong> Based on your gauging and learning, set specific, measurable, aggressive (stretch), realistic, and time-bound goals.
+                            <ul class="list-square list-inside ml-8">
+                                <li><strong>Specific:</strong> Clearly defined (Who, What, Where, When, Which, Why).</li>
+                                <li><strong>Measurable:</strong> Quantifiable, allowing progress tracking.</li>
+                                <li><strong>Aggressive:</strong> Challenging, leading to higher performance.</li>
+                                <li><strong>Realistic:</strong> Achievable, not impossible.</li>
+                                <li><strong>Time-bound:</strong> Has a defined deadline.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Apply and Practice:</strong> Actively use your knowledge and work towards your SMART goals. This involves repetition and real-world application to solidify learning.</li>
+                    </ul>
+                </li>
+                <li><strong>3. Reflect:</strong>
+                    <ul class="list-circle list-inside ml-6">
+                        <li><strong>Gauge Again:</strong> Re-assess your progress against your initial goals. Has your innovation improved? Are your team communication skills better?</li>
+                        <li><strong>Record (Journaling):</strong> Chronicle your learning, achievements, experiences, and thought processes in a journal. Include reactions, feelings, conclusions, and conflicts. Journaling helps you gain a rounded perspective on past events, vent emotions, and recognize personal growth over time. Even short, regular entries can lead to significant self-growth.</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="example-box">
+                <strong>Example (SMART Goal Application):</strong> If your initial "Gauge" reveals a weakness in delegation skills, your "Discover" phase might involve reading articles on effective delegation and observing how experienced managers delegate. Then, you'd set a <strong>SMART Goal</strong>: "By the end of next month, I will successfully delegate responsibility for two recurring administrative tasks to my team members, providing clear instructions and follow-up, as evidenced by their successful completion without my direct intervention." You would then "Apply and Practice" by delegating the tasks. Finally, you would "Reflect" by gauging your progress (did they complete it successfully? was my instruction clear?) and journaling about the experience, noting challenges and successes. This iterative process drives continuous improvement.
+            </div>
+        </section>
+
+        <footer class="text-center py-8 text-64748B text-sm border-t border-E2E8F0 mt-10">
+            <p>&copy; 2025 Chapter 1: Principles of Management Interactive Report. All rights reserved.</p>
+        </footer>
+    </main>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Chart Data and Configuration
+        const wrapLabels = (labels) => {
+            return labels.map(label => {
+                const words = label.split(' ');
+                const wrapped = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length <= 16) {
+                        currentLine += (currentLine === '' ? '' : ' ') + word;
+                    } else {
+                        wrapped.push(currentLine);
+                        currentLine = word;
+                    }
+                });
+                wrapped.push(currentLine);
+                return wrapped;
+            });
+        };
+
+        // Chart 1: Ethics Lapse Chart (Re-purposed for Chapter 1, Section 7: Survivor's Guide - Learning Styles)
+        const ethicsLapseCtx = document.getElementById('ethicsLapseChart').getContext('2d');
+        new Chart(ethicsLapseCtx, {
+            type: 'bar',
+            data: {
+                labels: wrapLabels(['Active Learner', 'Reflective Learner', 'Sensing Learner', 'Intuitive Learner', 'Visual Learner', 'Verbal Learner', 'Sequential Learner', 'Global Learner']),
+                datasets: [{
+                    label: 'Typical Preference Score (Hypothetical)',
+                    data: [7, 6, 8, 5, 9, 7, 8, 6], // Hypothetical scores for a sample individual
+                    backgroundColor: '#3B82F6', // Accent Blue
+                    borderColor: '#1D4ED8', // Darker Blue
+                    borderWidth: 1,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Horizontal bars
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Your Learning Style Preferences (Hypothetical Self-Assessment)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        color: '#1E293B'
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        title: {
+                            display: true,
+                            text: 'Preference Score (1-10)',
+                            color: '#64748B'
+                        },
+                        ticks: {
+                            color: '#64748B'
+                        },
+                        grid: {
+                            color: '#E2E8F0'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#64748B'
+                        },
+                        grid: {
+                            color: '#E2E8F0'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Challenge Trends Chart (Re-purposed for Chapter 1, Section 5: Economic, Social, Environmental Performance - Triple Bottom Line)
+        const challengeTrendsCtx = document.getElementById('challengeTrendsChart').getContext('2d');
+        new Chart(challengeTrendsCtx, {
+            type: 'bar',
+            data: {
+                labels: wrapLabels(['Profit Growth', 'Employee Satisfaction', 'Environmental Impact Reduction', 'Community Engagement', 'Customer Loyalty']),
+                datasets: [{
+                    label: 'Performance Indicator (Hypothetical Score)',
+                    data: [8.5, 7.8, 6.5, 7.0, 8.2], // Hypothetical performance scores
+                    backgroundColor: '#F97316', // Orange 500
+                    borderColor: '#EA580C', // Orange 600
+                    borderWidth: 1,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Triple Bottom Line Performance (Hypothetical)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        color: '#1E293B'
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        title: {
+                            display: true,
+                            text: 'Score (1-10)',
+                            color: '#64748B'
+                        },
+                        ticks: {
+                            color: '#64748B'
+                        },
+                        grid: {
+                            color: '#E2E8F0'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#64748B'
+                        },
+                        grid: {
+                            color: '#E2E8F0'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Solution Trends Chart (Re-purposed for Chapter 1, Section 6: Individual & Group Performance - Goal Alignment)
+        const solutionTrendsCtx = document.getElementById('solutionTrendsChart').getContext('2d');
+        new Chart(solutionTrendsCtx, {
+            type: 'bar',
+            data: {
+                labels: wrapLabels(['Individual Goals Alignment', 'Group Goals Alignment', 'Incentive Compatibility', 'Team Cohesion', 'Overall Productivity']),
+                datasets: [{
+                    label: 'Alignment/Performance Score (Hypothetical)',
+                    data: [8, 7, 6, 9, 8], // Hypothetical scores
+                    backgroundColor: '#22C55E', // Green 500
+                    borderColor: '#16A34A', // Green 600
+                    borderWidth: 1,
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Individual & Group Performance Alignment (Hypothetical)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        color: '#1E293B'
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        title: {
+                            display: true,
+                            text: 'Score (1-10)',
+                            color: '#64748B'
+                        },
+                        ticks: {
+                            color: '#64748B'
+                        },
+                        grid: {
+                            color: '#E2E8F0'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#64748B'
+                        },
+                        grid: {
+                            color: '#E2E8F0'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 4: GLOBE Cultural Dimensions Radar Chart (Re-purposed for Chapter 1, Section 3: Leadership, Entrepreneurship & Strategy - Managerial Roles)
+        const globeCtx = document.getElementById('globeChart').getContext('2d');
+        new Chart(globeCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Figurehead', 'Leader', 'Liaison', 'Monitor', 'Disseminator', 'Spokesperson', 'Entrepreneur', 'Disturbance Handler', 'Resource Allocator', 'Negotiator'],
+                datasets: [
+                    {
+                        label: 'Your Current Role Emphasis (Hypothetical)',
+                        data: [6, 9, 7, 8, 7, 5, 8, 6, 7, 7], // Hypothetical scores 1-10
+                        backgroundColor: 'rgba(59, 130, 246, 0.4)', // Accent Blue with transparency
+                        borderColor: '#3B82F6',
+                        pointBackgroundColor: '#3B82F6',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#3B82F6',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Mintzberg\'s Managerial Roles: Your Emphasis (Hypothetical)',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        color: '#1E293B'
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#1E293B'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.r !== null) {
+                                    label += context.parsed.r;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: '#E2E8F0'
+                        },
+                        grid: {
+                            color: '#E2E8F0'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 10 // Smaller font for more labels
+                            },
+                            color: '#64748B'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        ticks: {
+                            display: false // Hide numerical ticks on the radar axis
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

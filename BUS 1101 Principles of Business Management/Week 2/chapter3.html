@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Management Principles: Interactive Report</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Chosen Palette: Calm Harmony */
+    /* Background: #F8FAFC (Slate 50) */
+    /* Content/Card: #FFFFFF (White) */
+    /* Primary Text: #1E293B (Slate 900) */
+    /* Secondary Text: #64748B (Slate 500) */
+    /* Accent Blue: #3B82F6 (Blue 500) */
+    /* Darker Blue: #1D4ED8 (Blue 700) */
+    /* Light Blue: #DBEAFE (Blue 100) */
+    /* Border: #E2E8F0 (Slate 200) */
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC; /* Slate 50 */
+      color: #1E293B; /* Slate 900 */
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    .container-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      background-color: #FFFFFF;
+      padding: 2rem;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+      border-right: 1px solid #E2E8F0; /* Slate 200 */
+    }
+    .main-content {
+      flex-grow: 1;
+      padding: 2rem 4rem;
+      overflow-y: auto;
+    }
+    .nav-link {
+      display: block;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      background-color: #DBEAFE; /* Light Blue */
+      color: #1D4ED8; /* Darker Blue */
+      border-radius: 0.75rem; /* rounded-xl */
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .nav-link:hover {
+      background-color: #BFDBFE; /* Blue 200 */
+      transform: translateX(5px);
+    }
+    .section-card {
+      background-color: #FFFFFF;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      border-radius: 1rem; /* rounded-xl */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid #E2E8F0; /* Slate 200 */
+    }
+    .section-card h2 {
+      font-size: 2.25rem; /* text-4xl */
+      font-weight: 700;
+      color: #1D4ED8; /* Darker Blue */
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #BFDBFE; /* Blue 200 */
+      padding-bottom: 0.75rem;
+    }
+    .section-card h3 {
+      font-size: 1.75rem; /* text-3xl */
+      font-weight: 600;
+      color: #3B82F6; /* Accent Blue */
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .example-box {
+      background-color: #EFF6FF; /* Blue 50 */
+      border-left: 5px solid #60A5FA; /* Blue 400 */
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+      border-radius: 0.75rem; /* rounded-lg */
+      font-style: italic;
+      color: #1E40AF; /* Blue 800 */
+    }
+    .example-box strong {
+      color: #1C3983; /* Blue 900 */
+    }
+    .read-more-btn {
+      background-color: #3B82F6; /* Accent Blue */
+      color: #FFFFFF;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem; /* rounded-lg */
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .read-more-btn:hover {
+      background-color: #1D4ED8; /* Darker Blue */
+    }
+    .hidden-content {
+      display: none;
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 700px; /* Max width for charts */
+      margin-left: auto;
+      margin-right: auto;
+      height: 350px; /* Base height for charts */
+      max-height: 450px; /* Max height for charts */
+      background-color: #FFFFFF;
+      padding: 1.5rem;
+      border-radius: 0.75rem; /* rounded-lg */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid #E2E8F0; /* Slate 200 */
+      margin-top: 2rem;
+    }
+    @media (max-width: 1024px) { /* Adjust for smaller screens */
+      .container-layout {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border-right: none;
+        border-bottom: 1px solid #E2E8F0;
+      }
+      .sidebar nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .nav-link {
+        margin: 0.5rem;
+      }
+      .main-content {
+        padding: 1.5rem;
+      }
+      .section-card {
+        padding: 1.5rem;
+      }
+      .section-card h2 {
+        font-size: 1.75rem;
+      }
+      .section-card h3 {
+        font-size: 1.25rem;
+      }
+      .chart-container {
+        height: 300px;
+        max-height: 400px;
+      }
+    }
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 1rem;
+      }
+      .section-card {
+        padding: 1rem;
+      }
+      .section-card h2 {
+        font-size: 1.5rem;
+      }
+      .section-card h3 {
+        font-size: 1.125rem;
+      }
+      .chart-container {
+        height: 250px;
+        max-height: 350px;
+      }
+    }
+  </style>
+  <!-- Application Structure Plan:
+  The application is structured as a single-page interactive web application (SPA) with a fixed sidebar navigation and a scrollable main content area.
+  This structure was chosen for usability to provide persistent navigation, allowing users to quickly jump between the seven main thematic sections of the report.
+  Each section within the main content area is a self-contained card, making information digestible.
+  Interactive elements include smooth scrolling for navigation, expandable "Read More" sections for detailed examples, and dynamic charts to visualize key quantitative and comparative data.
+  The user flow is primarily explorative, allowing non-linear access to information based on user interest, enhancing understanding and synthesis.
+  -->
+  <!-- Visualization & Content Choices:
+  1. Report Info: "Main reasons for a lapse of ethics" (from "Developing Your Values-Based Leadership Skills")
+     Goal: Inform about common causes of ethical lapses.
+     Viz/Presentation Method: Bar Chart (Chart.js, Canvas).
+     Interaction: Static chart.
+     Justification: Bar charts are effective for comparing discrete categories.
+     Library/Method: Chart.js
+
+  2. Report Info: "Top 5 Challenge Trends" and "Top 5 Solution Trends" (from "Global Trends")
+     Goal: Inform and compare the two sets of trends.
+     Viz/Presentation Method: Two separate Horizontal Bar Charts (Chart.js, Canvas).
+     Interaction: Static charts.
+     Justification: Horizontal bar charts are suitable for displaying categories with potentially long labels and comparing magnitudes.
+     Library/Method: Chart.js
+
+  3. Report Info: "GLOBE Project Cultural Dimensions" (from "Globalization and Principles of Management")
+     Goal: Illustrate the concept of cultural dimensions and allow for a conceptual comparison of hypothetical country profiles.
+     Viz/Presentation Method: Radar Chart (Chart.js, Canvas) showing hypothetical "scores" for two contrasting countries across selected dimensions.
+     Interaction: Static chart.
+     Justification: Radar charts are effective for showing multiple variables for a few items, highlighting differences in profiles, making abstract cultural concepts more tangible.
+     Library/Method: Chart.js
+
+  4. Textual Content: All summary text and examples from the report.
+     Goal: Provide detailed information and context.
+     Viz/Presentation Method: Standard HTML paragraphs, headings, and lists within styled div containers.
+     Interaction: Smooth scrolling via navigation links; expandable "Read More" toggles for longer example boxes to maintain a clean initial view.
+     Justification: Standard text is best for narrative and detailed explanations, enhanced by interactive toggles for progressive disclosure.
+     Library/Method: Vanilla JS for scrolling and toggles.
+
+  5. Navigation: Sidebar links.
+     Goal: Enable quick movement between sections.
+     Viz/Presentation Method: HTML <a> tags within a <nav> element.
+     Interaction: Smooth scroll to target section.
+     Justification: Standard and intuitive navigation pattern for a single-page application.
+     Library/Method: Vanilla JS.
+  -->
+  <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body>
+<div class="container-layout">
+  <aside class="sidebar">
+    <h1 class="text-2xl font-bold text-center mb-6 text-1D4ED8">Management Insights</h1>
+    <nav>
+      <ul>
+        <li><a href="#section1" class="nav-link">History & Values-Based Leadership</a></li>
+        <li><a href="#section2" class="nav-link">Case Study: Hanna Andersson</a></li>
+        <li><a href="#section3" class="nav-link">Management Through the 1990s</a></li>
+        <li><a href="#section4" class="nav-link">Contemporary Principles</a></li>
+        <li><a href="#section5" class="nav-link">Global Trends</a></li>
+        <li><a href="#section6" class="nav-link">Globalization & Management Principles</a></li>
+        <li><a href="#section7" class="nav-link">Developing Values-Based Leadership</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="text-center mb-10">
+      <h1 class="text-5xl font-extrabold text-1D4ED8 mb-4">Unlocking Management Principles</h1>
+      <p class="text-xl text-64748B">An interactive exploration of historical, contemporary, and global management concepts.</p>
+    </header>
+
+    <!-- Section 1: History, Globalization, and Values-Based Leadership -->
+    <section id="section1" class="section-card">
+      <p class="text-64748B mb-6">This section introduces the foundational P-O-L-C framework and highlights the dynamic nature of management. It explains how global forces and ethical considerations increasingly shape leadership roles.</p>
+      <h2>History, Globalization, and Values-Based Leadership</h2>
+      <p class="mb-4">Management is a dynamic field, constantly evolving to meet the demands of a changing world. At its core, management involves planning, organizing, leading, and controlling (P-O-L-C) resources to achieve organizational goals. However, the application of this framework is not static; it must continually adapt to new realities, particularly those brought about by globalization and the increasing emphasis on values-based leadership.</p>
+      <p class="mb-4">Global trends significantly influence both the style and substance of management. As businesses expand across borders, managers find themselves leading diverse workforces distributed across different countries and cultures. This necessitates a deeper understanding of cross-cultural communication, varying legal frameworks, and ethical considerations that extend beyond local norms. The modern manager's role has expanded beyond mere task execution to include stewardship of the organization, its environmental impact, and its community engagement. Ethics and strong values are no longer just "good ideas" but vital components for attracting talent, fostering employee loyalty, and building strong relationships with customers and business partners.</p>
+      <div class="example-box">
+        <strong>Example:</strong> The text mentions that "As the world becomes more global, managers find themselves leading workforces that may be distributed across the country—and the world." This means a manager in New York might be leading a team with members in London, Bangalore, and Sydney. This global distribution requires the manager to adapt their communication strategies (e.g., using virtual collaboration tools), understand and respect diverse cultural norms (e.g., varying work ethics, communication styles), and manage across different time zones, highlighting the need for highly adaptable and culturally aware leadership.
+      </div>
+    </section>
+
+    <!-- Section 2: Case in Point: Hanna Andersson Corporation Changes for Good -->
+    <section id="section2" class="section-card">
+      <p class="text-64748B mb-6">Dive into the real-world application of values-based leadership through the story of Hanna Andersson Corporation, showcasing how core principles guided the company through significant changes.</p>
+      <h2>Case in Point: Hanna Andersson Corporation Changes for Good</h2>
+      <p class="mb-4">Hanna Andersson Corporation, a children's clothing company founded in 1983, serves as an excellent illustration of how deeply embedded values can guide a business through periods of significant change and growth. Started by Tom and Gun Denhart with a vision to bring quality European-style children's clothing to the U.S., the company quickly grew from a mail-order business to a multi-channel retailer with over $100 million in annual sales and 500 employees.</p>
+      <p class="mb-4">A cornerstone of Hanna Andersson's success was its profound commitment to its employees and community. The company offered progressive benefits, including supplemental child-care reimbursement for all employees, flexible work hours, generous paid time off, and paid time for community volunteering. This created a strong sense of belonging, making employees feel like part of the "Hanna Andersson family." Beyond internal practices, their commitment extended to environmental and social responsibility through programs like "HannaDowns," a clothing recycling initiative offering customer discounts, and "HannaHelps," which provides grants and product donations to children's charities, including a consistent 5% of pretax profits.</p>
+      <p class="mb-4">The company faced significant challenges in the 1990s and early 2000s due to increased competition and the advent of online commerce. Recognizing the need for strategic change, the Denharts promoted Phil Iosca to CEO in 1995. Although the company changed ownership several times after being sold to a private equity firm in 2001, Gun Denhart remained involved on the board and with the Hanna Andersson Children’s Foundation. Under Iosca's leadership, the company successfully expanded into retail stores and online commerce in 2002, and later into wholesale distribution through partners like Nordstrom and Costco in 2009.</p>
+      <p class="mb-4">These expansions demanded considerable internal process shifts, from technical systems to inventory planning and HR. Despite initial employee uncertainty, a consistent leadership team, including HR Vice President Gretchen Peterson (with the company since 1994) and later CEO Adam Stone, ensured stability. Stone's calm approach to change, involving employees in decision-making and breaking down initiatives, helped foster a culture where employees felt heard and understood, leading to better strategic decisions. The wholesale decision, for example, proved crucial in weathering economic downturns, boosting revenue and improving inventory management. This case demonstrates that by maintaining clear communication, consistent direction, and a willingness to adapt while upholding core values, a company can achieve sustained growth and success without compromising its commitment to its people.</p>
+      <div class="example-box">
+        <strong>Example:</strong> Hanna Andersson's "HannaDowns" clothing recycling program, where customers return used clothing for a discount, and the "HannaHelps" program, which awards grants and donates products to children's charities, exemplify their values-based leadership and commitment to social responsibility. Even through ownership changes, key leaders like Phil Iosca and Adam Stone maintained consistency with the founders' values, ensuring employee well-being and strategic growth. This continuity in leadership and values, even amidst significant business model changes, allowed the company to adapt successfully while retaining its ethical core.
+      </div>
+    </section>
+
+    <!-- Section 3: Ancient History: Management Through the 1990s -->
+    <section id="section3" class="section-card">
+      <p class="text-64748B mb-6">Explore the historical roots of management theory, from early efficiency-driven principles to the more human-centric approaches that emerged in the late 20th century.</p>
+      <h2>Ancient History: Management Through the 1990s</h2>
+      <p class="mb-4">The origins of modern management principles are deeply rooted in the industrial revolution, driven by the need to optimize productivity in factories and large organizations. Early theorists focused primarily on efficiency and control, laying the groundwork for what would become known as "classical management."</p>
+      <h3>Henri Fayol's 14 Principles of Management:</h3>
+      <p class="mb-4">Henri Fayol, a French mining engineer and director, developed a comprehensive set of 14 principles in the late 19th and early 20th centuries, aiming to create an "administrative science" applicable to all organizations. His principles provided a framework for how organizations should be structured and managed to ensure smooth operations and profitability. Key principles include:</p>
+      <ul class="list-disc list-inside mb-4 ml-4">
+        <li><strong>Specialization/Division of Labor:</strong> Workers become more efficient by focusing on a limited set of activities.</li>
+        <li><strong>Authority/Responsibility:</strong> Managers must have the authority to command, coupled with the responsibility for task completion.</li>
+        <li><strong>Unity of Command:</strong> An employee should receive orders from only one superior to avoid conflicting instructions.</li>
+        <li><strong>Unity of Direction:</strong> Each group with the same objective should have one head and one plan.</li>
+        <li><strong>Remuneration:</strong> Workers must be fairly paid for their services to ensure motivation.</li>
+        <li><strong>Centralization:</strong> Decision-making authority can be centralized (management) or decentralized (employees) depending on the situation.</li>
+        <li><strong>Line of Authority:</strong> A clear hierarchy from top management to the lowest ranks, allowing for lateral communication if approved.</li>
+        <li><strong>Esprit de Corps:</strong> Fostering harmony and team spirit across the organization to build morale and unity.</li>
+      </ul>
+      <div class="example-box">
+        <strong>Example:</strong> In a manufacturing plant, if a production worker receives instructions from both the line supervisor and the quality control manager regarding the same task, it could lead to confusion, errors, and inefficiency. Fayol's principle of <strong>Unity of Command</strong> directly addresses this by advocating for a single, clear reporting line, ensuring that the worker knows exactly whose instructions to follow, thus streamlining operations and preventing conflicting priorities.
+      </div>
+      <h3>Scientific Management (Taylorism) and Time & Motion Studies:</h3>
+      <p class="mb-4">Frederick Winslow Taylor, a contemporary of Fayol, formalized the principles of scientific management in his 1911 book, *The Principles of Scientific Management*. Taylor's approach, often called "Taylorism," focused on applying the scientific method to management to drastically improve productivity. He is most famous for his "time studies," where he meticulously timed tasks to identify the most efficient methods.</p>
+      <p class="mb-4">Frank Gilbreth and Lillian Moller Gilbreth, Taylor's associates, took this a step further with "motion studies." They photographed individual movements of workers (e.g., attaching lights to hands and using slow-speed photography) to analyze and eliminate unnecessary motions. These "time and motion studies" aimed to standardize work processes for maximum efficiency.</p>
+      <div class="example-box">
+        <strong>Example:</strong> Taylor's "science of shoveling" is a prime example. He conducted time studies to determine the optimal weight a worker could lift with a shovel without tiring, finding it to be 21 pounds. To achieve this, he provided workers with different shovels for various materials (coal, dirt, snow) to ensure the optimal weight was always lifted. This led to workers becoming three to four times more productive. Similarly, the Gilbreths applied their motion studies to bricklaying, devising a method that eliminated wasted movements and increased worker productivity from 1,000 to 2,700 bricks per day, demonstrating the power of optimizing physical labor.
+      </div>
+      <h3>Limitations of Early Views and 1990s Management Ideas:</h3>
+      <p class="mb-4">While revolutionary for their time, these early management theories had significant limitations. They largely presumed managers were overseeing manual labor tasks and tended to dehumanize workers, treating them as cogs in a machine. Critics like Upton Sinclair pointed out the disproportionately small pay increases workers received compared to their massive productivity gains, and Taylor's own writings sometimes compared workers to "beasts of burden." As economies shifted from manufacturing to services and "knowledge work" became prevalent, these principles became less effective. It's impossible to apply time-and-motion studies to a software engineer's thought process; effective programming relies on cognitive effort, not typing speed.</p>
+      <p class="mb-4">This led to the development of new management theories that addressed the human element and the complexities of a service-based economy. The 1990s saw a significant shift:</p>
+      <ul class="list-disc list-inside mb-4 ml-4">
+        <li><strong>Peter Drucker:</strong> A pioneer in managing knowledge workers, his work from 1969 onwards addressed topics like entrepreneurship, innovation, and decision-making for professional employees.</li>
+        <li><strong>Tom Peters and Robert Waterman:</strong> Their 1982 bestseller, *In Search of Excellence*, revolutionized management by emphasizing principles like "Close to the Customer," "Autonomy and Entrepreneurship," and "Productivity through People," advocating for treating employees as a source of quality and innovation. Peters later expanded on these ideas, stressing leadership, innovation, and empowering people in a chaotic world.</li>
+        <li><strong>Warren Bennis:</strong> From the 1970s, Bennis championed a new theory of leadership, defining effective leaders as those with vision who can influence and motivate others to not only perform tasks but also to embody organizational values and achieve goals. This marked a shift from managers as mere resource directors to leaders who build relationships and inspire loyalty.</li>
+      </ul>
+      <div class="example-box">
+        <strong>Example:</strong> Tom Peters's book <em>In Search of Excellence</em> introduced principles like "Productivity through People," which advocated treating rank-and-file employees as a source of quality and innovation. This was a stark contrast to Taylor's earlier views, highlighting a fundamental shift in management philosophy from viewing workers as replaceable units to valuing their contributions and potential. This change encouraged practices like employee involvement in decision-making and recognizing individual contributions, leading to more engaged and productive workforces.
+      </div>
+    </section>
+
+    <!-- Section 4: Contemporary Principles of Management -->
+    <section id="section4" class="section-card">
+      <p class="text-64748B mb-6">Understand how modern organizations are evolving, embracing social networking, continuous learning, and virtual structures to thrive in today's dynamic environment.</p>
+      <h2>Contemporary Principles of Management</h2>
+      <p class="mb-4">The 21st century has brought about profound changes in how organizations operate, moving away from rigid hierarchies towards more fluid, adaptive, and interconnected structures. Contemporary management principles reflect this shift, emphasizing collaboration, knowledge sharing, and flexibility.</p>
+      <h3>Corporations as Social Movements:</h3>
+      <p class="mb-4">Traditionally, corporations were characterized by clear boundaries, formal procedures, and defined authority structures. In contrast, social movements were seen as spontaneous and fluid. However, contemporary management theory suggests these lines are blurring. More and more businesses are adopting characteristics of social movements, leveraging collective action and shared purpose to drive organizational initiatives. This involves decentralizing decision-making and empowering individuals across all levels.</p>
+      <div class="example-box">
+        <strong>Example:</strong> A CEO of a bank described a program where "The hierarchical management structure will give way to some collective activities that will improve our effectiveness in the marketplace. Decisions won’t flow from a management level to people on the line who are expected to implement those decisions.…We’re telling everyone, choose a process, figure out what and where the problems are, work together to come up with solutions, and then put your solutions to work." This illustrates a fundamental shift towards empowering employees to identify problems and collaborate on solutions, mimicking the grassroots, collective action seen in social movements rather than top-down directives.
+      </div>
+      <h3>Social Networking:</h3>
+      <p class="mb-4">Social networking, initially popularized by platforms like Facebook, has found significant application within the corporate world. It refers to systems that allow members of a specific site to learn about other members’ skills, talents, knowledge, or preferences. Companies use these systems internally to help identify experts and foster collaboration. Beyond internal use, social networking sites have become crucial for external engagement, allowing companies to connect directly with consumers and gain insights.</p>
+      <div class="example-box">
+        <strong>Example:</strong> Starbucks has effectively adopted social networking by maintaining a strong presence on platforms like Facebook, actively asking consumers for input to revive product lines and improve their image. Internally, companies like IBM are creating virtual worlds for employees to collaborate on projects, using chat, instant messaging, and voice communication. Furthermore, Netflix famously offered a million-dollar reward to anyone in its social network of inventors who could improve its movie recommendation algorithm, demonstrating how external social networks can be tapped for innovation.
+      </div>
+      <h3>Learning Organizations:</h3>
+      <p class="mb-4">In a rapidly changing business environment, the ability to learn and adapt is paramount. Harvard Business School professor David Garvin defined a learning organization as "an organization skilled at creating, acquiring, and transferring knowledge, and at modifying its behavior to reflect new knowledge and insights." These organizations are characterized by five key building blocks:</p>
+      <ul class="list-disc list-inside mb-4 ml-4">
+        <li><strong>Systematic problem solving:</strong> Using data and statistical tools for consistent problem resolution.</li>
+        <li><strong>Experimentation:</strong> Testing new ideas in small steps to discover new knowledge.</li>
+        <li><strong>Learning from past experience:</strong> Reviewing projects to understand successes and failures.</li>
+        <li><strong>Learning from others:</strong> Networking with external companies to adapt and adopt good ideas.</li>
+        <li><strong>Transferring knowledge:</strong> Rapidly sharing knowledge throughout the organization to empower all members.</li>
+      </ul>
+      <div class="example-box">
+        <strong>Example:</strong> Boeing exemplifies a learning organization by systematically gathering hundreds of "lessons learned" from the development and operation of previous airplane models, such as the 737 and 747. These insights were then meticulously applied to the design and production of the 757s and 767s, resulting in some of the most successful and error-free product launches in Boeing’s history. This demonstrates a robust process of learning from past experiences and effectively transferring that knowledge for future improvements.
+      </div>
+      <h3>Virtual Organizations:</h3>
+      <p class="mb-4">A virtual organization is one where employees work remotely, often across different cities, countries, or even continents, relying heavily on computer and telecommunications technologies for communication and collaboration. This model offers significant advantages, such as reduced overhead costs and access to a global talent pool, but also presents unique leadership and management challenges. Effective communication in shared digital spaces (like wikis, web meetings, and instant messaging) is crucial to keep everyone informed and connected, promoting learning across the distributed organization.</p>
+      <div class="example-box">
+        <strong>Example:</strong> VeriFone, a major provider of electronic payment systems, utilizes the principles of a virtual organization for its globally distributed software development teams. They employ a "relay race" model: developers in Dallas work on a project during their day, then hand off the unfinished work at quitting time to a team in Hawaii, who then pass it to programmers in Bangalore, India. By morning, the project is back in Dallas, significantly closer to completion. This 24/7 collaboration dramatically speeds up development cycles, showcasing the efficiency gains possible with virtual structures, while also highlighting the need for seamless digital communication and coordination.
+      </div>
+    </section>
+
+    <!-- Section 5: Global Trends -->
+    <section id="section5" class="section-card">
+      <p class="text-64748B mb-6">Explore the major global trends shaping the business landscape, categorized into challenges and solutions, and see how they influence modern management strategies.</p>
+      <h2>Global Trends</h2>
+      <p class="mb-4">The world is undergoing dramatic transformations, presenting both formidable challenges and unprecedented opportunities for managers. Understanding these global trends is crucial for strategic planning and effective leadership. This section outlines ten major trends, divided into five challenges that demand adaptation and five solutions that empower progress.</p>
+      <h3>Top 5 Challenge Trends:</h3>
+      <ul class="list-disc list-inside mb-4">
+        <li><strong>Increasing Concern for the Environment:</strong> Growing awareness of global warming and environmental impact. This pushes companies towards more sustainable practices and the "triple bottom line" (profit, people, planet). Managers can no longer afford to "greenwash" but must implement genuine environmental initiatives.</li>
+        <li><strong>Greater Personalization and Customization:</strong> Consumers are demanding products and services tailored to their specific preferences, moving away from mass-produced, one-size-fits-all offerings. This increases complexity in production, supply chains, and marketing, requiring flexible management approaches.</li>
+        <li><strong>Faster Pace of Innovation:</strong> The demand for "the next new thing" means companies must accelerate product development and continuously introduce new variations. This requires agile management, a high tolerance for ambiguity, and a willingness to experiment and iterate quickly.</li>
+        <li><strong>Increasing Complexity:</strong> The combined effect of environmental concerns, customization demands, and rapid innovation leads to significantly more complex operational and strategic challenges for businesses. Managing global supply chains with thousands of components, for instance, becomes an intricate task.</li>
+        <li><strong>Increasing Competition for Talent:</strong> This is identified as one of the most impactful trends. Jobs are becoming more complex, requiring advanced skills (e.g., supply chain management now demands scientific and mathematical expertise). Concurrently, the retirement of baby boomers creates shortages of seasoned managers, intensifying the global competition for skilled labor.</li>
+      </ul>
+      <div class="example-box mb-4">
+        <strong>Example:</strong> For "Increasing Concern for the Environment," companies are focusing on the "triple bottom line" (profits, employees, environment). For instance, a company might invest heavily in renewable energy sources for its operations, design products with minimal carbon footprint, or implement robust recycling programs, going beyond just legal compliance to genuinely reduce its ecological impact. This proactive stance helps attract environmentally conscious consumers and talent.
+        <br><br>
+        For "Faster Pace of Innovation," Nokia introduces 50-60 new phone models annually, each with hundreds of components tailored to local markets. Google's approach of "when in doubt, do something" and running experiments for new platforms like OpenSocial demonstrates adapting to rapid innovation. They prioritize quick action and learning from experiments over lengthy planning to keep pace with evolving market demands.
+      </div>
+
+      <div class="chart-container">
+        <canvas id="challengeTrendsChart"></canvas>
+      </div>
+      <p class="text-sm text-center text-64748B mt-2">Perceived impact of top 5 challenge trends on businesses.</p>
+
+      <h3>Top 5 Solution Trends:</h3>
+      <ul class="list-disc list-inside mb-4">
+        <li><strong>Becoming More Connected:</strong> The exponential growth of internet and World Wide Web usage connects people and information as never before. Over 1.4 billion people online by mid-2008, with continuous growth, means vast amounts of information, words, sounds, pictures, and video are easily accessible, fostering unprecedented communication and collaboration.</li>
+        <li><strong>Becoming More Global:</strong> Enhanced connectivity allows managers to tap into global suppliers and talent pools. Regardless of the problem, there's likely an innovative product, knowledge, or talent somewhere in the world to address it. This global reach facilitates finding solutions, connecting customers with suppliers, and innovators with markets, often at lower costs and with reduced environmental impact compared to physical travel.</li>
+        <li><strong>Becoming More Mobile:</strong> The widespread adoption of mobile phones (4 billion users by end of 2008, growing rapidly) means employees, suppliers, and customers can be reached anywhere, anytime. This constant connectivity enables two-way, real-time dialogue and collaboration, transforming business operations, especially in developing countries where mobile phones are often the primary means of digital access.</li>
+        <li><strong>Rise of the Creative Class:</strong> Platforms like blogs, Flickr, YouTube, and open-source projects empower individuals to share their creative efforts and contribute ideas. This "ubiquitous opportunity for creativity" nurtures a new "creative class" and can lead to an "e-lance economy" where workers operate as free agents, working remotely and flexibly, challenging traditional management structures.</li>
+        <li><strong>Increasing Collaboration:</strong> The convergence of these solution trends fosters an unprecedented rise in collaboration across geographical and temporal boundaries. More people can come together to solve complex problems more quickly. Companies are looking beyond their internal walls for innovation, forming alliances and engaging in open, decentralized collaboration to design new products and address global challenges.</li>
+      </ul>
+      <div class="example-box">
+        <strong>Example:</strong> "Becoming More Mobile" is exemplified by fishermen off the coast of southern India using mobile phones to call prospective buyers of their catch before they go ashore. This simple act, enabled by mobile connectivity, increased their profits by 8% while simultaneously lowering the overall price consumers paid for fish by 4%. This illustrates how mobile technology directly impacts business models and economic efficiency in remote areas, empowering individuals and optimizing markets.
+        <br><br>
+        "Increasing Collaboration" is seen in projects like the MIT-based Vehicle Design Summit, a virtual, open-source project where around 200 students from around the world collaborated to design a low-cost, 200-mpg four-seater car for the Indian market. This demonstrates how global connectivity and collaborative tools enable large-scale, distributed problem-solving and innovation that would be impossible within traditional organizational boundaries.
+      </div>
+
+      <div class="chart-container">
+        <canvas id="solutionTrendsChart"></canvas>
+      </div>
+      <p class="text-sm text-center text-64748B mt-2">Potential impact of top 5 solution trends on businesses.</p>
+    </section>
+
+    <!-- Section 6: Globalization and Principles of Management -->
+    <section id="section6" class="section-card">
+      <p class="text-64748B mb-6">Understand the critical role of cultural sensitivity in global management, exploring the GLOBE Project's cultural dimensions and their impact on international business interactions.</p>
+      <h2>Globalization and Principles of Management</h2>
+      <p class="mb-4">As businesses increasingly operate across regional and national borders, the ability of managers to navigate diverse cultural landscapes becomes paramount. A significant challenge in global business is not just language barriers, but also differing cultural norms that influence communication, decision-making, and overall business conduct. This highlights a reported shortage of global managers with the necessary cross-cultural skills.</p>
+      <h3>Cultural Dimensions (GLOBE Project):</h3>
+      <p class="mb-4">To address the complexities of culture in management, the **GLOBE (Global Leadership and Organizational Behavior Effectiveness) Project** was initiated. This ambitious, decade-long study involved 170 researchers collecting and analyzing data from over 17,000 managers in 62 societal cultures. Its 2006 report identified nine key cultural dimensions that significantly influence business dealings and leadership effectiveness:</p>
+      <ul class="list-disc list-inside mb-4 ml-4">
+        <li><strong>Performance Orientation:</strong> The extent to which a society encourages and rewards group members for performance improvement and excellence. In high-performance-orientation cultures (e.g., U.S., Singapore), training and development are emphasized. In low-performance-orientation cultures (e.g., Russia, Greece), family and background may count for more.</li>
+        <li><strong>Uncertainty Avoidance:</strong> Reflects the extent to which members of a society attempt to cope with anxiety by minimizing uncertainty. High uncertainty avoidance cultures (e.g., Brazil, Switzerland) prefer strict rules, laws, and policies to control the unexpected. Low uncertainty avoidance cultures (e.g., Hong Kong, Malaysia) are more tolerant of ambiguity and open to change.</li>
+        <li><strong>Assertiveness:</strong> How assertive, confrontational, or aggressive individuals are in social relationships. High-assertiveness cultures (e.g., U.S., Austria) encourage competition. Low-assertiveness cultures (e.g., Sweden, New Zealand) prefer harmony, loyalty, and solidarity.</li>
+        <li><strong>Power Distance:</strong> The extent to which less powerful members of institutions and organizations expect and accept that power is distributed unequally. In high-power-distance countries (e.g., Thailand, France), there's an expectation of hierarchical structures and obedience to authority. Low-power-distance countries (e.g., Australia) emphasize equality and cooperative interaction.</li>
+        <li><strong>Gender Egalitarianism:</strong> The degree to which a society minimizes gender role differences and discrimination. Low gender egalitarianism countries (e.g., Egypt, South Korea) are male-dominated in power positions. High gender egalitarianism countries (e.g., Nordic countries, Germany) encourage diversity regardless of gender.</li>
+        <li><strong>Institutional Collectivism:</strong> The extent to which people act predominantly as a member of a lifelong group or organization. High institutional collectivism (e.g., Sweden) emphasizes group rewards. Low institutional collectivism (e.g., U.S.) emphasizes individual achievement.</li>
+        <li><strong>Humane Orientation:</strong> The degree to which a society encourages and rewards individuals for being fair, altruistic, generous, and kind to others. This practice is more prevalent in high-humane-orientation countries (e.g., Malaysia) than in low-humane-orientation ones (e.g., Germany).</li>
+        <li><strong>Future Orientation:</strong> The extent to which individuals engage in future-oriented behaviors such as planning, investing in the future, and delaying gratification. High future orientation (e.g., China, Singapore) leads to longer-term planning horizons. Low future orientation (e.g., Argentina, Russia) tends to be more opportunistic and less risk-averse.</li>
+      </ul>
+      <div class="example-box">
+        <strong>Example:</strong> When Corning attempted a joint venture with Mexican glass manufacturer Vitro, it failed due to cultural clashes. Mexican managers, from a high <strong>Power Distance</strong> culture, expected decisions to be made by top management and valued loyalty to those in authority, leading to what American managers perceived as "slow decision making." Americans, from a lower power distance culture, were more direct and tried to work around the hierarchy, which was seen as disrespectful. Additionally, Mexicans' less urgent approach to time (a facet related to Future Orientation) contrasted with American demands for rapid progress. This highlights how differing cultural dimensions, particularly in power distribution and time perception, can derail international collaborations if not understood and respected.
+      </div>
+
+      <div class="chart-container">
+        <canvas id="globeChart"></canvas>
+      </div>
+      <p class="text-sm text-center text-64748B mt-2">Hypothetical comparison of cultural dimensions for two countries.</p>
+    </section>
+
+    <!-- Section 7: Developing Your Values-Based Leadership Skills -->
+    <section id="section7" class="section-card">
+      <p class="text-64748B mb-6">Learn about the ethical challenges managers face and the paramount importance of values-based leadership in building trust and driving organizational effectiveness.</p>
+      <h2>Developing Your Values-Based Leadership Skills</h2>
+      <p class="mb-4">Ethics is not merely about following the law; it's about acting in accordance with fundamental values and making choices that reflect a company's integrity and long-term success. Managers constantly face ethical dilemmas, and their decisions have far-reaching consequences for employees, shareholders, and the public.</p>
+      <h3>Ethical Challenges and Importance of Ethics:</h3>
+      <p class="mb-4">Ethical dilemmas can arise from various sources, including conflicts of interest, pressure to meet unrealistic goals, desire for personal gain, or simply a lack of clear ethical guidelines. It's crucial to recognize that unethical behavior often stems from situational pressures rather than just individual character flaws. A global study by the American Management Association identified key reasons for ethical lapses, such as pressure to meet company objectives, a desire to look good, and peer pressure.</p>
+      <p class="mb-4">The importance of ethics in management cannot be overstated. Leaders set the moral tone of an organization and serve as powerful role models. If employees observe leaders behaving unethically, it can erode trust and encourage similar behavior throughout the company, regardless of formal codes of ethics. The **Sarbanes-Oxley Act of 2002** was enacted to reform corporate governance and mandated codes of ethics, but true ethical conduct relies on leaders upholding those values in their daily decisions and actions. The U.S. financial crisis of 2008 further underscored the need for stronger ethical frameworks and regulatory scrutiny, particularly in the financial services industry.</p>
+      <div class="example-box">
+        <strong>Example:</strong> The infamous case of Enron starkly illustrates the consequences of ethical failures at the top. Despite internal warnings from Vice President Sherron Watkins about accounting misdeeds, management prioritized immense profits from the Enron account over ethical practices. This short-sightedness ultimately led to the ruin of both Enron and its auditing firm, Arthur Andersen, causing immense financial devastation for countless employees and shareholders. This case highlights how even with a code of ethics, a lack of ethical leadership and a focus on immediate gains can have catastrophic consequences, emphasizing that true integrity is built on consistent ethical actions, not just words. Procter & Gamble's detailed values (Integrity, Passion for Winning, Leadership, Trust, Ownership) serve as a counter-example, guiding their business conduct and fostering an ethical environment where employees are expected to "do the right thing" and act like owners with the company's long-term success in mind.
+      </div>
+      <h3>Integrating Ethics into Decision Making:</h3>
+      <p class="mb-4">Ethics implies making a choice between competing decision-making rules (e.g., choosing the cheapest supplier vs. the highest quality one) or navigating situations where no clear rule exists and self-interest conflicts with moral principles. An effective ethical decision-making process can guide managers through such dilemmas. It involves identifying the ethical issue, gathering facts, considering alternatives, evaluating consequences, and making a principled choice.</p>
+      <p class="mb-4">Crucially, confronting unethical behavior early is always preferable. Addressing an issue in its nascent stages allows for a fact-finding discussion rather than an accusatory one, potentially nipping the problem in the bud and preventing escalation. Silence, driven by a desire to avoid offense, can lead to far greater problems down the line. As Jean-Baptiste Moliere wrote, "It’s not only for what we do that we are held responsible, but for what we do not do." Managers can foster an ethical environment by offering ethics seminars, establishing anonymous ethics hotlines, and creating ombudsman offices or ethics committees to investigate concerns, ensuring that employees feel empowered to act ethically and report violations.</p>
+      <div class="example-box">
+        <strong>Example:</strong> Consider a product manager who discovers a minor, seemingly harmless error in a software product just days before a critical launch deadline. Correcting the error would mean a three-week delay and potentially losing a major client deal. Releasing it as is serves the manager's immediate self-interest (meeting the deadline, securing the deal) but violates the principle of product quality and integrity, potentially harming users in the long run. An ethical decision-making framework would prompt the manager to consider the long-term consequences of releasing a flawed product (reputational damage, customer dissatisfaction, potential legal issues) versus the short-term financial gain. This framework encourages prioritizing the company's core values and customer trust over immediate pressures, even if it means a difficult conversation with the client and a temporary setback.
+      </div>
+      <div class="chart-container">
+        <canvas id="ethicsLapseChart"></canvas>
+      </div>
+      <p class="text-sm text-center text-64748B mt-2">Common reasons for ethical lapses in business.</p>
+    </section>
+
+    <footer class="text-center py-8 text-64748B text-sm border-t border-E2E8F0 mt-10">
+      <p>&copy; 2025 Management Principles Interactive Report. All rights reserved.</p>
+    </footer>
+  </main>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Chart Data and Configuration
+    const wrapLabels = (labels) => {
+      return labels.map(label => {
+        const words = label.split(' ');
+        const wrapped = [];
+        let currentLine = '';
+        words.forEach(word => {
+          if ((currentLine + word).length <= 16) {
+            currentLine += (currentLine === '' ? '' : ' ') + word;
+          } else {
+            wrapped.push(currentLine);
+            currentLine = word;
+          }
+        });
+        wrapped.push(currentLine);
+        return wrapped;
+      });
+    };
+
+    // Chart 1: Ethics Lapse Chart
+    const ethicsLapseCtx = document.getElementById('ethicsLapseChart').getContext('2d');
+    new Chart(ethicsLapseCtx, {
+      type: 'bar',
+      data: {
+        labels: wrapLabels(['Pressure to meet unrealistic goals', 'Desire to look good for superiors', 'Lack of clear ethical guidelines', 'Peer pressure', 'Personal financial gain']),
+        datasets: [{
+          label: 'Percentage of Executives',
+          data: [55, 40, 30, 25, 20], // Hypothetical percentages
+          backgroundColor: '#3B82F6', // Accent Blue
+          borderColor: '#1D4ED8', // Darker Blue
+          borderWidth: 1,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y', // Horizontal bars
+        plugins: {
+          title: {
+            display: true,
+            text: 'Main Reasons for Ethical Lapses (Hypothetical)',
+            font: {
+              size: 16,
+              weight: 'bold'
+            },
+            color: '#1E293B'
+          },
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.x !== null) {
+                  label += context.parsed.x + '%';
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Percentage',
+              color: '#64748B'
+            },
+            ticks: {
+              color: '#64748B'
+            },
+            grid: {
+              color: '#E2E8F0'
+            }
+          },
+          y: {
+            ticks: {
+              color: '#64748B'
+            },
+            grid: {
+              color: '#E2E8F0'
+            }
+          }
+        }
+      }
+    });
+
+    // Chart 2: Challenge Trends Chart
+    const challengeTrendsCtx = document.getElementById('challengeTrendsChart').getContext('2d');
+    new Chart(challengeTrendsCtx, {
+      type: 'bar',
+      data: {
+        labels: wrapLabels(['Increasing Concern for the Environment', 'Greater Personalization and Customization', 'Faster Pace of Innovation', 'Increasing Complexity', 'Increasing Competition for Talent']),
+        datasets: [{
+          label: 'Perceived Impact (Scale of 1-10)',
+          data: [8, 7, 9, 8, 10], // Hypothetical impact scores
+          backgroundColor: '#F97316', // Orange 500
+          borderColor: '#EA580C', // Orange 600
+          borderWidth: 1,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: {
+          title: {
+            display: true,
+            text: 'Top 5 Challenge Trends Impact (Hypothetical)',
+            font: {
+              size: 16,
+              weight: 'bold'
+            },
+            color: '#1E293B'
+          },
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.x !== null) {
+                  label += context.parsed.x;
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 10,
+            title: {
+              display: true,
+              text: 'Impact Score',
+              color: '#64748B'
+            },
+            ticks: {
+              color: '#64748B'
+            },
+            grid: {
+              color: '#E2E8F0'
+            }
+          },
+          y: {
+            ticks: {
+              color: '#64748B'
+            },
+            grid: {
+              color: '#E2E8F0'
+            }
+          }
+        }
+      }
+    });
+
+    // Chart 3: Solution Trends Chart
+    const solutionTrendsCtx = document.getElementById('solutionTrendsChart').getContext('2d');
+    new Chart(solutionTrendsCtx, {
+      type: 'bar',
+      data: {
+        labels: wrapLabels(['Becoming More Connected', 'Becoming More Global', 'Becoming More Mobile', 'Rise of the Creative Class', 'Increasing Collaboration']),
+        datasets: [{
+          label: 'Potential for Solution (Scale of 1-10)',
+          data: [9, 8, 7, 7, 9], // Hypothetical solution potential scores
+          backgroundColor: '#22C55E', // Green 500
+          borderColor: '#16A34A', // Green 600
+          borderWidth: 1,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        plugins: {
+          title: {
+            display: true,
+            text: 'Top 5 Solution Trends Potential (Hypothetical)',
+            font: {
+              size: 16,
+              weight: 'bold'
+            },
+            color: '#1E293B'
+          },
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.x !== null) {
+                  label += context.parsed.x;
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 10,
+            title: {
+              display: true,
+              text: 'Solution Potential Score',
+              color: '#64748B'
+            },
+            ticks: {
+              color: '#64748B'
+            },
+            grid: {
+              color: '#E2E8F0'
+            }
+          },
+          y: {
+            ticks: {
+              color: '#64748B'
+            },
+            grid: {
+              color: '#E2E8F0'
+            }
+          }
+        }
+      }
+    });
+
+    // Chart 4: GLOBE Cultural Dimensions Radar Chart
+    const globeCtx = document.getElementById('globeChart').getContext('2d');
+    new Chart(globeCtx, {
+      type: 'radar',
+      data: {
+        labels: ['Performance Orientation', 'Uncertainty Avoidance', 'Assertiveness', 'Power Distance', 'Gender Egalitarianism', 'Institutional Collectivism', 'Humane Orientation', 'Future Orientation'],
+        datasets: [
+          {
+            label: 'Country A (e.g., USA)',
+            data: [7, 4, 8, 3, 6, 4, 5, 6], // Hypothetical scores 1-10
+            backgroundColor: 'rgba(59, 130, 246, 0.4)', // Accent Blue with transparency
+            borderColor: '#3B82F6',
+            pointBackgroundColor: '#3B82F6',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: '#3B82F6',
+            borderWidth: 2
+          },
+          {
+            label: 'Country B (e.g., Japan)',
+            data: [6, 8, 4, 7, 5, 8, 6, 9], // Hypothetical scores 1-10
+            backgroundColor: 'rgba(234, 88, 12, 0.4)', // Orange 600 with transparency
+            borderColor: '#EA580C',
+            pointBackgroundColor: '#EA580C',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: '#EA580C',
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'GLOBE Cultural Dimensions: Country Comparison (Hypothetical)',
+            font: {
+              size: 16,
+              weight: 'bold'
+            },
+            color: '#1E293B'
+          },
+          legend: {
+            position: 'top',
+            labels: {
+              color: '#1E293B'
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.r !== null) {
+                  label += context.parsed.r;
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          r: {
+            angleLines: {
+              color: '#E2E8F0'
+            },
+            grid: {
+              color: '#E2E8F0'
+            },
+            pointLabels: {
+              font: {
+                size: 12
+              },
+              color: '#64748B'
+            },
+            suggestedMin: 0,
+            suggestedMax: 10,
+            ticks: {
+              display: false // Hide numerical ticks on the radar axis
+            }
+          }
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>

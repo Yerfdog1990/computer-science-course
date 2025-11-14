@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizational Culture</title>
+    <!-- Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+        /* Custom scrollbar styling for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a0a0a0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7a7a7a;
+        }
+        /* Style for the expandable sections */
+        .collapsible-header {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .collapsible-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+            padding: 0 1.5rem;
+        }
+        .collapsible-content.expanded {
+            max-height: 1000px; /* A large value to ensure it can expand */
+            padding: 1.5rem;
+            opacity: 1;
+        }
+        .collapsible-header .arrow {
+            transition: transform 0.3s ease-in-out;
+        }
+        .collapsible-header.expanded .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Card styling for Google section */
+        .google-card {
+            background-color: #ffffff;
+            border-left: 4px solid #4285F4;
+            transition: transform 0.3s ease-in-out;
+        }
+        .google-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the dimensions section */
+        .dimension-card {
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            min-height: 120px;
+        }
+        .dimension-card.active {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .dimension-card .content {
+            display: none;
+        }
+        .dimension-card.active .content {
+            display: block;
+        }
+
+        /* Style for the two-column layout */
+        .two-column-list {
+            list-style: none;
+            padding: 0;
+        }
+        .two-column-list li {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .two-column-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background-color: #4f46e5;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+<div class="container mx-auto px-4 py-12 max-w-4xl">
+
+    <!-- Header Section -->
+    <header class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">Understanding Organizational Culture</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            This canvas provides an interactive overview of organizational culture, its importance, how it's created and changed, and how to navigate it as an individual.
+        </p>
+    </header>
+
+    <!-- Section 8.1: Organizational Culture -->
+    <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">8.1: Organizational Culture</h2>
+        <p class="mb-6 text-gray-700">
+            Organizational culture is a shared system of assumptions, values, and beliefs that dictates appropriate and inappropriate behaviors. It gained prominence in the 1980s, with research highlighting its connection to organizational success.
+        </p>
+
+        <!-- Collapsible Why Culture Matters -->
+        <div class="space-y-4 mb-8">
+            <div class="rounded-lg bg-gray-50 shadow-sm">
+                <div class="collapsible-header flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                    <h3 class="font-bold text-lg text-gray-900">Why Organizational Culture Matters</h3>
+                    <svg class="arrow w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="collapsible-content bg-gray-50 rounded-b-lg">
+                    <ul class="space-y-4 text-gray-700">
+                        <li>
+                            <span class="font-semibold text-gray-900">Competitive Advantage:</span> A unique and difficult-to-imitate culture can provide a significant competitive edge. For a company like Google, its culture of innovation is a key differentiator.
+                        </li>
+                        <li>
+                            <span class="font-semibold text-gray-900">Performance:</span> A strong culture is linked to improved performance, but it must align with the industry. An innovative culture is beneficial for a high-tech company, while a stable culture is perfect for a utility company.
+                        </li>
+                        <li>
+                            <span class="font-semibold text-gray-900">Control Mechanism:</span> Culture is a powerful control mechanism, often more effective than formal rules. For example, a "customer service" culture empowers employees to waive a refund fee to satisfy a customer without a specific policy.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collapsible Levels of Culture -->
+        <div class="space-y-4">
+            <div class="rounded-lg bg-gray-50 shadow-sm">
+                <div class="collapsible-header flex items-center justify-between p-4 bg-white rounded-lg shadow-sm">
+                    <h3 class="font-bold text-lg text-gray-900">Levels of Organizational Culture</h3>
+                    <svg class="arrow w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="collapsible-content bg-gray-50 rounded-b-lg">
+                    <ul class="space-y-4 text-gray-700">
+                        <li>
+                            <span class="font-semibold text-gray-900">Assumptions:</span> The deepest, unconscious beliefs about human nature.
+                            <p class="italic mt-1">Example: A company's unspoken assumption that "people are lazy and need to be monitored" influences all other cultural aspects.</p>
+                        </li>
+                        <li>
+                            <span class="font-semibold text-gray-900">Values:</span> Shared principles and goals that stem from assumptions.
+                            <p class="italic mt-1">Example: The assumption above leads to **values** of strict accountability and formal procedures.</p>
+                        </li>
+                        <li>
+                            <span class="font-semibold text-gray-900">Artifacts:</span> Visible and tangible manifestations of the culture.
+                            <p class="italic mt-1">Example: The **artifacts** are a rigid dress code, clocking in and out, and performance reviews based on hours worked.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8.2: Case in Point: Google -->
+    <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">8.2: Case in Point: Google Creates Unique Culture</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="google-card p-6 rounded-lg shadow-md bg-white">
+                <h3 class="font-bold text-lg text-gray-900 mb-2">User Focus</h3>
+                <p class="text-gray-700">Google's mission drives its emphasis on user experience, leading to a clean search page without distractions, prioritizing user needs over immediate advertising revenue.</p>
+            </div>
+            <div class="google-card p-6 rounded-lg shadow-md bg-white">
+                <h3 class="font-bold text-lg text-gray-900 mb-2">Employee Well-being and Perks</h3>
+                <p class="text-gray-700">Google offers extensive benefits like free gourmet meals, gyms, and on-site childcare, making employees feel valued and fostering a unique work environment.</p>
+            </div>
+            <div class="google-card p-6 rounded-lg shadow-md bg-white">
+                <h3 class="font-bold text-lg text-gray-900 mb-2">Risk-Taking and Innovation</h3>
+                <p class="text-gray-700">The company encourages risk. When a VP made a multi-million dollar mistake, Larry Page commended him. Engineers are also encouraged to spend 20% of their time on personal projects.</p>
+            </div>
+            <div class="google-card p-6 rounded-lg shadow-md bg-white">
+                <h3 class="font-bold text-lg text-gray-900 mb-2">Team-Oriented Decision Making</h3>
+                <p class="text-gray-700">Decisions are made in teams and through consensus. Employees are encouraged to use data and rational persuasion rather than personal opinions, a practice facilitated by open office environments.</p>
+            </div>
+            <div class="google-card p-6 rounded-lg shadow-md bg-white col-span-1 md:col-span-2">
+                <h3 class="font-bold text-lg text-gray-900 mb-2">Rigorous Hiring</h3>
+                <p class="text-gray-700">Google maintains its values through an extremely competitive hiring process. Candidates are selected to ensure they align with the company's values of risk-taking, agility, and cooperation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8.4: Measuring Organizational Culture -->
+    <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">8.4: Measuring Organizational Culture</h2>
+        <p class="mb-6 text-gray-700">
+            The Organizational Culture Profile (OCP) framework identifies seven distinct dimensions. Click on each card to learn more.
+        </p>
+
+        <div id="dimensions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dimensions will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Section 8.6: Creating Culture Change -->
+    <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">8.6: Creating Culture Change</h2>
+        <p class="mb-6 text-gray-700">
+            Changing a deeply embedded culture is difficult but essential for survival. Here are six steps to facilitate this change.
+        </p>
+        <ol class="list-decimal list-inside space-y-6 text-gray-700">
+            <li>
+                <span class="font-semibold text-gray-900">Create a Sense of Urgency:</span> Employees must understand the critical need for change.
+                <p class="italic mt-1">Example: Lou Gerstner used the crisis at IBM in 1993 to gain buy-in for a cultural transformation by convincing employees the company's existence was at stake.</p>
+            </li>
+            <li>
+                <span class="font-semibold text-gray-900">Change Leaders and Other Key Players:</span> Leadership must champion the new culture.
+                <p class="italic mt-1">Example: Robert Iger, as Disney CEO, abolished a central planning unit that was a barrier to creativity, removing a key roadblock to an innovative culture.</p>
+            </li>
+            <li>
+                <span class="font-semibold text-gray-900">Role Modeling:</span> Leaders should exhibit the behaviors expected of employees.
+                <p class="italic mt-1">Example: Iger personally engaged in game creation at Disney to model his commitment to innovation.</p>
+            </li>
+            <li>
+                <span class="font-semibold text-gray-900">Training:</span> Structured programs can instill new norms.
+                <p class="italic mt-1">Example: After the Columbia disaster, NASA implemented training in team processes and cognitive bias awareness to foster a safety-sensitive culture.</p>
+            </li>
+            <li>
+                <span class="font-semibold text-gray-900">Changing the Reward System:</span> Rewards and punishments must align with new values.
+                <p class="italic mt-1">Example: Shifting from individual commissions to team-based bonuses can promote collaboration.</p>
+            </li>
+            <li>
+                <span class="font-semibold text-gray-900">Creating New Symbols and Stories:</span> New rituals, symbols, and narratives reinforce cultural shifts.
+                <p class="italic mt-1">Example: Continental Airlines famously burned its 800-page policy manual to symbolize a move toward a less bureaucratic culture.</p>
+            </li>
+        </ol>
+    </section>
+
+    <!-- Section 8.7: Learning to Fit In -->
+    <section class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">8.7: Developing Your Personal Skills: Learning to Fit In</h2>
+        <p class="mb-6 text-gray-700">This section provides practical guidance for individuals to understand and adapt to an organizational culture, both before and after joining a company.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3 border-b-2 pb-2 border-indigo-200">Before You Join</h3>
+                <ul class="two-column-list space-y-4 text-gray-700">
+                    <li><span class="font-semibold text-gray-900">Do Your Research:</span> Investigate the company through friends, news, and its website to get a sense of its values.</li>
+                    <li><span class="font-semibold text-gray-900">Observe the Physical Environment:</span> Note the office layout, dress code, and employee demeanor during a visit.</li>
+                    <li><span class="font-semibold text-gray-900">Read Between the Lines:</span> The absence of a lengthy employee handbook might suggest a more flexible culture.</li>
+                    <li><span class="font-semibold text-gray-900">Reflect on How You Are Treated:</span> The recruitment process itself can reveal the company's respect for candidates.</li>
+                    <li><span class="font-semibold text-gray-900">Ask Questions:</span> Inquire about what leads to success in the firm.</li>
+                    <li><span class="font-semibold text-gray-900">Listen to Your Gut:</span> Trust your instincts about the overall environment, manager, and coworkers.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3 border-b-2 pb-2 border-indigo-200">After You Get a New Job (Onboarding)</h3>
+                <ul class="two-column-list space-y-4 text-gray-700">
+                    <li><span class="font-semibold text-gray-900">Gather Information:</span> Observe interactions, dress, and behaviors to understand the company and your role.</li>
+                    <li><span class="font-semibold text-gray-900">Manage Your First Impression:</span> Dress appropriately, be friendly, and express enthusiasm.</li>
+                    <li><span class="font-semibold text-gray-900">Invest in Relationship Development:</span> Build relationships with your manager and coworkers by initiating conversations.</li>
+                    <li><span class="font-semibold text-gray-900">Seek Feedback:</span> Regularly ask for feedback on your performance and act on suggestions for improvement.</li>
+                    <li><span class="font-semibold text-gray-900">Show Success Early On:</span> Volunteer for high-profile projects to demonstrate your skills and meet key people.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // JavaScript for collapsible headers
+        const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+        collapsibleHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isExpanded = header.classList.contains('expanded');
+
+                // Close all other open sections
+                collapsibleHeaders.forEach(otherHeader => {
+                    if (otherHeader !== header && otherHeader.classList.contains('expanded')) {
+                        otherHeader.classList.remove('expanded');
+                        otherHeader.nextElementSibling.classList.remove('expanded');
+                    }
+                });
+
+                // Toggle the clicked section
+                header.classList.toggle('expanded', !isExpanded);
+                content.classList.toggle('expanded', !isExpanded);
+            });
+        });
+
+        // JavaScript for the interactive dimensions cards
+        const dimensions = [
+            {
+                name: "Innovative Cultures",
+                description: "These cultures are flexible, adaptable, and encourage experimentation and new ideas, often featuring flat hierarchies.",
+                example: "W. L. Gore & Associates, the creators of GORE-TEX®, is known for its 'lattice' organization where employees don't have traditional bosses and are encouraged to experiment."
+            },
+            {
+                name: "Aggressive Cultures",
+                description: "These emphasize competitiveness and outperforming rivals, sometimes at the expense of corporate social responsibility.",
+                example: "Microsoft has been cited for having an aggressive culture, evidenced by past competitive statements like 'we are going to cut off Netscape’s air supply'."
+            },
+            {
+                name: "Outcome-Oriented Cultures",
+                description: "These prioritize achievement, results, and action.",
+                example: "Best Buy exemplifies this, tracking daily revenues by department and evaluating employees based on results through programs like the Results Oriented Work Environment (ROWE)."
+            },
+            {
+                name: "Stable Cultures",
+                description: "Characterized by predictability, rules, and bureaucracy. While effective in stable environments, they can hinder quick action in dynamic ones.",
+                example: "Kraft Foods is an example of a company whose bureaucratic culture impeded innovation and agility, making it difficult to respond quickly to market changes."
+            },
+            {
+                name: "People-Oriented Cultures",
+                description: "These value fairness, supportiveness, and respect for individual rights.",
+                example: "Starbucks is a prime example, offering above-minimum wage, health care, and tuition reimbursement even to part-time employees. This people-centric approach contributes to lower turnover rates and a positive public image."
+            },
+            {
+                name: "Team-Oriented Cultures",
+                description: "These foster collaboration and cooperation among employees.",
+                example: "Southwest Airlines exemplifies this by cross-training employees to help each other and selecting job applicants based on their team-player qualities."
+            },
+            {
+                name: "Detail-Oriented Cultures",
+                description: "These emphasize precision and attention to detail.",
+                example: "Companies in the hospitality industry, such as Four Seasons and Ritz Carlton, use this to their advantage by meticulously recording customer preferences to provide highly personalized service."
+            },
+            {
+                name: "Strength of Culture",
+                description: "A strong culture means widespread consensus among employees on values. It can be an asset or a liability.",
+                example: "A strong culture can be an asset in a sales environment, but a liability if it resists change. The merger of Daimler-Benz's hierarchical culture and Chrysler's autonomous culture faced significant challenges."
+            },
+            {
+                name: "Subcultures vs. Countercultures",
+                description: "Organizations can have multiple cultures.",
+                example: "A subculture might exist in a marketing department with a more informal culture than the finance department. A counterculture directly opposes the main culture, and could be tolerated or perceived as a threat."
+            }
+        ];
+
+        const dimensionsContainer = document.getElementById('dimensions-container');
+        let activeCard = null;
+
+        dimensions.forEach((dimension, index) => {
+            const card = document.createElement('div');
+            card.className = 'dimension-card bg-white rounded-xl shadow-md p-6';
+            card.innerHTML = `
+                    <h3 class="font-bold text-lg text-gray-900 mb-2">${dimension.name}</h3>
+                    <div class="content mt-3 space-y-4">
+                        <p class="text-gray-700">${dimension.description}</p>
+                        <p class="text-gray-600 italic">Example: ${dimension.example}</p>
+                    </div>
+                `;
+
+            card.addEventListener('click', () => {
+                if (activeCard && activeCard !== card) {
+                    activeCard.classList.remove('active');
+                }
+                card.classList.toggle('active');
+                activeCard = card.classList.contains('active') ? card : null;
+            });
+
+            dimensionsContainer.appendChild(card);
+        });
+    });
+</script>
+</body>
+</html>

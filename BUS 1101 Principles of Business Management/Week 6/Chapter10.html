@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leadership Insights</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f4f8; /* Light blue-gray background */
+      color: #334155; /* Darker text */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align to top */
+      min-height: 100vh;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 1.5rem; /* More rounded corners */
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Deeper shadow */
+      padding: 2rem;
+      margin-top: 2rem; /* Margin from top */
+    }
+    .accordion-header {
+      cursor: pointer;
+      padding: 1rem 1.5rem;
+      background-color: #e2e8f0; /* Lighter gray for headers */
+      border-radius: 0.75rem;
+      margin-bottom: 0.5rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #1a202c; /* Darker text for headers */
+    }
+    .accordion-header:hover {
+      background-color: #cbd5e1; /* Slightly darker on hover */
+      transform: translateY(-2px); /* Subtle lift effect */
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+      padding: 0 1.5rem;
+      background-color: #f8fafc; /* Even lighter background for content */
+      border-radius: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .accordion-content.open {
+      max-height: 2000px; /* Increased max-height for more detailed content with examples */
+      padding: 1rem 1.5rem;
+    }
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+    .accordion-header.active .arrow {
+      transform: rotate(90deg);
+    }
+    h1 {
+      color: #1e3a8a; /* Dark blue for main title */
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #2563eb; /* Blue for section titles */
+      margin-bottom: 0.75rem;
+    }
+    .subsection-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #475569; /* Gray for subsection titles */
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="text-3xl md:text-4xl">Leading People and Organizations</h1>
+  <p class="text-center text-lg mb-6">Explore the various approaches to leadership, from classic theories to contemporary styles, and understand what makes leaders effective.</p>
+
+  <!-- Section 1: Introduction -->
+  <div class="accordion-item">
+    <div class="accordion-header flex justify-between items-center" data-target="intro-content">
+      <span>10.1: Leading People and Organizations - Introduction</span>
+      <span class="arrow">&#9658;</span> <!-- Right-pointing triangle -->
+    </div>
+    <div id="intro-content" class="accordion-content">
+      <p>This foundational section defines leadership as the act of influencing others toward a common goal. It clarifies that leaders exist at all organizational levels, distinguishing between <strong>formal leaders</strong>—who possess positional and personal power—and <strong>informal leaders</strong>—who influence solely through personal power. A critical distinction is made: true leaders inspire willing adoption of goals, rather than relying on force or punishment, which would characterize a dictator.</p>
+      <p>The chapter emphasizes the profound impact of leaders on organizational success or failure, noting that CEOs, for instance, are highly compensated under the assumption that they steer their company's future. While acknowledging the "romance of leadership" where leaders are sometimes overly credited, the text asserts that research confirms the accumulating evidence of their importance. As the first of five facets within a manager's "Leading" function in the P-O-L-C (Planning, Organizing, Leading, Controlling) framework, leadership is presented as a central element of management. The section outlines the chapter's learning objectives, which include defining leadership, identifying effective leader traits and behaviors, understanding situational leadership, explaining contemporary leadership concepts (transformational, transactional, charismatic, servant, and authentic), and aiding in developing personal leadership skills.</p>
+    </div>
+  </div>
+
+  <!-- Section 2: Case in Point - Indra Nooyi -->
+  <div class="accordion-item">
+    <div class="accordion-header flex justify-between items-center" data-target="indra-nooyi-content">
+      <span>10.2: Case in Point: Indra Nooyi Draws on Vision and Values to Lead</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div id="indra-nooyi-content" class="accordion-content">
+      <p>Indra Nooyi, former CEO of PepsiCo, serves as a prime example of influential leadership. Her "performance with purpose" vision focused on two main pillars: improving the nutritional profile of PepsiCo's products to address obesity and fostering environmental sustainability within the company. Her track record supports this vision, as she was instrumental in acquiring health-focused brands like Quaker Oats and Tropicana, and proactively removed trans fats from PepsiCo products before competitors. Environmentally, she pursued a "net zero impact" goal, prioritizing reductions in plastic use and the development of biodegradable packaging.</p>
+      <p>Nooyi is described as an inspirational speaker who effectively rallies people around her vision. Her leadership is characterized by high performance standards, a willingness to provide direct yet humorous negative feedback, and persistent problem-solving (e.g., insisting on an alternative to expensive palm oil until rice bran oil was found). She is respected for her active listening, even when facing disagreement, and her appreciation for diversity, stemming from her cross-national background. Nooyi's collaborative nature is evident in her seeking advice from informal advisors, including former PepsiCo CEOs, and her strategic decision to retain a rival for the CEO position by offering a pay raise and influence. A key piece of advice from her father—to assume good intentions in others—is noted as foundational to her ability to prevent misunderstandings and show empathy. The case study positions Nooyi as a global role model for business leaders, demonstrating how her values-driven approach prepares PepsiCo for future challenges.</p>
+    </div>
+  </div>
+
+  <!-- Section 3: Trait Approaches -->
+  <div class="accordion-item">
+    <div class="accordion-header flex justify-between items-center" data-target="trait-content">
+      <span>10.3: Who Is a Leader? Trait Approaches to Leadership</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div id="trait-content" class="accordion-content">
+      <p>This section explores the "trait approach" to leadership, which historically aimed to identify specific personality characteristics, physical attributes, and psychological attributes that differentiate leaders from non-leaders. While early research in the 1940s proved inconclusive due to measurement challenges, renewed interest emerged with advancements in personality literature, such as the <strong>Big Five personality framework</strong>.</p>
+      <p>Key traits consistently linked to leadership emergence (being perceived as a leader) and effectiveness include:</p>
+      <ul class="list-disc ml-6">
+        <li><span class="subsection-title">Intelligence:</span> Both General Mental Ability (IQ) and Emotional Intelligence (EQ) are important. While IQ is a threshold quality for entry to high-level management, EQ (comprising self-awareness, motivation, empathy, and social skills) becomes a differentiator for effective leaders, enabling them to manage their own emotions and understand others'. For example, a leader with high EQ might successfully mediate a team conflict by recognizing and addressing the underlying emotional frustrations of team members, rather than just the surface-level disagreements. The example of Carly Fiorina, former HP CEO, illustrates how high intelligence without sufficient empathy can lead to poor outcomes.</li>
+        <li><span class="subsection-title">Big Five Personality Traits:</span>
+          <ul class="list-circle ml-6">
+            <li><strong>Extraversion:</strong> Sociable, assertive, and energetic individuals are more likely to emerge as leaders across various situations and are strongly related to both leader emergence and effectiveness. <em>For instance, a highly extraverted CEO like Richard Branson often uses their outgoing nature to build networks and inspire public confidence in their ventures.</em></li>
+            <li><strong>Conscientiousness:</strong> Organized, initiative-taking, and persistent individuals are also more likely to emerge and be effective leaders. <em>A project manager who consistently delivers complex projects on time and within budget, demonstrating meticulous planning and follow-through, exemplifies conscientiousness.</em></li>
+            <li><strong>Openness to Experience:</strong> Those demonstrating originality, creativity, and a willingness to try new things tend to emerge as leaders and be effective.</li>
+            <li><strong>Agreeableness:</strong> Conversely, agreeable people (modest, good-natured, conflict-averse) are less likely to be perceived as leaders.</li>
+          </ul>
+        </li>
+        <li><span class="subsection-title">Self-Esteem:</span> Leaders with high self-esteem tend to be more supportive of subordinates and administer punishment more effectively. This confidence may also explain the correlation between physical attributes like height and leadership emergence.</li>
+        <li><span class="subsection-title">Integrity:</span> Honesty and a strong moral compass are vital; lack of integrity, as seen in the John Mackey (Whole Foods CEO) example, can erode trustworthiness and harm company reputation. <em>When John Mackey was found using a pseudonym to criticize a rival online, his integrity was questioned, severely impacting Whole Foods' reputation and trust among stakeholders.</em></li>
+      </ul>
+      <p>The section's key takeaway is that the main limitation of the trait approach is its neglect of the <strong>situational context</strong>. The effectiveness of certain traits varies depending on the organizational environment; for instance, traits may be more impactful in small, entrepreneurial settings than in large, bureaucratic organizations. Modern scholarship emphasizes identifying the conditions under which different traits influence leadership performance and emergence.</p>
+    </div>
+  </div>
+
+  <!-- Section 4: Behavioral Approaches -->
+  <div class="accordion-item">
+    <div class="accordion-header flex justify-between items-center" data-target="behavioral-content">
+      <span>10.4: What Do Leaders Do? Behavioral Approaches to Leadership</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div id="behavioral-content" class="accordion-content">
+      <p>This approach focuses on observable actions of effective leaders, aiming to identify specific behaviors that contribute to leader effectiveness and perception. Research, notably from Ohio State University and the University of Michigan, led to the identification of two broad categories of behaviors:</p>
+      <ul class="list-disc ml-6">
+        <li><span class="subsection-title">Task-oriented behaviors (initiating structure):</span> These involve leaders structuring subordinate roles, providing clear instructions, and focusing on improving group performance and achieving organizational goals. They are generally associated with higher productivity. <em>For example, a project manager who holds daily stand-up meetings to assign tasks, set deadlines, and track progress is demonstrating strong task-oriented behavior.</em></li>
+        <li><span class="subsection-title">People-oriented behaviors (consideration):</span> These behaviors demonstrate concern for employee feelings, treating them with respect, and genuinely caring for their well-being in decisions and actions. They typically lead to higher employee satisfaction. <em>A manager who offers flexible work arrangements to an employee facing family challenges, or takes time to listen to personal concerns, is exhibiting people-oriented behavior.</em></li>
+      </ul>
+      <p>While initial hopes were that demonstrating both behaviors would guarantee effectiveness, research showed that both types of behaviors are beneficial but serve different purposes. The effectiveness of these behaviors is also situational; for example, task-oriented behaviors are more effective in small companies than in large ones, and excessive task-oriented behavior can lead to employee burnout.</p>
+      <p>The section also examines <strong>leader decision-making styles</strong>:</p>
+      <ul class="list-disc ml-6">
+        <li><strong>Authoritarian decision making:</strong> Leaders make decisions alone without employee involvement. <em>At Hyundai USA, high-level managers are known for using authoritarian decision-making styles, which has contributed to the company's strong performance.</em></li>
+        <li><strong>Democratic decision making:</strong> Employees participate in the decision-making process. This style tends to increase employee satisfaction, though its impact on decision quality or productivity is weaker. Employee expectations for involvement can also vary, with scientists preferring democratic leadership but large groups with limited interaction opportunities favoring authoritarian styles. <em>Google co-founders Larry Page and Sergey Brin are known for their democratic decision-making styles, fostering an environment where employee input is highly valued.</em></li>
+        <li><strong>Laissez-faire decision making:</strong> Leaders provide minimal guidance, leaving decisions entirely to employees. This style is generally problematic, negatively correlating with employee satisfaction and leader effectiveness, and leading to ambiguity and increased conflict due to a lack of clear expectations. <em>If a team leader assigns a complex project but provides no guidance, resources, or checkpoints, the team might become confused, demotivated, and ultimately fail to deliver, illustrating the downsides of a laissez-faire approach.</em></li>
+      </ul>
+      <p>No single decision-making style is universally best; their effectiveness depends on circumstances. The main limitation of behavioral approaches, similar to trait approaches, is their failure to account for the <strong>environmental context</strong> in which behaviors are demonstrated. The hope that a given set of behaviors would predict leadership success under all circumstances proved unrealistic, leading researchers to understand that specifying the conditions for effectiveness is a more appropriate approach.</p>
+    </div>
+  </div>
+
+  <!-- Section 5: Contingency Approaches -->
+  <div class="accordion-item">
+    <div class="accordion-header flex justify-between items-center" data-target="contingency-content">
+      <span>10.5: What Is the Role of the Context? Contingency Approaches to Leadership</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div id="contingency-content" class="accordion-content">
+      <p>This section addresses the crucial role of context in determining leadership effectiveness, a shift in thinking that emerged after the limitations of universal trait and behavioral theories became apparent. <strong>Contingency approaches to leadership</strong> propose that the effectiveness of a particular leadership style is dependent on specific situational conditions.</p>
+      <ul class="list-disc ml-6">
+        <li><span class="subsection-title">Fiedler’s Contingency Theory:</span> This theory measures a leader's style using the <strong>Least Preferred Coworker (LPC) scale</strong>. Individuals completing the survey are asked to rate their least preferred coworker on various positive attributes (e.g., friendly, cooperative). A <strong>high LPC score</strong> indicates a <strong>people-oriented</strong> personality, meaning the individual can separate their personal liking of someone from their ability to work with them (i.e., they can still describe a difficult coworker positively). A <strong>low LPC score</strong> signifies a <strong>task-oriented</strong> personality, implying that if someone is difficult to work with, the rater also dislikes them personally. According to Fiedler, a leader's LPC score indicates their fixed leadership style, and the theory then matches this style to the favorableness of the situation to predict effectiveness. The theory suggests that in "favorable" and "unfavorable" situations, a low LPC leader would be successful, while in "medium" favorableness, a high LPC leader is more likely to succeed. Situational favorableness is determined by (1) leader-subordinate relations, (2) position power, and (3) task structure. <em>For instance, a low LPC (task-oriented) leader might be highly effective in a military unit facing a clear, urgent threat (unfavorable situation) by issuing direct commands. Conversely, a high LPC (people-oriented) leader might excel in a research team working on a complex, ambiguous problem (medium favorableness) by fostering collaboration and open communication.</em></li>
+        <li><span class="subsection-title">Situational Leadership Theory (SLT):</span> Developed by Kenneth Blanchard and Paul Hersey, SLT argues that leaders must adapt their style based on their followers’ development level, defined by a combination of their competence and commitment. The model identifies four styles:
+          <ul class="list-circle ml-6">
+            <li>**Directing Behavior:** For employees with low competence but high commitment (early stages of development). Leaders should be highly directive and less supportive. <em>Example: A manager providing step-by-step instructions to a new intern on their first day.</em></li>
+            <li>**Coaching Behavior:** As employees become more competent, leaders should engage in more coaching. <em>Example: A manager working with a developing employee to refine their skills on a new software, providing feedback and guidance.</em></li>
+            <li>**Supporting Behavior:** Recommended once the employee is at moderate to high levels of competence. <em>Example: A leader offering encouragement and resources to an experienced team member who is feeling overwhelmed by workload.</em></li>
+            <li>**Delegating Behavior:** The recommended approach for leaders dealing with employees who are both highly committed and highly competent. <em>Example: A senior manager entrusting a seasoned team leader with full autonomy over a new project.</em></li>
+          </ul>
+          SLT is popular among managers for its ease of understanding, though research support for its basic assumptions has been mixed.
+        </li>
+        <li><span class="subsection-title">Path-Goal Theory of Leadership:</span> Robert House’s theory is based on the expectancy theory of motivation, stating that employees are motivated when they believe their effort leads to high performance, which will be rewarded, and that these rewards are valuable. The leader's main job is to ensure these three conditions exist by removing roadblocks and creating a motivational environment. The theory identifies four leadership styles, effective depending on employee characteristics (ability, preferences, locus of control, achievement motivation) and work environment characteristics (role ambiguity, stress, task unpleasantness):
+          <ul class="list-circle ml-6">
+            <li>**Directive leaders:** Provide specific directions (effective when employees experience role ambiguity). <em>Example: A team lead clearly outlining steps for a new, complex task to a team member who is unsure how to proceed.</em></li>
+            <li>**Supportive leaders:** Provide emotional support (effective when employees are under stress or performing boring/repetitive jobs). <em>Example: A supervisor checking in with call center agents during a particularly stressful period, offering breaks and positive reinforcement.</em></li>
+            <li>**Participative leaders:** Involve employees in decision-making (effective when employees have high ability and decisions are personally relevant, or for those with an internal locus of control). <em>Example: A manager consulting with experienced engineers on the best technical solution for a new product feature.</em></li>
+            <li>**Achievement-oriented leaders:** Set challenging goals and encourage achievement (effective when employees have high ability and achievement motivation). <em>Example: A sales director setting ambitious but attainable sales targets and expressing confidence in the team's ability to exceed them.</em></li>
+          </ul>
+          This theory highlights the importance of a leader's ability to change styles based on circumstances.
+        </li>
+        <li><span class="subsection-title">Vroom and Yetton’s Normative Decision Model:</span> Developed by Victor Vroom and colleagues, this is a decision-making tool that helps leaders determine how much involvement they should seek from employees when making decisions. Leaders answer a series of key questions (e.g., decision significance, importance of commitment, leader expertise, likelihood of commitment, goal alignment, group expertise, team competence) to navigate a "funnel" that recommends the most effective decision-making style (ranging from authoritarian to fully delegated). Research supports the model's validity, showing that leaders using the recommended style tend to make more effective decisions. <em>For example, if a manager wants to reduce employee stress (high decision significance, high commitment needed, low leader expertise on employee preferences), the model might recommend consulting employees as a group to gather their input on preferred stress reduction resources like gym memberships or assistance programs.</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 6: Contemporary Approaches -->
+  <div class="accordion-item">
+    <div class="accordion-header flex justify-between items-center" data-target="contemporary-content">
+      <span>10.6: Contemporary Approaches to Leadership</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div id="contemporary-content" class="accordion-content">
+      <p>These are modern perspectives on leadership, offering nuanced insights:</p>
+      <ul class="list-disc ml-6">
+        <li><span class="subsection-title">Transformational Leadership:</span> This theory distinguishes between transformational and transactional leaders. Transformational leaders lead by aligning employee goals with the leader’s goals, inspiring commitment to the company's well-being. They use four key tools:
+          <ul class="list-circle ml-6">
+            <li>**Charisma:** Behaviors that inspire confidence, commitment, and admiration. <em>Examples include Steve Jobs (Apple) inspiring employees to innovate with a compelling vision, or Lee Iacocca (Chrysler) rallying a struggling company with his persuasive communication.</em></li>
+            <li>**Inspirational Motivation:** Creating an inspiring vision that motivates others.</li>
+            <li>**Intellectual Stimulation:** Challenging organizational norms and encouraging creative thinking.</li>
+            <li>**Individualized Consideration:** Showing personal care and concern for followers' well-being.</li>
+          </ul>
+          Research shows transformational leadership is a powerful influence on leader effectiveness and employee satisfaction, increasing intrinsic motivation, building effective relationships, and enhancing performance and creativity.
+        </li>
+        <li><span class="subsection-title">Transactional Leadership:</span> Leaders ensure employees demonstrate desired behaviors by providing resources in exchange. Methods include:
+          <ul class="list-circle ml-6">
+            <li>**Contingent Rewards:** Rewarding employees for accomplishments. <em>Example: A sales manager offering performance bonuses to team members who exceed their quarterly targets.</em></li>
+            <li>**Active Management by Exception:** Proactively predicting and preventing problems without constant interference. <em>Example: A production supervisor regularly reviewing process metrics to identify potential bottlenecks before they impact output.</em></li>
+            <li>**Passive Management by Exception:** Waiting for problems to occur before intervening (generally less effective). <em>Example: A manager who only steps in to address a team conflict after it has escalated and negatively impacted productivity.</em></li>
+          </ul>
+          Transactional styles, except for passive management by exception, are also effective and positively influence leader performance and employee attitudes. Leaders are encouraged to demonstrate both transformational and transactional styles for maximum effectiveness.
+        </li>
+        <li><span class="subsection-title">Charismatic Leadership (detailed):</span> While often perceived as innate, charisma is only partially linked to personality (e.g., extraversion explains ~10% variance) and can be developed through training. However, it has a "dark side" (e.g., leaders who harm organizations like Adolph Hitler or Jeff Skilling of Enron). Furthermore, perceived CEO charisma often correlates with past company performance rather than predicting future success, suggesting that the pursuit of charismatic leaders in all contexts may be irrational.</li>
+        <li><span class="subsection-title">Leader-Member Exchange (LMX) Theory:</span> This theory proposes that the quality of the relationship between leaders and their individual followers (members) is fundamental to understanding leader influence. Leaders naturally develop differentiated relationships, forming "in-group" and "out-group" members.
+          <ul class="list-circle ml-6">
+            <li>**High-quality LMX relationships:** Characterized by high levels of trust, mutual liking, respect, and a willingness from both leader and member to go beyond formal job descriptions. These relationships lead to higher job satisfaction, organizational commitment, clarity of job expectations, and performance. Employees receive more resources, help, information, and guidance, feel more comfortable seeking feedback, exhibit greater citizenship behaviors, and are less likely to leave their jobs. <em>Example: An employee with a high-quality LMX might volunteer to work extra hours on a critical project, knowing their effort is valued and reciprocated by the manager's support and advocacy.</em></li>
+            <li>**Low-quality LMX relationships:** Involve lower levels of trust, liking, and respect, with interactions largely confined to formal job duties. Employees may experience less support, perceive unfairness (e.g., less favorable performance appraisals even with good objective performance), and may be interpreted less favorably by managers. <em>Example: An employee in a low-quality LMX might feel overlooked for development opportunities, even if performing well, because their contributions are not seen as going "above and beyond."</em></li>
+          </ul>
+          Managers can foster high-quality LMX by treating employees fairly and delegating tasks to build trust. Employees contribute by seeking feedback and being open to learning. Interpersonal factors like personality similarity and mutual liking are stronger influences than performance alone. LMX theory underscores that leaders' influence extends through these relationships, which can lead to favoritism and unfairness if not consciously managed.
+        </li>
+        <li><span class="subsection-title">Servant Leadership:</span> Defines the leader's role as serving the needs of others. The primary mission is to develop employees and help them reach their goals, prioritizing their well-being and often involving self-sacrifice. Servant leaders feel an obligation to employees, customers, and the external community, with employee happiness seen as an end in itself. This approach emphasizes ethics, community development, and humility. Research shows positive effects on employee commitment, citizenship behaviors (e.g., community volunteering), and job performance. <em>David Wolfskehl of Action Fast Print, who founded his company at 24, saw a 30% increase in productivity within two years after he started asking employees what he could do for them, embodying servant leadership.</em></li>
+        <li><span class="subsection-title">Authentic Leadership:</span> Emphasizes being true to oneself. Authentic leaders are highly self-aware, understanding their values and priorities derived from their life experiences. They act consistently with their values, practicing what they preach, rather than imitating others. <em>Howard Schultz, founder of Starbucks, is an example; his childhood experience of his father's job-related difficulties due to medical problems shaped his core value of protecting people, leading him to pioneer health insurance and retirement coverage for all Starbucks employees.</em> Authentic leadership is viewed as influential because employees are more likely to trust such leaders, leading to greater satisfaction, performance, and well-being. Jim Collins's "Level 5 leaders" (personal humility, professional will) are seen as truly authentic.</li>
+      </ul>
+      <p>Effective leaders often combine transformational and transactional styles and adapt their approach based on the situation and their own values and moral compass.</p>
+    </div>
+  </div>
+
+  <!-- Section 7: Developing Your Leadership Skills -->
+  <div class="accordion-item">
+    <div class="accordion-header flex justify-between items-center" data-target="develop-skills-content">
+      <span>10.7: Developing Your Leadership Skills</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div id="develop-skills-content" class="accordion-content">
+      <p>This section provides practical tips for developing charismatic, servant, and authentic leadership skills, which are believed to contribute to positive employee attitudes and a healthy work environment:</p>
+      <ul class="list-disc ml-6">
+        <li><span class="subsection-title">Develop Charismatic Leadership:</span> While often assumed inborn, charisma can be improved. Tips include:
+          <ul class="list-circle ml-6">
+            <li>**Have a vision:** Articulate a clear, long-term vision that inspires people.</li>
+            <li>**Tie the vision to history:** Connect the ideal future to shared past experiences.</li>
+            <li>**Watch your body language:** Project confidence, energy, and passion.</li>
+            <li>**Ensure employee confidence:** Show belief in their abilities and provide support (training, mentoring).</li>
+            <li>**Challenge the status quo:** Propose risky, novel, and unconventional solutions to problems.</li>
+          </ul>
+          <em>Practically, this means a leader might start a team meeting by reiterating the company's long-term mission, then share a personal story of overcoming a challenge to build rapport and confidence, and finally, propose an unconventional solution to a current problem, encouraging the team to think outside the box.</em>
+        </li>
+        <li><span class="subsection-title">Develop Servant Leadership:</span> This involves a shift from self-focus to serving others. Tips include:
+          <ul class="list-circle ml-6">
+            <li>**Focus on what you can do for employees:** Relieve their stress, protect them from undue pressure, help ease their lives.</li>
+            <li>**Help employees reach their goals:** Understand their values, priorities, and personal needs.</li>
+            <li>**Be humble:** Recognize you don't have all the answers; volunteer work can foster humility.</li>
+            <li>**Be open with employees:** Ask questions, share information about the company.</li>
+            <li>**Help the external community:** Provide opportunities for employees to engage in community volunteer projects.</li>
+          </ul>
+          <em>A servant leader might regularly hold one-on-one meetings not just about tasks, but to ask "How can I support you better?" or "What resources do you need to achieve your career goals?" They might also organize a team volunteer day at a local charity.</em>
+        </li>
+        <li><span class="subsection-title">Develop Authentic Leadership:</span> This approach emphasizes self-awareness and behavior driven by core personal values. A process for development includes:
+          <ul class="list-circle ml-6">
+            <li>**Understand Your History:** Review major life events and role models that shaped your values and priorities.</li>
+            <li>**Take Stock of Who You Are Now:** Describe your personality, know your strengths and weaknesses, and identify areas for improvement.</li>
+            <li>**Reflect on Your Successes and Challenges:** Keep a journal to track challenges and progress, aiding self-reflection.</li>
+            <li>**Make Integrity a Priority:** Understand your core values and conduct regular "ethics checks" to ensure consistency between values and behavior.</li>
+            <li>**Understand the Power of Words:** Recognize that the words used to describe people and situations shape reality (e.g., "associates" vs. "employees").</li>
+          </ul>
+          <em>To practice authentic leadership, one might keep a leadership journal, reflecting on decisions and how they align with personal values. For instance, if a core value is fairness, a leader would ensure that performance reviews are consistently applied and transparent, avoiding any perception of favoritism.</em>
+        </li>
+      </ul>
+      <p>The key takeaway is that assessing leadership styles in light of your situation and personal style is valuable, and authenticity is crucial regardless of other styles used. Anyone can develop authentic leadership skills, and there is no time like the present to start.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const targetId = this.dataset.target;
+        const content = document.getElementById(targetId);
+
+        // Close all other open accordion items
+        document.querySelectorAll('.accordion-content.open').forEach(openContent => {
+          if (openContent.id !== targetId) {
+            openContent.classList.remove('open');
+            openContent.previousElementSibling.classList.remove('active');
+          }
+        });
+
+        // Toggle the clicked accordion item
+        content.classList.toggle('open');
+        this.classList.toggle('active');
+      });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 13: Managing Groups and Teams</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f4f8; /* Light blue-gray background */
+      color: #334155; /* Darker text */
+    }
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background-color: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .section-title {
+      font-size: 1.75rem; /* text-3xl */
+      font-weight: 700; /* font-bold */
+      color: #1e293b; /* Slate-900 */
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #cbd5e1; /* Slate-300 */
+    }
+    .subsection-title {
+      font-size: 1.25rem; /* text-xl */
+      font-weight: 600; /* font-semibold */
+      color: #334155; /* Slate-700 */
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .example-box {
+      background-color: #e0f2fe; /* Light blue-100 */
+      border-left: 4px solid #38b2ac; /* Teal-500 */
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      color: #1a202c; /* Gray-900 */
+    }
+    .collapsible-header {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      font-weight: 500;
+      color: #475569; /* Slate-600 */
+      border-bottom: 1px dashed #e2e8f0; /* Slate-200 */
+    }
+    .collapsible-header:hover {
+      color: #1e293b; /* Slate-900 */
+    }
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    .collapsible-content.expanded {
+      max-height: 1000px; /* Arbitrarily large value to allow content to expand */
+      transition: max-height 0.5s ease-in;
+    }
+    .arrow {
+      transition: transform 0.3s ease-out;
+    }
+    .arrow.rotate {
+      transform: rotate(90deg);
+    }
+    .nav-link {
+      display: block;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: #475569; /* Slate-600 */
+      font-weight: 500;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .nav-link:hover {
+      background-color: #e2e8f0; /* Slate-200 */
+      color: #1e293b; /* Slate-900 */
+    }
+    @media (max-width: 768px) {
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .subsection-title {
+        font-size: 1.125rem;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+      .nav-link {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased">
+<div class="container">
+  <h1 class="text-4xl font-extrabold text-center text-gray-900 mb-6">Chapter 13: Managing Groups and Teams</h1>
+  <p class="text-center text-lg text-gray-600 mb-8">An interactive summary of key concepts and practical examples.</p>
+
+  <nav class="mb-8 p-4 bg-blue-50 rounded-lg shadow-inner flex flex-wrap justify-center gap-2">
+    <a href="#section-13-1" class="nav-link">13.1 Intro</a>
+    <a href="#section-13-2" class="nav-link">13.2 GE Case</a>
+    <a href="#section-13-3" class="nav-link">13.3 Dynamics</a>
+    <a href="#section-13-4" class="nav-link">13.4 Design</a>
+    <a href="#section-13-5" class="nav-link">13.5 Cohesion</a>
+    <a href="#section-13-6" class="nav-link">13.6 Barriers</a>
+    <a href="#section-13-7" class="nav-link">13.7 Skills</a>
+  </nav>
+
+  <section id="section-13-1" class="mb-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="section-title">13.1: Managing Groups and Teams</h2>
+    <p class="text-base leading-relaxed mb-4">This section introduces the fundamental role of groups and teams within organizations, highlighting their integration across the P-O-L-C (Planning-Organizing-Leading-Controlling) framework. Effective team management skills are presented as crucial for managers in all organizational functions.</p>
+
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span class="font-semibold">Detailed Breakdown</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div class="collapsible-content">
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Planning:</strong> Teams are often central to planning, especially in decentralized organizations or at higher levels, where collective input shapes strategic direction.</li>
+        <li><strong>Organizing:</strong> Managers must decide how teams will be structured and utilized within the organization and individual job roles.</li>
+        <li><strong>Controlling:</strong> Teams influence control mechanisms, requiring specific performance assessments and reward systems tailored to group outcomes.</li>
+        <li><strong>Leading:</strong> Teams are a core aspect of leadership, demanding that managers are proficient as both team members and leaders.</li>
+      </ul>
+    </div>
+
+    <h3 class="subsection-title">Practical Examples</h3>
+    <div class="example-box">
+      <p><strong>Planning (Decentralized Organization):</strong> In a large, multinational tech company, instead of a central committee dictating strategy, a product development team comprising members from engineering, marketing, and sales in different regional offices collaborates to define the roadmap for a new software release. They collectively set milestones, allocate resources, and identify target markets, demonstrating decentralized planning through teamwork.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Controlling (Team Performance Metrics):</strong> A company shifts from individual sales targets to team-based sales goals. The compensation structure is adjusted to include bonuses for teams that collectively achieve their quarterly sales quotas, fostering mutual accountability and shared success rather than individual competition.</p>
+    </div>
+  </section>
+
+  <section id="section-13-2" class="mb-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="section-title">13.2: Case in Point: General Electric Allows Teamwork to Take Flight</h2>
+    <p class="text-base leading-relaxed mb-4">This section illustrates the power of teamwork through the case of General Electric (GE) and the manufacturing of the world's largest commercial jet engine. Robert Henderson's innovative approach, inspired by Jack Welch's emphasis on empowered teams, transformed a traditional factory into a highly productive, self-managing environment.</p>
+
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span class="font-semibold">Detailed Breakdown</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div class="collapsible-content">
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>The Challenge:</strong> GE invested $1.5 billion in a new jet engine, requiring unprecedented manufacturing success. Henderson realized no single person could achieve this.</li>
+        <li><strong>Welch's Philosophy:</strong> Productivity comes from "challenged, empowered, excited, rewarded teams of people."</li>
+        <li><strong>Henderson's Innovations:</strong>
+          <ul class="list-circle pl-5 mt-1 space-y-1">
+            <li>Hired FAA-licensed mechanics, empowering them to make vital decisions with minimal oversight.</li>
+            <li>Created a "self-managing" factory, minimizing clutter and traditional supervision.</li>
+            <li>Outsourced non-core chores (e.g., cleaning) to allow workers to focus on their highest talents.</li>
+          </ul>
+        </li>
+        <li><strong>Results:</strong> Increased output, boosted employee morale, immense pride among team members (e.g., cleaning transport beds), and significant wealth generation for GE.</li>
+      </ul>
+    </div>
+
+    <h3 class="subsection-title">Practical Example</h3>
+    <div class="example-box">
+      <p><strong>Empowered Manufacturing Team:</strong> An automotive parts manufacturer traditionally had a rigid assembly line with strict supervision. Inspired by GE, they restructure into self-managed production cells. Each cell, comprising highly skilled technicians, is responsible for the complete assembly and quality control of a specific component, like a braking system. These teams are empowered to manage their own schedules, troubleshoot issues, order supplies, and even conduct peer evaluations, leading to a noticeable reduction in defects and a significant increase in employee engagement and quality output. The technicians, feeling a sense of ownership, meticulously ensure the quality of their work, reflecting the pride seen at GE's Durham plant.</p>
+    </div>
+  </section>
+
+  <section id="section-13-3" class="mb-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="section-title">13.3: Group Dynamics</h2>
+    <p class="text-base leading-relaxed mb-4">This section defines groups and explores the dynamics that influence their success, including developmental stages and factors like cohesion, social loafing, and collective efficacy.</p>
+
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span class="font-semibold">Detailed Breakdown</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div class="collapsible-content">
+      <h3 class="subsection-title">Types of Groups</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Informal Work Groups:</strong> Formed by individuals based on shared interests, not prescribed by the organization (e.g., colleagues playing tennis).</li>
+        <li><strong>Formal Work Groups:</strong> Established by managers, with close associations influencing individual behavior (e.g., project teams).</li>
+      </ul>
+
+      <h3 class="subsection-title">Stages of Group Development (Tuckman's Model)</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Forming:</strong> Initial stage; members meet, polite, anxious, guarded, trying to understand roles and boundaries.</li>
+        <li><strong>Storming:</strong> Conflict emerges; members explore power/influence, differentiate, discussions can be heated. Crucial for authentic expression.</li>
+        <li><strong>Norming:</strong> Group establishes ground rules, becomes cohesive, cooperative, committed to goals. Leader facilitates.</li>
+        <li><strong>Performing:</strong> Group functions efficiently with shared vision, respecting differences, focusing on task and process improvement. Leader coaches.</li>
+        <li><strong>Adjourning:</strong> Final stage for temporary groups; mix of victory, grief, uncertainty. Involves debriefing and celebration.</li>
+      </ul>
+
+      <h3 class="subsection-title">Punctuated-Equilibrium Model</h3>
+      <p class="text-base leading-relaxed mt-2">An alternative, cyclical model where groups remain static for long periods, with revolutionary change occurring in brief bursts, often triggered by a crisis or disruption.</p>
+
+      <h3 class="subsection-title">Factors Affecting Group Success</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Cohesion:</strong> Degree of camaraderie; members attached and act as one unit.
+          <ul class="list-circle pl-5 mt-1 space-y-1">
+            <li>**Factors increasing cohesion:** Similarity, stability, smaller size, support, satisfaction.</li>
+            <li>**Benefits:** Higher productivity, satisfaction, self-confidence, stress buffer, active participation.</li>
+            <li>**Downsides (Too much cohesion):** Can lead to <strong>Groupthink</strong> (conformity pressure, flawed decisions, e.g., Bay of Pigs invasion) or prioritizing social interaction over tasks.</li>
+          </ul>
+        </li>
+        <li><strong>Social Loafing (Ringelmann Effect):</strong> Tendency for individuals to exert less effort in a group, believing their individual impact is low or others aren't contributing. Increases with group size.</li>
+        <li><strong>Collective Efficacy:</strong> Group's shared belief in its ability to perform well and achieve goals. Positively correlated with performance, especially with high task interdependence.</li>
+      </ul>
+    </div>
+
+    <h3 class="subsection-title">Practical Examples</h3>
+    <div class="example-box">
+      <p><strong>Forming to Storming:</strong> A newly assembled university debate team (Forming) spends its first meeting politely introducing themselves and discussing general debate topics. In the next meeting, as they try to pick a specific topic and assign research roles, heated arguments erupt over preferred subjects and individual responsibilities (Storming), indicating the group is moving beyond surface-level interactions.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Groupthink:</strong> During a critical product recall, a company's crisis management team, highly cohesive and under immense pressure to present a united front, quickly agrees on a public statement downplaying the severity of the issue, ignoring internal warnings from one junior member about potential legal repercussions. This decision, driven by the desire for harmony and avoiding conflict, ultimately leads to a public backlash and significant financial penalties.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Social Loafing Mitigation:</strong> In a large online collaborative coding project, several team members are observed making fewer contributions than expected. To combat this, the project manager implements a system of smaller, clearly defined individual sub-tasks with visible progress tracking, and regular peer reviews, thereby increasing individual accountability and reducing the perception that one's effort won't be noticed.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Collective Efficacy:</strong> A small startup pitching to investors initially faces rejections. After refining their pitch and witnessing another similar startup successfully secure funding, their belief in their own ability to succeed (collective efficacy) strengthens. This renewed confidence translates into a more compelling presentation and, eventually, a successful funding round.</p>
+    </div>
+  </section>
+
+  <section id="section-13-4" class="mb-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="section-title">13.4: Understanding Team Design Characteristics</h2>
+    <p class="text-base leading-relaxed mb-4">This section distinguishes between groups and teams, exploring the characteristics and types of teams, and factors crucial for their effective design.</p>
+
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span class="font-semibold">Detailed Breakdown</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div class="collapsible-content">
+      <h3 class="subsection-title">Differences Between Groups and Teams</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Group:</strong> A collection of individuals.</li>
+        <li><strong>Team:</strong> A cohesive coalition working toward mutual goals, typically smaller, focused on a joint product/outcome. Offers competitive advantages through diverse experiences and creativity.</li>
+        <li><strong>Key Team Properties:</strong> Collaborative action, shared rewards based on collective outcomes, willingness to sacrifice for common good.</li>
+      </ul>
+
+      <h3 class="subsection-title">When to Use a Team</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li>Variety of knowledge, skills, abilities (KSAs) needed.</li>
+        <li>Ideas and feedback from different groups required.</li>
+        <li>Tasks are highly interdependent.</li>
+        <li>Wide cooperation is essential.</li>
+        <li>Organization benefits from shared goals.</li>
+      </ul>
+
+      <h3 class="subsection-title">Team Tasks and Roles</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Task Classes (Hackman):</strong> Production (making something), Idea Generation (creative tasks), Problem-Solving (action plans, decisions).</li>
+        <li><strong>Task Interdependence:</strong> Degree members rely on each other.
+          <ul class="list-circle pl-5 mt-1 space-y-1">
+            <li><strong>Pooled:</strong> Members work independently, combine efforts.</li>
+            <li><strong>Sequential:</strong> One person's output is another's input.</li>
+            <li><strong>Reciprocal:</strong> Members work together interactively on each phase.</li>
+          </ul>
+        </li>
+        <li><strong>Team Roles:</strong> Individuals aware of roles perform better. Categorized into Task, Social, and Boundary-Spanning roles.</li>
+      </ul>
+
+      <h3 class="subsection-title">Team Leadership and Autonomy</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Traditional/Manager-Led Teams:</strong> Manager leads, assigns work, accountable for results.</li>
+        <li><strong>Self-Managed Teams:</strong> Teams manage themselves, select leaders, may choose new members, share responsibility for ongoing tasks. Benefits: higher job satisfaction, increased self-esteem, productivity, flexibility, lower turnover.</li>
+      </ul>
+
+      <h3 class="subsection-title">Team Size & Diversity</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Size:</strong> Generally 2 to 20 members; most 10 or less due to coordination challenges. Ideal size depends on task interdependence.</li>
+        <li><strong>Diversity:</strong> Teams with complementary skills are often more successful. Diversity in composition (expertise, gender, age, background) leads to more creative and effective solutions, and helps avoid groupthink.</li>
+      </ul>
+    </div>
+
+    <h3 class="subsection-title">Practical Examples</h3>
+    <div class="example-box">
+      <p><strong>Task Interdependence (Reciprocal):</strong> A product design team for a new smartphone, where industrial designers, mechanical engineers, and software developers constantly consult, share progress, and modify their designs based on real-time feedback from each other to ensure seamless integration and optimal user experience.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Self-Managed Team:</strong> At a technology company, a cross-functional team responsible for developing a new mobile application is self-managed. They collectively decide on sprint goals, assign tasks, conduct daily stand-ups, resolve conflicts internally, and even interview potential new team members, showcasing high autonomy and shared accountability for the app's success.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Team Diversity:</strong> A consulting firm assembling a team to advise a healthcare client. The team includes a business strategist (strategic planning), a data analyst (quantitative insights), a medical doctor (clinical expertise), and a communications specialist (stakeholder engagement). Their varied backgrounds ensure a holistic understanding of the client's challenges and a comprehensive solution.</p>
+    </div>
+  </section>
+
+  <section id="section-13-5" class="mb-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="section-title">13.5: Building Cohesive Teams</h2>
+    <p class="text-base leading-relaxed mb-4">This section outlines practical strategies for building and maintaining cohesive teams, emphasizing the importance of positive group dynamics for full participation and engagement.</p>
+
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span class="font-semibold">Detailed Breakdown</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div class="collapsible-content">
+      <h3 class="subsection-title">Key Strategies for Building Cohesion</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Manage Group Dynamics for Full Participation:</strong> Actively monitor and address issues like social loafing or destructive conflict to ensure all members contribute.</li>
+        <li><strong>Establish Team Norms and Contracts:</strong>
+          <ul class="list-circle pl-5 mt-1 space-y-1">
+            <li><strong>Norms:</strong> Shared expectations about how the group operates (e.g., punctuality, preparedness, feedback).</li>
+            <li><strong>Team Contracts:</strong> Formal document outlining ground rules, goals, and roles. Helps navigate challenges. Includes: team values/goals, roles/leadership, decision-making, communication, performance characterization.</li>
+          </ul>
+        </li>
+        <li><strong>Effective Meeting Management:</strong> Crucial for coordination and information sharing.
+          <ul class="list-circle pl-5 mt-1 space-y-1">
+            <li><strong>Before:</strong> Assess if meeting is needed, create/distribute agenda, send reminders.</li>
+            <li><strong>During:</strong> Start on time, follow agenda, manage dynamics for full participation, summarize with clear action items.</li>
+            <li><strong>After:</strong> Follow up on action items.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h3 class="subsection-title">Practical Examples</h3>
+    <div class="example-box">
+      <p><strong>Team Contract Implementation:</strong> A newly formed product launch team, before commencing work, creates a team contract. It specifies their core value of "transparent communication," defines roles (e.g., product lead, marketing lead, engineering liaison), stipulates that major decisions will be made by consensus, sets expectations for daily 15-minute virtual stand-up meetings, and outlines that success will be measured by both on-time launch and initial customer adoption rates. This contract is reviewed and signed by all members, serving as a shared reference for team conduct and goals.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Facilitating Participation in Meetings:</strong> During a brainstorming session, the team lead notices one or two members dominating the discussion. To encourage broader input, the leader implements a rule that everyone must contribute at least one idea before anyone can offer a second, or uses a "think-pair-share" activity where individuals first write down their ideas, then discuss in pairs, and finally share with the larger group. This ensures more balanced participation and leverages the diverse perspectives of all team members.</p>
+    </div>
+  </section>
+
+  <section id="section-13-6" class="mb-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="section-title">13.6: Barriers to Effective Teams</h2>
+    <p class="text-base leading-relaxed mb-4">This section identifies common problems that can hinder team effectiveness and provides actionable solutions to address them.</p>
+
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span class="font-semibold">Detailed Breakdown</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div class="collapsible-content">
+      <h3 class="subsection-title">Common Barriers and Solutions</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Challenges of Knowing Where to Begin (Floundering):</strong> Teams struggle to start or move to the next step due to unclear goals.
+          <ul class="list-circle pl-5 mt-1 space-y-1">
+            <li><strong>Solution:</strong> Revisit the team's mission/plan for clarity. Leaders should ask diagnostic questions ("What is holding us up?").</li>
+          </ul>
+        </li>
+        <li><strong>Dominating Team Members:</strong> Overbearing personalities suppress others' participation, hurting morale.
+          <ul class="list-circle pl-5 mt-1 space-y-1">
+            <li><strong>Solution:</strong> Design processes for balanced participation (e.g., structured turn-taking, peer evaluation including participation).</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h3 class="subsection-title">Practical Examples</h3>
+    <div class="example-box">
+      <p><strong>Overcoming Floundering:</strong> A volunteer committee tasked with organizing a community festival is "floundering" because their initial goal was too vague ("make the festival better"). The committee chair calls a dedicated meeting to redefine the mission, leading to a clearer objective: "Increase festival attendance by 20% and introduce three new family-friendly activities." The chair then guides the team through specific action items, assigning responsibilities and setting deadlines, effectively moving them past the initial inertia.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Addressing Dominating Behavior:</strong> In a research team, one senior scientist tends to monopolize discussions during weekly progress meetings, preventing junior members from sharing their findings or ideas. To counteract this, the team leader introduces a structured meeting format where each member is given a specific time slot to present their updates without interruption. A "talking stick" or a visual timer can be used to reinforce this norm, ensuring equitable participation and creating a more inclusive environment for all voices.</p>
+    </div>
+  </section>
+
+  <section id="section-13-7" class="mb-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="section-title">13.7: Developing Your Team Skills</h2>
+    <p class="text-base leading-relaxed mb-4">This section provides guidelines and practical steps for managers to develop and enhance cohesion within their teams.</p>
+
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+      <span class="font-semibold">Detailed Breakdown</span>
+      <span class="arrow">&#9658;</span>
+    </div>
+    <div class="collapsible-content">
+      <h3 class="subsection-title">Steps to Creating and Maintaining a Cohesive Team</h3>
+      <ul class="list-disc pl-5 text-base leading-relaxed space-y-2">
+        <li><strong>Align with Greater Organization:</strong> Establish common objectives that members can get involved in.</li>
+        <li><strong>Empower Members:</strong> Let members have choices in setting their own goals and include them in organizational-level decision-making.</li>
+        <li><strong>Define Clear Roles:</strong> Demonstrate how each person’s contribution furthers the group goal, ensuring everyone is responsible for a special piece of the puzzle.</li>
+        <li><strong>Promote Proximity:</strong> Situate group members in proximity to one another to build familiarity.</li>
+        <li><strong>Give Frequent Praise:</strong> Praise individuals and the group, and encourage peer praise to build self-confidence, reaffirm positive behavior, and create a positive atmosphere.</li>
+        <li><strong>Treat All Members with Dignity and Respect:</strong> Demonstrate that there are no favorites and everyone is valued.</li>
+        <li><strong>Celebrate Differences:</strong> Highlight each individual’s contribution and make diversity a norm.</li>
+        <li><strong>Establish Common Rituals:</strong> Implement activities like Thursday morning coffee or monthly potlucks to reaffirm group identity and create shared experiences.</li>
+      </ul>
+      <p class="text-base leading-relaxed mt-4"><strong>Key Takeaway:</strong> While building cohesive teams is beneficial, too much cohesion without strong performance norms can be problematic. Many methods for building cohesion are also enjoyable, such as celebrating successes and creating rituals.</p>
+    </div>
+
+    <h3 class="subsection-title">Practical Examples</h3>
+    <div class="example-box">
+      <p><strong>Aligning Goals and Empowering:</strong> A software development team is involved in setting quarterly objectives, ensuring their sprint goals directly contribute to the company's annual product roadmap. They are given autonomy to choose which features to prioritize within those objectives, fostering a sense of ownership and involvement.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Promoting Proximity and Rituals:</strong> A marketing team, despite having some remote members, organizes a mandatory "Collaboration Wednesday" where all local members work from the office, and remote members are encouraged to join video calls for informal chats. They also start every Monday meeting with a "Weekend Wins" sharing session to build familiarity and shared experiences.</p>
+    </div>
+    <div class="example-box">
+      <p><strong>Praise and Respect:</strong> A team leader regularly gives public shout-outs to team members who go above and beyond, and also facilitates a "peer recognition" program where colleagues can acknowledge each other's contributions. During team discussions, the leader ensures all opinions are heard and respected, regardless of seniority, reinforcing a culture of dignity and value for every member.</p>
+    </div>
+  </section>
+
+  <button onclick="scrollToTop()" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  function toggleCollapsible(header) {
+    const content = header.nextElementSibling;
+    const arrow = header.querySelector('.arrow');
+
+    if (content.classList.contains('expanded')) {
+      content.classList.remove('expanded');
+      arrow.classList.remove('rotate');
+    } else {
+      content.classList.add('expanded');
+      arrow.classList.add('rotate');
+    }
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+</body>
+</html>
