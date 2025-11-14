@@ -1,0 +1,48 @@
+Last login: Mon May 12 04:22:55 on console
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+Godfreys-MacBook-Pro:~ godfrey$ gedit hello.sh
+-bash: gedit: command not found
+Godfreys-MacBook-Pro:~ godfrey$ nano hello.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  GNU nano 8.3                                         hello.sh                                         Modified  
+#!/bin/bash
+echo "Hello, world!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^G Help         ^O Write Out    ^F Where Is     ^K Cut          ^T Execute      ^C Location     M-U Undo
+^X Exit         ^R Read File    ^\ Replace      ^U Paste        ^J Justify      ^/ Go To Line   M-E Redo
