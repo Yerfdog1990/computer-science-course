@@ -1,0 +1,98 @@
+Hello from channel!import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class TextAnalyzer {
+
+    public static void main(String[] args) {
+        // Input text
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the text: ");
+        String inputText = input.nextLine();
+        input.close();
+
+        // Character count
+        int charCount = inputText.length();
+        System.out.println("Number of characters: " + charCount);
+
+        // Word count
+        String[] words = inputText.split("\\s+");
+        int wordCount = words.length;
+        System.out.println("Number of words: " + wordCount);
+
+        // Common character
+        char commonChar = findMostCommonChar(inputText);
+        System.out.println("Common character: " + commonChar);
+
+        // Character frequency
+        Scanner charScanner = new Scanner(System.in);
+        System.out.println("Check the most frequent character: ");
+        char charInput;
+        if (charScanner.hasNext()) {
+            charInput = charScanner.next().toLowerCase().charAt(0);
+            int charFrequency = countCharacterFrequency(inputText.toLowerCase(), charInput);
+            System.out.print("Most frequent character: " + charFrequency);
+        } else {
+            System.out.println("Invalid input for character. Please enter a valid character.");
+        }
+
+        // Word frequency
+        Scanner wordScanner = new Scanner(System.in);
+        System.out.println("Check the most frequent word: ");
+        String wordInput;
+        if (wordScanner.hasNext()) {
+            wordInput = wordScanner.next().toLowerCase();
+            int wordFrequency = countWordFrequency(words, wordInput);
+            System.out.print("Most frequent word: " + wordFrequency);
+        } else {
+            System.out.println("Invalid input for word. Please enter a valid word.");
+        }
+
+        // Unique Words
+        Set<String> uniqueWords = new HashSet<>(Arrays.asList(words));
+        System.out.println("Unique Words Count: " + uniqueWords.size());
+    }
+
+    public static char findMostCommonChar(String text) {
+        Map<Character, Integer> charCountMap = new HashMap<>();
+        for (char c : text.toCharArray()) {
+            if (Character.isLetter(c)) {
+                charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+            }
+        }
+        char mostCommonChar = ' ';
+        int maxFrequency = 0;
+        for (Map.Entry<Character, Integer> entry : charCountMap.entrySet()) {
+            if (entry.getValue() > maxFrequency) {
+                mostCommonChar = entry.getKey();
+                maxFrequency = entry.getValue();
+            }
+        }
+        return mostCommonChar;
+    }
+
+    public static int countCharacterFrequency(String text, char target) {
+        text = text.toLowerCase();
+        target = Character.toLowerCase(target);
+        int frequency = 0;
+        for (char c : text.toCharArray()) {
+            if (c == target) {
+                frequency++;
+            }
+        }
+        return frequency;
+    }
+
+    public static int countWordFrequency(String[] words, String target) {
+        int frequency = 0;
+        for (String word : words) {
+            if (word.equals(target)) {
+                frequency++;
+            }
+        }
+        return frequency;
+    }
+}
