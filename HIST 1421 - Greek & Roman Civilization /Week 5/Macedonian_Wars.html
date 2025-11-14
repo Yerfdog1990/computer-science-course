@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Macedonian Wars: An Interactive Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc; /* Light blue-gray background */
+      color: #334155; /* Darker text for readability */
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background-color: #ffffff;
+      border-radius: 1.5rem; /* More rounded corners */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+    }
+    details {
+      margin-bottom: 1rem;
+      background-color: #f1f5f9; /* Lighter background for details */
+      border-radius: 0.75rem;
+      overflow: hidden; /* Ensures rounded corners apply to content */
+    }
+    summary {
+      font-weight: 600;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      background-color: #e2e8f0; /* Slightly darker for summary */
+      border-bottom: 1px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.2s ease-in-out;
+      color: #1e293b;
+      border-radius: 0.75rem; /* Apply to summary */
+      list-style: none; /* Remove default marker */
+      position: relative;
+      padding-left: 2.5rem; /* Space for custom arrow */
+    }
+    summary::-webkit-details-marker {
+      display: none; /* Hide default marker in Webkit */
+    }
+    summary::before {
+      content: '+'; /* Custom plus sign */
+      position: absolute;
+      left: 1rem;
+      font-weight: bold;
+      transition: transform 0.2s ease-in-out;
+    }
+    details[open] summary::before {
+      content: '-'; /* Custom minus sign when open */
+      transform: rotate(0deg); /* Ensure it doesn't rotate */
+    }
+    details[open] summary {
+      background-color: #d1d5db; /* Even darker when open */
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    summary:hover {
+      background-color: #cbd5e1;
+    }
+    .details-content {
+      padding: 1rem 1.5rem;
+      line-height: 1.6;
+      color: #475569;
+    }
+    .details-content p {
+      margin-bottom: 0.75rem;
+    }
+    .details-content ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .details-content ol {
+      list-style-type: decimal;
+      margin-left: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .example-box {
+      background-color: #e0f2fe; /* Light blue for examples */
+      border-left: 4px solid #38b2ac; /* Teal border */
+      padding: 0.75rem 1rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+      border-radius: 0.5rem;
+      color: #1a202c;
+      font-style: italic;
+    }
+    .key-takeaway {
+      background-color: #dbeafe; /* Lighter blue for key takeaways */
+      border-left: 5px solid #2563eb; /* Stronger blue border */
+      padding: 1rem 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border-radius: 0.75rem;
+      font-weight: 500;
+      color: #1e40af;
+      line-height: 1.5;
+    }
+    h1, h2, h3 {
+      color: #1e293b; /* Darker headings */
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #0f172a;
+    }
+    h2 {
+      font-size: 1.75rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .section-title-icon {
+      margin-right: 0.75rem;
+      font-size: 1.2em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: #f8fafc;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="text-4xl font-extrabold text-gray-900 mb-8">The Macedonian Wars: Rome's Eastern Expansion</h1>
+  <p class="text-center text-lg text-gray-600 mb-6">A series of conflicts that led to Roman dominance over the Hellenistic world.</p>
+
+  <!-- Section: The First Macedonian War -->
+  <details open>
+    <summary class="text-2xl">
+      <span class="section-title-icon">⚔️</span> The First Macedonian War (214-205 BC)
+    </summary>
+    <div class="details-content">
+      <ul>
+        <li><strong>Context:</strong> Philip V of Macedon sought to expand his domain while Rome was embroiled in the Second Punic War with Hannibal in Italy.</li>
+        <li><strong>Initial Aggression (214 BC):</strong> Philip sent a fleet to Illyria; Rome, with limited resources, dispatched Praetor Marcus Valerius Laevinus. Philip was forced to burn his fleet to avoid capture.</li>
+        <li><strong>Philip's Land Advance:</strong> Philip then exploited Rome's naval-only defense by expanding into Illyria by land, capturing several cities.</li>
+        <li><strong>Roman Counter-Strategy (211 BC):</strong> The Roman Senate allied with the Aetolian League, Philip's enemies, promising them land in exchange for keeping Philip occupied.</li>
+        <li><strong>Shifting Alliances (209-208 BC):</strong> Attalus of Pergamum joined the alliance. Later, Attalus withdrew, allowing Philip to invade the Aetolians and force them to sue for peace by 206 BC.</li>
+        <li><strong>Peace and Roman Influence (205 BC):</strong> Scipio's invasion of Africa forced Hannibal's withdrawal, enabling Rome to focus on Philip. Both sides, exhausted, sought peace. Scipio negotiated a treaty allowing Philip to keep most gains (including interior Illyria and Adriatic access), but Greek cities on the western Achaean peninsula had to remain free.</li>
+        <li><strong>Outcome:</strong> Rome prevented Philip from aiding Hannibal with minimal cost, and its influence in Greece deepened due to its role in protecting Greek city-states.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- Section: The Second Macedonian War -->
+  <details>
+    <summary class="text-2xl">
+      <span class="section-title-icon">🛡️</span> The Second Macedonian War (200-196 BC)
+    </summary>
+    <div class="details-content">
+      <ul>
+        <li><strong>Renewed Tensions:</strong> The peace after the First Macedonian War was fragile. Philip V exploited Rome's preoccupation with Carthage to expand his influence.</li>
+        <li><strong>Philip's Aggression (203-202 BC):</strong> Philip gained more territory in Roman protectorate of Illyria, then shifted focus to Greek cities south of Macedon, previously under Roman protection. He secretly allied with Antiochus III of Syria to divide Egyptian monarchy's possessions.</li>
+        <li><strong>Greek Appeals and War Declaration (201-200 BC):</strong> Philip was at war with Rhodes and Attalus of Pergamum. Greek cities under Macedonian control appealed to Rome. Roman demands for Philip's withdrawal were rejected, leading to Rome's declaration of war in 200 BC, citing Greek independence and expanding Roman influence.</li>
+        <li><strong>Early Campaigns and Stalemate (200-198 BC):</strong> Roman Consul Galba raided Macedonian border towns and moved into Illyria. The Aetolians rejoined Rome. The early campaign was largely a stalemate.</li>
+        <li><strong>Flamininus's Decisive Leadership (198 BC):</strong> Titus Quinctius Flamininus took command, demanding Macedonian withdrawal from Greece. He secured the Achaean League as Roman allies and won a minor engagement at the River Aous, opening an invasion route. Flamininus politically maneuvered to retain consular powers and ensure peace talks failed in the Senate.</li>
+        <li><strong>Battle of Cynoscephalae (197 BC):</strong> Flamininus confronted Philip in Thessaly. The flexibility of Roman manipular legions proved superior to the rigid Macedonian phalanx, resulting in a crushing Roman victory.</li>
+        <li><strong>Treaty and "Freedom of Greece" (196 BC):</strong> Philip ceded all claims on Greek territory, placing city-states under Roman protection, and paid 1,000 talents in gold tribute. He retained Macedonia as a buffer against Antiochus III. Flamininus announced Greece's "freedom" at the Isthmian Games, gaining immense Greek admiration and loyalty, expanding Roman influence without permanent garrisons.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- Section: The Third Macedonian War -->
+  <details>
+    <summary class="text-2xl">
+      <span class="section-title-icon">👑</span> The Third Macedonian War (171-168 BC)
+    </summary>
+    <div class="details-content">
+      <ul>
+        <li><strong>Roman Priorities:</strong> After the Syrian War, Rome focused on internal issues (Cisalpine Gaul, Hispania). Relations with Macedon remained poor, inherited by Philip V's son, Perseus.</li>
+        <li><strong>Perseus's Provocations (179-172 BC):</strong> Perseus challenged Roman authority by:
+          <ul>
+            <li>Arranging a marriage alliance with Antiochus III.</li>
+            <li>Instituting debt relief, upsetting Roman-backed businessmen.</li>
+            <li>Expanding into northern and southern territories, violating treaties.</li>
+            <li>Attempting to re-establish relations with Greek city-states.</li>
+          </ul>
+        </li>
+        <li><strong>Escalation to War (172-171 BC):</strong> Accusations from Eumenes of Pergamum (Roman ally) and perceived assassination attempts attributed to Perseus prompted swift Roman action. War was declared in spring 171 BC.</li>
+        <li><strong>Early Roman Setbacks & Corruption:</strong> Consul Publius Licinius Crassus suffered a minor defeat. Roman praetors sacked allied Greek towns, causing outrage. The Roman army became undisciplined, focused on plunder.</li>
+        <li><strong>Battle of Pydna (168 BC):</strong> Lucius Aemilius Paullus, the new Consul, reorganized the army. He forced Perseus to battle at Pydna. The broken ground disadvantaged the Macedonian phalanx, leading to a decisive Roman victory (20,000 Macedonians slaughtered, 6,000 prisoners).</li>
+        <li><strong>Harsh Aftermath and Punishment:</strong> Perseus surrendered and was banished. Macedonia was broken into four republics, forbidden from inter-republican commerce. Local magistrates were removed. The Illyrian Kingdom of King Genthius (Perseus's ally) was similarly dismantled. Epirus, which aided Perseus, was brutally punished: 70 towns plundered, walls crushed, and over 150,000 Epirotes sold into slavery as an example.</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- Section: The Fourth Macedonian War and the Achaean War -->
+  <details>
+    <summary class="text-2xl">
+      <span class="section-title-icon">🏛️</span> The Fourth Macedonian War (149-148 BC) & The Achaean War (146 BC)
+    </summary>
+    <div class="details-content">
+      <ul>
+        <li><strong>Instability in the East:</strong> Despite Roman military success, political instability persisted due to lack of permanent legions and corrupt praetors, fueling anti-Roman sentiment. Cilician piracy also contributed to independence movements.</li>
+        <li><strong>Andriscus's Rise (149 BC):</strong> Andriscus, a pretender claiming to be Philip V's grandson, reunited the four Macedonian republics and raised an army, defeating an initial Roman force.</li>
+        <li><strong>End of Macedonian Independence (149-148 BC):</strong> The Senate authorized a new army under Praetor Quintus Caecilius Metellus. Metellus swiftly crushed Andriscus's revolt by 148 BC, ending Macedonian independence. Macedonia and Epirus became Rome's first eastern provinces.</li>
+        <li><strong>Greek Revolt (146 BC):</strong> While Metellus was in Macedon, Greeks, led by pro-independence figures like Critolaus in Corinth, began a semi-revolt, annexing Sparta and mistreating Roman envoys.</li>
+        <li><strong>Roman Suppression:</strong> Metellus moved south, defeating Critolaus. Lucius Mummius (later "Achaicus") took command, brutally crushing Greek resistance.</li>
+        <li><strong>Destruction of Corinth (146 BC):</strong> To set an example, Mummius was ordered to attack Corinth. The city was besieged, burned to the ground, and its inhabitants sold into slavery. Weapons were seized, and local militia outlawed.</li>
+        <li><strong>Long-Term Impact:</strong> The Hellenistic world became a permanent part of the Roman Empire. Control of Greece took about 80 years, stemming from Punic War pressures with relatively minor military intervention. Rome used its influence to keep factions at war until subjugation.</li>
+        <li><strong>Pergamum's Cession (133 BC):</strong> Attalus III of Pergamum, a Roman ally, ceded his kingdom in Asia Minor to the Roman Senate, granting Rome a wealthy new province and opening the entire East to further Roman expansion.</li>
+      </ul>
+    </div>
+  </details>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greco-Roman Philosophy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+        }
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            background-color: #f7fafc;
+        }
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .content.active {
+            max-height: 5000px; /* Adjusted max height to accommodate expanded content */
+            padding-top: 1rem;
+        }
+        .card-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+        .toggle-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 md:p-12">
+
+<div class="container mx-auto max-w-6xl">
+    <!-- Main Title -->
+    <header class="text-center mb-12">
+        <h1 class="text-5xl font-bold text-gray-900 leading-tight">Greco-Roman Philosophy</h1>
+        <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore the intellectual journey from Greek theory to Roman application. Click on each card to learn more.
+        </p>
+    </header>
+
+    <!-- Part I: Greek Foundations -->
+    <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-2">
+            🏛️ Part I: The Greek Foundations
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Socrates Card -->
+            <div class="card rounded-2xl shadow-md cursor-pointer" data-target="socrates">
+                <div class="card-header p-6 flex justify-between items-center">
+                    <h3 class="text-2xl font-semibold text-blue-800">Socrates</h3>
+                    <span class="toggle-icon text-gray-500 text-3xl">▼</span>
+                </div>
+                <div class="content px-6 pb-6">
+                    <p class="text-gray-700">
+                        The intellectual father of Western philosophy, Socrates (c. 470–399 BCE) was an enigmatic figure who left no written works of his own. His philosophy is known primarily through the writings of his student, Plato. Socrates was a street-corner philosopher in Athens, renowned for his unconventional and deeply moral approach to life and knowledge. He believed that the unexamined life was not worth living and dedicated his existence to questioning the beliefs and assumptions of his fellow citizens.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">The Socratic Method</h4>
+                    <p class="text-gray-700">
+                        His most famous contribution is the **Socratic method**, a form of cooperative argumentative dialogue between individuals. Using a series of questions and answers, Socrates sought to expose contradictions in his interlocutor's beliefs, ultimately leading them to a clearer, more refined understanding of a concept. He famously compared himself to a "midwife," explaining that he did not create new ideas but rather helped others give birth to the knowledge already within them. This dialectical process was a "holy quest" for truth and laid the foundation for rational inquiry.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Legacy and Influence</h4>
+                    <p class="text-gray-700">
+                        Socrates's unwavering commitment to his principles ultimately led to his trial and execution. Accused of corrupting the youth and impiety, he famously chose death over abandoning his philosophical mission. His life and martyrdom became a powerful symbol of philosophical integrity, inspiring countless generations of thinkers, including his student Plato, who would carry on his legacy and build upon his foundation of ethical inquiry.
+                    </p>
+                </div>
+            </div>
+            <!-- Plato Card -->
+            <div class="card rounded-2xl shadow-md cursor-pointer" data-target="plato">
+                <div class="card-header p-6 flex justify-between items-center">
+                    <h3 class="text-2xl font-semibold text-blue-800">Plato</h3>
+                    <span class="toggle-icon text-gray-500 text-3xl">▼</span>
+                </div>
+                <div class="content px-6 pb-6">
+                    <p class="text-gray-700">
+                        Plato (c. 428–348 BCE), a student of Socrates, built upon his teacher's work to create a comprehensive philosophical system. He founded the Academy, one of the Western world's first institutions of higher learning, and his writings, typically in the form of dialogues, explore metaphysics, ethics, politics, and epistemology. He is considered both a rationalist and an idealist, believing that true reality exists beyond the world we experience with our senses.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Theory of Forms</h4>
+                    <p class="text-gray-700">
+                        Plato's most famous concept is the **Theory of Forms** or Ideas. He argued that the physical world of objects and events is a mere shadow or imperfect copy of a higher, eternal realm of Forms (**ousia**). For every object we see—a chair, a tree, a beautiful person—there exists a perfect, unchanging Form of that object. The visible world is a realm of change and illusion (**phenomena**), while the world of Forms is the ultimate reality, accessible only through reason and intellectual contemplation. The goal of the philosopher is to escape the "cave" of sensory experience and grasp the truth of the Forms.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Political Philosophy</h4>
+                    <p class="text-gray-700">
+                        In his magnum opus, *The Republic*, Plato outlined his vision for a utopian state. He argued that society should be led by "philosopher-kings" who, having attained true knowledge of the Forms, would be best equipped to govern justly. He divided society into three classes—the rulers, the soldiers, and the workers—each with a specific function. His political philosophy was deeply intertwined with his metaphysics, asserting that a just society could only be created by those who understand the true nature of justice itself.
+                    </p>
+                </div>
+            </div>
+            <!-- Aristotle Card -->
+            <div class="card rounded-2xl shadow-md cursor-pointer" data-target="aristotle">
+                <div class="card-header p-6 flex justify-between items-center">
+                    <h3 class="text-2xl font-semibold text-blue-800">Aristotle</h3>
+                    <span class="toggle-icon text-gray-500 text-3xl">▼</span>
+                </div>
+                <div class="content px-6 pb-6">
+                    <p class="text-gray-700">
+                        Aristotle (c. 384–322 BCE), Plato's most gifted student, moved away from his teacher's idealism and embraced an empirical, more practical approach to philosophy. He founded the Lyceum and his vast body of work covers virtually every field of human knowledge, from biology and physics to ethics and politics. Unlike Plato, Aristotle believed that knowledge could be gained through observing and studying the natural world.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">The Golden Mean and Ethics</h4>
+                    <p class="text-gray-700">
+                        In his *Nicomachean Ethics*, Aristotle developed a moral philosophy centered on the concept of the **Golden Mean**. He argued that virtue is a matter of finding a balance between two vices—one of excess and one of deficiency. For example, courage is the mean between the vice of cowardice (deficiency) and the vice of recklessness (excess). By cultivating these virtues through practice and habit, a person could achieve **eudaimonia** (human flourishing or a life well-lived). His focus was not on abstract ideals but on practical wisdom and the development of character.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Logic and Science</h4>
+                    <p class="text-gray-700">
+                        Aristotle's work on logic, compiled in what would be known as the *Organon*, was foundational to Western thought for over two millennia. He developed the theory of the syllogism, a form of deductive reasoning, and provided a systematic framework for logical argumentation. His contributions to the natural sciences were equally immense. He classified animals, wrote extensively on botany, and his work on physics and cosmology dominated scientific thought until the Scientific Revolution. His systematic and empirical methods were a stark contrast to Plato's abstract idealism, laying the groundwork for a more scientific approach to knowledge.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part II: Hellenistic Bridge and Roman Adoption -->
+    <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-2">
+            📜 Part II: Hellenistic Bridge & Roman Adoption
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Epicureanism Card -->
+            <div class="card rounded-2xl shadow-md cursor-pointer" data-target="epicureanism">
+                <div class="card-header p-6 flex justify-between items-center">
+                    <h3 class="text-2xl font-semibold text-gray-800">Epicureanism</h3>
+                    <span class="toggle-icon text-gray-500 text-3xl">▼</span>
+                </div>
+                <div class="content px-6 pb-6">
+                    <p class="text-gray-700">
+                        Founded by the Greek philosopher Epicurus (c. 341–270 BCE), Epicureanism was one of the major schools of thought in the Hellenistic world, later adopted by the Romans. It is a materialistic philosophy, proposing that the universe consists only of atoms and empty space. The gods, if they exist, are composed of atoms and do not concern themselves with human affairs. The purpose of philosophy, therefore, is to provide a guide for living a happy life.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">The Pursuit of Tranquility</h4>
+                    <p class="text-gray-700">
+                        The central goal of Epicureanism is to achieve **ataraxia** (tranquility) and **aponia** (freedom from physical pain). Contrary to popular misconception, Epicureanism did not advocate for a life of unrestrained hedonism. Instead, it taught that the greatest pleasure is the absence of pain and mental disturbance. This was achieved through simple, natural pleasures like friendship, intellectual conversation, and a modest lifestyle. Epicureans believed that excessive desires for wealth, fame, or power were a source of pain and anxiety and should be avoided.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Roman Influence</h4>
+                    <p class="text-gray-700">
+                        In Rome, Epicureanism found a prominent advocate in the poet and philosopher Lucretius (c. 99–55 BCE), who wrote *De rerum natura* (*On the Nature of Things*). This epic poem explained Epicurean philosophy in detail, including its atomic theory and ethical principles. Lucretius famously depicted the wise man as one who, like a person on a hill watching a storm at sea, remains detached from the suffering and chaos of the world. This sense of inner peace in a tumultuous world appealed to many Romans seeking personal solace.
+                    </p>
+                </div>
+            </div>
+            <!-- Stoicism Card -->
+            <div class="card rounded-2xl shadow-md cursor-pointer" data-target="stoicism">
+                <div class="card-header p-6 flex justify-between items-center">
+                    <h3 class="text-2xl font-semibold text-gray-800">Stoicism</h3>
+                    <span class="toggle-icon text-gray-500 text-3xl">▼</span>
+                </div>
+                <div class="content px-6 pb-6">
+                    <p class="text-gray-700">
+                        Founded by Zeno of Citium (c. 334–262 BCE), Stoicism was the most enduring and influential of the Hellenistic philosophies in the Roman world. It provided a powerful, practical framework for living a virtuous and resilient life. Stoicism is based on the idea that the universe is governed by a divine reason (**Logos**), and that the path to happiness is to live in harmony with this natural order.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Core Principles</h4>
+                    <p class="text-gray-700">
+                        The central tenet of Stoicism is the distinction between what we can control and what we cannot. We have control over our thoughts, judgments, and actions, but not over external events, other people, or our own bodies. The Stoic goal is to focus exclusively on what is within our power, accepting the rest with equanimity. This practice leads to inner tranquility and freedom from destructive passions like fear, anger, and grief. The Stoics also believed that **virtue is the only good**, and that all other things, such as wealth, health, and reputation, are morally indifferent.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">A Practical Philosophy for the Romans</h4>
+                    <p class="text-gray-700">
+                        Stoicism resonated deeply with the Roman emphasis on duty, honor, and discipline. It provided a robust ethical system that went beyond the ritualistic nature of Roman religion, which was based on mutual trust (**fides**) and the "peace of the gods" (**pax deorum**). For Roman citizens, soldiers, and emperors alike, Stoicism offered a powerful mental toolkit for navigating the complexities of political life, enduring military hardships, and facing personal tragedy with dignity and resilience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part III: Philosophy in the Roman World -->
+    <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-2">
+            🏛️ Part III: Philosophy in the Roman World
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Cicero Card -->
+            <div class="card rounded-2xl shadow-md cursor-pointer" data-target="cicero">
+                <div class="card-header p-6 flex justify-between items-center">
+                    <h3 class="text-2xl font-semibold text-blue-800">Cicero</h3>
+                    <span class="toggle-icon text-gray-500 text-3xl">▼</span>
+                </div>
+                <div class="content px-6 pb-6">
+                    <p class="text-gray-700">
+                        Marcus Tullius Cicero (106–43 BCE) was not a founder of a new school of philosophy, but a masterful interpreter, popularizer, and practitioner of Greek thought. As a senator, lawyer, and orator, he saw philosophy not as an abstract academic pursuit, but as a vital tool for public life and personal guidance. His writings were crucial in creating a Latin philosophical vocabulary, making Greek ideas accessible to a Roman audience that had less exposure to the original texts.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Philosopher as Statesman</h4>
+                    <p class="text-gray-700">
+                        Cicero’s works, such as *De Officiis* (*On Duties*) and *De finibus bonorum et malorum* (*On the Ends of Good and Evil*), were attempts to use philosophical reasoning to address political and moral issues of his day. He argued that a leader must be a philosopher to govern justly, and that ethical principles derived from philosophy should guide a citizen's actions. He famously blended elements of Stoicism, Platonism, and Aristotle's Peripatetic school to create a more comprehensive and pragmatic approach to moral and political questions, often criticizing Epicureanism for its detachment from public duty.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">A Lasting Literary Influence</h4>
+                    <p class="text-gray-700">
+                        Beyond his direct philosophical contributions, Cicero's eloquent and persuasive prose style became the standard for Latin literature. He shaped the development of Western rhetoric and his works were a primary source for understanding Greek philosophy during the Middle Ages and Renaissance. His life's work demonstrates the Roman genius for integrating high-minded Greek theory into the practical, often messy, realities of political life.
+                    </p>
+                </div>
+            </div>
+            <!-- Seneca Card -->
+            <div class="card rounded-2xl shadow-md cursor-pointer" data-target="seneca">
+                <div class="card-header p-6 flex justify-between items-center">
+                    <h3 class="text-2xl font-semibold text-blue-800">Seneca</h3>
+                    <span class="toggle-icon text-gray-500 text-3xl">▼</span>
+                </div>
+                <div class="content px-6 pb-6">
+                    <p class="text-gray-700">
+                        Lucius Annaeus Seneca (c. 4 BCE–65 CE) was a Roman Stoic philosopher, statesman, playwright, and adviser to Emperor Nero. As the quintessential Roman Stoic, his writings are less concerned with abstract metaphysics and more with providing a practical guide for ethical living. His philosophy is a powerful blend of intellectual rigor and profound empathy, aimed at helping the individual navigate the unpredictable nature of life.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Practical Ethics and Resilience</h4>
+                    <p class="text-gray-700">
+                        Seneca's works, including his famous *Moral Letters to Lucilius*, are filled with personal advice on how to deal with adversity, anger, grief, and the fear of death. He taught that by understanding and controlling our emotional responses, we could achieve a state of inner peace regardless of our external circumstances. He advocated for a life of simple pleasures, constant self-improvement, and the acceptance of fate. For Seneca, philosophy was a therapeutic practice, a "medicine for the soul," that provided comfort and guidance in a world of political intrigue and personal tragedy.
+                    </p>
+                    <h4 class="mt-4 text-lg font-semibold text-gray-800">Enduring Legacy</h4>
+                    <p class="text-gray-700">
+                        Seneca’s influence was profound and long-lasting. His clear, direct prose made Stoicism accessible, and his focus on personal ethics resonated with thinkers for centuries. He was especially influential on early Christian Fathers, who found in his writings a moral seriousness that aligned with their own values. Seneca’s forced suicide under Nero's order cemented his image as a martyr for philosophy, and his legacy continues to inspire modern readers seeking wisdom and resilience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const header = card.querySelector('.card-header');
+            const content = card.querySelector('.content');
+
+            header.addEventListener('click', () => {
+                // Close all other open cards
+                cards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        const otherContent = otherCard.querySelector('.content');
+                        const otherHeader = otherCard.querySelector('.card-header');
+                        otherContent.classList.remove('active');
+                        otherContent.style.maxHeight = null;
+                        otherHeader.classList.remove('active');
+                    }
+                });
+
+                // Toggle the clicked card's content
+                content.classList.toggle('active');
+                header.classList.toggle('active');
+                if (content.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

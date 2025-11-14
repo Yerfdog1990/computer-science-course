@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Education System in Ancient Greece: An Interactive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: The application is designed as a thematic exploration, breaking down the Ancient Greek education system into five core sections: Overview, School Structure & Teachers, Male Education Journey, Female Education, and Beyond School. This structure allows the user to digest information logically, starting broad and then focusing on specific aspects like teacher roles and gender-based differences. Navigation is handled by a clear top bar, enabling users to jump to any section. Key interactions include clicking on teacher types to reveal detailed curricula and selecting age milestones on a timeline to understand male educational progression. This design prioritizes user understanding and ease of navigation, making complex historical information approachable and engaging. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: General access limitations (gender, class), purpose of education. Goal: Inform. Viz/Method: Textual summary with clear headings and paragraphs. Interaction: Static display. Justification: Best for conveying foundational context directly. Library/Method: HTML/CSS.
+        - Report Info: Three main teachers (grammatistes, kitharistes, paidotribes) and their curriculum. Goal: Organize, Inform. Viz/Method: Three interactive cards for each teacher. Interaction: Clicking a teacher's card updates a central text block with detailed information about their teaching responsibilities. Justification: Allows users to explore each role specifically without information overload. Library/Method: Vanilla JS for click events and content updates.
+        - Report Info: Male educational path (age 7, 14-16, higher education for elite). Goal: Show Change/Process. Viz/Method: A horizontal timeline using HTML/CSS. Interaction: Clicking on an age marker reveals a description of that stage of a boy's education. Justification: Visually represents the progression through different educational phases. Library/Method: Vanilla JS for click events and content updates.
+        - Report Info: Female education (domestic focus, no formal schooling). Goal: Inform, Compare. Viz/Method: Dedicated text section, potentially with bullet points comparing to male education implicitly. Interaction: Static display. Justification: Clearly outlines the contrast in educational opportunities. Library/Method: HTML/CSS.
+        - Report Info: Higher education (rhetoric, sophists) for elite. Goal: Inform. Viz/Method: Textual description. Interaction: Static display. Justification: Provides a complete picture of the educational spectrum for the elite. Library/Method: HTML/CSS.
+        - Report Info: Literacy rates (around a third literate). Goal: Inform. Viz/Method: Simple Doughnut Chart. Interaction: Static Chart. Justification: Provides a quick visual summary of the limited access to literacy. Library/Method: Chart.js.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .nav-button {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-button.active, .nav-button:hover {
+            color: #2E8B57; /* Sea Green for a fresh feel */
+            border-bottom-color: #2E8B57;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .teacher-component {
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .teacher-component.active {
+            border-color: #2E8B57; /* Highlight active teacher */
+        }
+        .timeline-item {
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .timeline-item.active {
+            background-color: #2E8B57;
+            color: white;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 300px; /* Smaller max-width for simple chart */
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<div class="container mx-auto p-4 md:p-8">
+
+    <header class="text-center mb-10">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#2E8B57] mb-2">The Education System in Ancient Greece</h1>
+        <p class="text-lg text-gray-600">Explore the foundational learning that shaped an entire civilization.</p>
+    </header>
+
+    <nav class="flex flex-wrap justify-center border-b-2 border-gray-200 mb-12">
+        <button data-target="overview" class="nav-button active text-base md:text-lg font-semibold py-4 px-4 md:px-6 border-b-4 border-transparent">Overview</button>
+        <button data-target="teachers" class="nav-button text-base md:text-lg font-semibold py-4 px-4 md:px-6 border-b-4 border-transparent">School & Teachers</button>
+        <button data-target="male-edu" class="nav-button text-base md:text-lg font-semibold py-4 px-4 md:px-6 border-b-4 border-transparent">Male Education</button>
+        <button data-target="female-edu" class="nav-button text-base md:text-lg font-semibold py-4 px-4 md:px-6 border-b-4 border-transparent">Female Education</button>
+        <button data-target="beyond-school" class="nav-button text-base md:text-lg font-semibold py-4 px-4 md:px-6 border-b-4 border-transparent">Beyond School</button>
+    </nav>
+
+    <main>
+        <section id="overview" class="content-section">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">Foundations of Greek Learning</h2>
+                <p class="max-w-3xl mx-auto text-gray-700">Ancient Greece, particularly Athens, is celebrated for its contributions to philosophy, mathematics, and science. However, access to this transformative education was not universal. It was a privilege largely reserved for a select few, shaping citizens who would uphold the societal and political values of the time.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-3">Access and Exclusion</h3>
+                    <p class="mb-2">Education in Ancient Greece was not publicly funded or state-run. This meant parents had to pay for schooling, restricting access primarily to the wealthy elite. While Athens championed democracy, voting rights and formal education were limited to land-owning male citizens.</p>
+                    <p class="font-semibold text-gray-800">Key Restriction:</p>
+                    <ul class="list-disc list-inside mt-1">
+                        <li>Girls were entirely excluded from formal education.</li>
+                        <li>Only a small proportion of the total population was literate, estimated at around a third even at the height of Greek civilization.</li>
+                    </ul>
+                </div>
+                <div class="chart-container flex items-center justify-center">
+                    <canvas id="literacyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="teachers" class="content-section hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">The Triumvirate of Schoolmasters</h2>
+                <p class="max-w-3xl mx-auto text-gray-700">Boys from wealthy backgrounds typically began schooling around age seven, learning from a specialized group of teachers. These were the core figures who imparted the knowledge and skills necessary for an "ideal citizen." Click on each teacher type to learn about their specific disciplines.</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-start gap-4 mb-6">
+                <div data-info="grammatistes" class="teacher-component card p-4 w-full md:w-1/3 text-center cursor-pointer hover:border-[#2E8B57]">
+                    <h3 class="text-xl font-bold">Grammatistes</h3>
+                    <p class="text-sm">Writing & Grammar</p>
+                </div>
+                <div data-info="kitharistes" class="teacher-component card p-4 w-full md:w-1/3 text-center cursor-pointer hover:border-[#2E8B57]">
+                    <h3 class="text-xl font-bold">Kitharistes</h3>
+                    <p class="text-sm">Music & Ethics</p>
+                </div>
+                <div data-info="paidotribes" class="teacher-component card p-4 w-full md:w-1/3 text-center cursor-pointer hover:border-[#2E8B57]">
+                    <h3 class="text-xl font-bold">Paidotribes</h3>
+                    <p class="text-sm">Physical Education</p>
+                </div>
+            </div>
+            <div id="teacher-info-display" class="card p-6 min-h-[180px]">
+                <h4 id="teacher-info-title" class="text-2xl font-bold text-[#2E8B57] mb-2">Select a Teacher Role Above</h4>
+                <p id="teacher-info-text">Click on any of the schoolmaster types to delve into what they taught and their importance in the Athenian education system.</p>
+            </div>
+        </section>
+
+        <section id="male-edu" class="content-section hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">The Athenian Boy's Educational Journey</h2>
+                <p class="max-w-3xl mx-auto text-gray-700">For wealthy Athenian boys, education was a structured progression designed to prepare them for civic and public life. This journey involved distinct stages, each building upon the last to cultivate well-rounded citizens. Explore the timeline below to see the key milestones in their educational path.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6">
+                <div data-stage="early" class="male-timeline-item active p-3 md:p-4 rounded-lg border-2 border-gray-300">
+                    <h4 class="font-bold text-center">Ages 7-14</h4>
+                </div>
+                <div data-stage="mid" class="male-timeline-item p-3 md:p-4 rounded-lg border-2 border-gray-300">
+                    <h4 class="font-bold text-center">Ages 14-16</h4>
+                </div>
+                <div data-stage="beyond" class="male-timeline-item p-3 md:p-4 rounded-lg border-2 border-gray-300">
+                    <h4 class="font-bold text-center">Beyond 16 (Elite)</h4>
+                </div>
+            </div>
+
+            <div class="card p-6 min-h-[150px]">
+                <h4 id="male-timeline-title" class="text-2xl font-bold text-[#2E8B57] mb-2"></h4>
+                <p id="male-timeline-text"></p>
+            </div>
+        </section>
+
+        <section id="female-edu" class="content-section hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">A Woman's Place: Domesticity over Formal Learning</h2>
+                <p class="max-w-3xl mx-auto text-gray-700">In stark contrast to boys, most women in Ancient Greece were excluded from the formal education system. Their training was informal, focused primarily on preparing them for their expected roles within the patriarchal society: managing the household and raising children.</p>
+            </div>
+
+            <div class="card p-6 border-t-4 border-[#2E8B57]">
+                <h3 class="text-2xl font-bold mb-4">The Education of Girls</h3>
+                <ul class="space-y-3 list-inside list-disc">
+                    <li><span class="font-semibold">Domestic Instruction:</span> Girls were primarily taught at home by their mothers.</li>
+                    <li><span class="font-semibold">Household Management:</span> Instruction included domestic chores, weaving, spinning, and for wealthy families, the intricacies of running a large household with servants.</li>
+                    <li><span class="font-semibold">No Formal Schooling:</span> Girls did not attend public schools alongside boys and were not taught by grammatistes, kitharistes, or paidotribes.</li>
+                    <li><span class="font-semibold">Limited Literacy:</span> While some wealthy girls might learn basic reading and writing at home, it was not a widespread expectation or formalized process.</li>
+                    <li><span class="font-semibold">Societal Role:</span> Their education was entirely geared towards their expected role as wives and mothers, responsible for the private sphere of the home.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="beyond-school" class="content-section hidden">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">The Pursuit of Advanced Knowledge (For the Elite)</h2>
+                <p class="max-w-3xl mx-auto text-gray-700">For young men from the wealthiest families, whose destiny lay in politics and public affairs, basic schooling was merely the beginning. Beyond the age of 16, they pursued advanced studies to hone the skills crucial for success in Greek society.</p>
+            </div>
+
+            <div class="card p-6 border-t-4 border-[#2E8B57]">
+                <h3 class="text-2xl font-bold mb-4">Rhetoric and Sophists</h3>
+                <p class="mb-3">The art of rhetoric—the ability to argue a case persuasively and win debates—was paramount in Greek politics and public life. It was considered the most important subject for those destined for leadership.</p>
+                <ul class="space-y-3 list-inside list-disc">
+                    <li><span class="font-semibold">Sophists:</span> Private tutors known as Sophists specialized in teaching rhetoric, logic, and public speaking.</li>
+                    <li><span class="font-semibold">High Fees:</span> These tutors commanded significant fees, further restricting advanced education to Athens' elite.</li>
+                    <li><span class="font-semibold">Preparation for Politics:</span> Mastering rhetoric was essential for influencing public opinion, participating in assemblies, and succeeding in legal proceedings.</li>
+                </ul>
+                <p class="mt-4 text-gray-700 italic">This advanced stage of education reinforced the class distinctions, ensuring that only a select few were truly prepared for the highest levels of civic engagement.</p>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navButtons = document.querySelectorAll('.nav-button');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target;
+
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                contentSections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Teacher Info Section
+        const teacherData = {
+            grammatistes: {
+                title: "The Grammatistes: Masters of Letters",
+                text: "The grammatistes taught reading, writing, and grammar, focusing on the 24-letter Greek alphabet. Beyond basic literacy, their curriculum broadly encompassed linguistics, philosophy, and classical literature, often using works of poets like Homer. Political science was also an essential component, shaping young citizens' understanding of civic duties."
+            },
+            kitharistes: {
+                title: "The Kitharistes: Music, History & Ethics",
+                text: "The kitharistes were music teachers, but their role extended far beyond instrumental instruction. Music in ancient Greece was deeply intertwined with history, ethics, and poetry. Students learned to play the lyre, a mark of cultured learning, and through musical compositions, absorbed moral lessons and historical narratives."
+            },
+            paidotribes: {
+                title: "The Paidotribes: Cultivating Physical Virtue",
+                text: "Physical fitness was highly valued in ancient Greek society, exemplified by the ideal Greek physique seen in statues and the origin of the Olympics. The paidotribes oversaw rigorous physical education, including wrestling, javelin throwing, and other athletic disciplines. This training was crucial for preparing boys for military service, essential for the defense of the city-states."
+            }
+        };
+
+        const teacherComponents = document.querySelectorAll('.teacher-component');
+        const teacherInfoTitle = document.getElementById('teacher-info-title');
+        const teacherInfoText = document.getElementById('teacher-info-text');
+
+        teacherComponents.forEach(component => {
+            component.addEventListener('click', () => {
+                const infoKey = component.dataset.info;
+                teacherInfoTitle.textContent = teacherData[infoKey].title;
+                teacherInfoText.textContent = teacherData[infoKey].text;
+
+                teacherComponents.forEach(c => c.classList.remove('active'));
+                component.classList.add('active');
+            });
+        });
+
+        // Male Education Timeline Section
+        const maleTimelineData = {
+            early: {
+                title: "Ages 7-14: Fundamental Learning",
+                text: "Boys from wealthy families began formal schooling around age seven. They attended private schools taught by grammatistes (reading, writing, literature), kitharistes (music, lyre, ethics), and paidotribes (physical training, athletics). The goal was to build foundational literacy, cultural appreciation, and physical prowess."
+            },
+            mid: {
+                title: "Ages 14-16: Intermediate Studies & Preparation",
+                text: "Schooling typically continued until ages 14-16. During this period, studies deepened, preparing boys for their next steps. Families would then decide on their son's future: entering a trade, joining the army, or pursuing further education for those destined for public life."
+            },
+            beyond: {
+                title: "Beyond 16 (Elite): Advanced Rhetoric and Philosophy",
+                text: "For the elite, education extended beyond basic schooling. Young men destined for politics and public affairs would study rhetoric—the art of persuasive speaking—under private tutors known as Sophists. This advanced training was crucial for success in legal debates and the Athenian assembly."
+            }
+        };
+
+        const maleTimelineItems = document.querySelectorAll('.male-timeline-item');
+        const maleTimelineTitle = document.getElementById('male-timeline-title');
+        const maleTimelineText = document.getElementById('male-timeline-text');
+
+        function updateMaleTimeline(stage) {
+            maleTimelineTitle.textContent = maleTimelineData[stage].title;
+            maleTimelineText.textContent = maleTimelineData[stage].text;
+            maleTimelineItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.stage === stage);
+            });
+        }
+
+        maleTimelineItems.forEach(item => {
+            item.addEventListener('click', () => {
+                updateMaleTimeline(item.dataset.stage);
+            });
+        });
+        updateMaleTimeline('early'); // Initialize with the first stage
+
+        // Literacy Chart (Overview Section)
+        const literacyCtx = document.getElementById('literacyChart').getContext('2d');
+        const literacyChart = new Chart(literacyCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Literate Population', 'Non-Literate Population'],
+                datasets: [{
+                    label: 'Literacy Rate in Ancient Greece (Estimate)',
+                    data: [33, 67], // Approximately one-third literate
+                    backgroundColor: [
+                        '#2E8B57', // Sea Green for literate
+                        '#BDC3C7'  // Light Gray for non-literate
+                    ],
+                    borderColor: '#FDFBF8',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

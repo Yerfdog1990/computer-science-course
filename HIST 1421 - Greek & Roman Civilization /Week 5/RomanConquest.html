@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Roman Conquest of Italy: An Interactive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+            color: #334155; /* Darker text for readability */
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+        }
+        details {
+            margin-bottom: 1rem;
+            background-color: #f1f5f9; /* Lighter background for details */
+            border-radius: 0.75rem;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+        summary {
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            background-color: #e2e8f0; /* Slightly darker for summary */
+            border-bottom: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.2s ease-in-out;
+            color: #1e293b;
+            border-radius: 0.75rem; /* Apply to summary */
+            list-style: none; /* Remove default marker */
+            position: relative;
+            padding-left: 2.5rem; /* Space for custom arrow */
+        }
+        summary::-webkit-details-marker {
+            display: none; /* Hide default marker in Webkit */
+        }
+        summary::before {
+            content: '+'; /* Custom plus sign */
+            position: absolute;
+            left: 1rem;
+            font-weight: bold;
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] summary::before {
+            content: '-'; /* Custom minus sign when open */
+            transform: rotate(0deg); /* Ensure it doesn't rotate */
+        }
+        details[open] summary {
+            background-color: #d1d5db; /* Even darker when open */
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        summary:hover {
+            background-color: #cbd5e1;
+        }
+        .details-content {
+            padding: 1rem 1.5rem;
+            line-height: 1.6;
+            color: #475569;
+        }
+        .details-content p {
+            margin-bottom: 0.75rem;
+        }
+        .details-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .details-content ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .example-box {
+            background-color: #e0f2fe; /* Light blue for examples */
+            border-left: 4px solid #38b2ac; /* Teal border */
+            padding: 0.75rem 1rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.5rem;
+            color: #1a202c;
+            font-style: italic;
+        }
+        .key-takeaway {
+            background-color: #dbeafe; /* Lighter blue for key takeaways */
+            border-left: 5px solid #2563eb; /* Stronger blue border */
+            padding: 1rem 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            color: #1e40af;
+            line-height: 1.5;
+        }
+        h1, h2, h3 {
+            color: #1e293b; /* Darker headings */
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0f172a;
+        }
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .section-title-icon {
+            margin-right: 0.75rem;
+            font-size: 1.2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-8">The Roman Conquest of Italy</h1>
+    <p class="text-center text-lg text-gray-600 mb-6">A detailed overview of Rome's expansion across the Italian peninsula.</p>
+
+    <!-- Section: Introduction -->
+    <details open>
+        <summary class="text-2xl">
+            <span class="section-title-icon">📜</span> Introduction
+        </summary>
+        <div class="details-content">
+            <ul>
+                <li>With the expulsion of Etruscan kings and the establishment of the Republican system, Rome began its expansion.</li>
+                <li>By 509 BC, Rome was the dominant power in Latium, recognized by a treaty with Carthage.</li>
+                <li>The Latin League, an alliance of city-states, initially sought to maintain independence from Rome.</li>
+                <li>Rome's early expansion involved a mix of conflict and alliances to consolidate control.</li>
+                <li>The Battle of Lake Regillus (496 BC) demonstrated Rome's ability to stand against its neighbors.</li>
+                <li>The *Foedus Cassianum* (Treaty of Cassius) in 493 BC granted the Latin League independence, placing Rome on nearly equal footing with the combined League members.</li>
+                <li>External pressures from tribes like the Volsci, Aequi, and Sabines led to closer ties with Rome and their eventual absorption.</li>
+                <li>By the 390s BC, Rome and the Latins had secured control of the plains, defeating the Volsci by 377 BC and effectively eliminating the Aequi.</li>
+                <li>The Sabines were also gradually absorbed into Roman culture after a major Roman victory in 449 BC.</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- Section: The Consolidation of Latium -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🌍</span> The Consolidation of Latium
+        </summary>
+        <div class="details-content">
+            <ul>
+                <li>Rome became the dominant player in Latium by 509 BC, inheriting leadership from the Etruscans.</li>
+                <li>An early treaty with Carthage recognized Roman authority over other Latin states.</li>
+                <li>The Latin League, formed by city-states, aimed for mutual strength and unity against Rome.</li>
+                <li>The Latin League was a cooperation of states sharing common interests like religious worship and defense.</li>
+                <li>Latium was fertile, wealthy, and had sea access, making it an inviting target for enemies like Etruscans, Volscians, and Aequians.</li>
+                <li>Latin League cities shared commercial treaties and granted rights of commerce, intermarriage, and settlement to citizens.</li>
+                <li>These rights formed the basis of Latin rights crucial in later Roman politics.</li>
+                <li>After Etruscan rule broke, the League states vied for dominance, with power shifting between Rome, Alba Longa, and Lavinium.</li>
+                <li>In 496 BC, Lavinium broke its alliance, leading to the Battle of Lake Regillus, where Rome claimed victory over united neighbors.</li>
+                <li>The victory, whether decisive or a stalemate, proved Rome's ability to stand against combined forces.</li>
+                <li>By 493 BC, the *Foedus Cassianum* (Treaty of Cassius) granted the Latin League independence, placing Rome on nearly equal status with the combined League.</li>
+                <li>External pressures from Umbrians (Volsci and Aequi) and Sabines forced Rome's neighbors into closer ties, leading to absorption into the Roman sphere.</li>
+                <li>The 5th century BC saw constant expansion among Oscan-Umbrian hill peoples.</li>
+                <li>The Hernicii joined a mutual protection treaty with Romans and Latins in 486 BC due to pressure from Aequi and Volsci.</li>
+                <li>Hernicii were soon absorbed into Latin culture, and conflicts were almost yearly.</li>
+                <li>Latin towns Tibur and Praeneste were threatened by Aequi raids, some purportedly reaching Rome's gates.</li>
+                <li>In 458 BC, a Roman army was supposedly eliminated at Agidus Pass; Lucius Quinctius Cincinnatus, appointed Dictator, won a decisive victory over the Aequi, though they soon resumed war.</li>
+                <li>The Volsci controlled much of southern Latium and pressured Latins, with legendary renegade Coriolanus allegedly reaching Rome.</li>
+                <li>The decisive battle against Umbrian invaders was in 431 BC at Algidus Pass, where Romans were victorious.</li>
+                <li>By the 390s BC, Romans and Latins regained control of plains, relegating Aequi and Volsci to highlands.</li>
+                <li>Volsci were finally defeated with the capture of Antium in 377 BC; Aequi disappeared as a separate entity around the same time.</li>
+                <li>Sabines constantly pressured territory between Tiber and Anio Rivers.</li>
+                <li>A Sabine invasion allegedly seized Rome in 460 BC, but after a major Roman victory in 449 BC, Sabines disappeared from history for two centuries, eventually absorbed into Roman culture.</li>
+                <li>One Sabine group, including Attus Clausus (later Gens Claudian), zealously allied with Rome and moved onto Roman territory, becoming Romans.</li>
+                <li>Rome's military policy became more aggressive between 449 and 390 BC after the victory over Umbrians.</li>
+                <li>Etruscans, especially Veii, remained a constant source of strife.</li>
+                <li>By 396 BC, Gallic invasions weakened Etruscans, opening the door for Roman conquest.</li>
+                <li>Gallic movements from the north foreshadowed disastrous conflicts.</li>
+                <li>Further Roman expansion south would lead to a series of wars with the Samnites.</li>
+                <li>After 300 years, Rome had yet to firmly secure Latium and faced significant challenges.</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- Section: Veii and the Etruscans -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🏛️</span> Veii and the Etruscans
+        </summary>
+        <div class="details-content">
+            <ul>
+                <li>Despite removing Etruscan rule in the late 6th century BC, Etruscans remained a threat for three centuries.</li>
+                <li>The Etruscan city-state of Veii, 12 miles north of Rome, was a main source of concern due to its equal strength.</li>
+                <li>Control of the Tiber River, a vital transportation and commerce artery, was crucial for both cities.</li>
+                <li>Control of the Tiber granted access to Western Italy, Latium, Samnium, Etruria, and parts of northern Campania.</li>
+                <li>Access to the salt mines of Ostia, at the mouth of the Tiber, was also of utmost importance.</li>
+                <li>Early 5th century BC: Conflicts escalated into war, including the legendary destruction of 300 Fabii at the Battle of Cremera.</li>
+                <li>Within a year of Cremera, the Etruscan navy was destroyed by Hieron of Syracuse off Cumae, a military disaster.</li>
+                <li>Etruscan city-states, including Veii, became more fragmented, losing mutual protection strength.</li>
+                <li>Veii was forced to make a treaty with Rome after its naval defeat.</li>
+                <li>Celtic Gauls migrating into northern Italy from the 6th century BC further debilitated the Etruscans.</li>
+                <li>Between 406 and 396 BC, Rome went on the offensive against weakened Etruscans.</li>
+                <li>Under Marcus Furius Camillus, Fidenae was retaken, and Veii itself came under siege.</li>
+                <li>The legendary Siege of Veii, said to last 10 years, likely lasted less, but introduced paid professional legions.</li>
+                <li>The siege was reportedly broken in 396 BC when Romans drained Alban Lake, allowing soldiers to sneak under walls.</li>
+                <li>Camillus was credited with saving Rome and gained unending admiration.</li>
+                <li>Rome destroyed much of Veii, driving out residents and allotting territory to Roman citizens, creating four new tribes.</li>
+                <li>Veii's capture significantly increased Roman territory and strength, making Rome predominant over its divided neighbors.</li>
+                <li>Over the next century, Etruscan cities were slowly incorporated into Rome's fold.</li>
+                <li>Etruscan decline was inevitable due to their lack of unity and cooperation.</li>
+                <li>By 273 BC, Etruria and the Etruscans were completely within Rome's domain.</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- Section: The Gallic Sack of Rome -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🔥</span> The Gallic Sack of Rome
+        </summary>
+        <div class="details-content">
+            <ul>
+                <li>In the 5th and early 4th centuries BC, Germanic tribes pressured Gallic Celts to move south into northern Italy.</li>
+                <li>Gauls crossed the Alps, capturing and settling Etruscan territory by force.</li>
+                <li>Gallic tribes, united only by blood, maintained their own kings or warlords; some were aggressive.</li>
+                <li>One tribe, the Senones, led by Brennus, besieged the Etruscan city of Clusium.</li>
+                <li>Roman envoys sent to treat with Brennus escalated into violence, resulting in a Celtic chieftain's death.</li>
+                <li>Brennus demanded the three Roman envoys be turned over, but Rome refused.</li>
+                <li>The angered Gauls left Clusium and headed for Rome for revenge.</li>
+                <li>In July 387 BC (traditionally 390 BC), an outnumbered Roman army suffered a crushing defeat at the River Allia.</li>
+                <li>Roman defenders retreated to the Capitoline Hill for a siege, while civilians fled.</li>
+                <li>Gauls poured into Rome, slaughtering civilians, looting, and burning.</li>
+                <li>They attempted to attack the Capitoline, but were repulsed and never dislodged the occupants.</li>
+                <li>For seven months, Gauls wreaked havoc; one night assault was reportedly thwarted by sacred geese.</li>
+                <li>Romans engaged Brennus for terms; he agreed to leave for 1,000 lbs of gold.</li>
+                <li>Livy recounts Brennus's famous line, "Vae Victis" ("Woe to the vanquished!"), when Romans complained about heavy weights.</li>
+                <li>Romans decided to stay and quickly rebuilt the city, completing the Servian Wall.</li>
+                <li>As a result of the invasion, Romans adopted new military weaponry: the gladius and modified armor, abandoning Greek Phalanx spears.</li>
+                <li>The legion was reorganized, placing youngest and strongest soldiers in front lines.</li>
+                <li>The Gallic invasion weakened Rome, encouraging previously subdued Italian tribes (Etruscans, Volsci, Hernici, Aequi) to rebel.</li>
+                <li>Over the next fifty years, these tribes were defeated and brought back under Roman dominion.</li>
+                <li>Gauls continued to harass the region until a formal treaty with Rome in 345 BC, though adversarial relations persisted.</li>
+                <li>The sack of Rome was long remembered and avenged three and a half centuries later with Caesar's conquest of Gaul.</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- Section: The Latin Revolt and the End of the Latin League -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">⚔️</span> The Latin Revolt and the End of the Latin League
+        </summary>
+        <div class="details-content">
+            <ul>
+                <li>After the Gallic sack, Rome became increasingly dominant in Latium and among its Latin neighbors.</li>
+                <li>With the end of the First Samnite War, Rome gained control of Campania, and its people allied with Rome.</li>
+                <li>Latins, having aided Rome, expected equal spoils but continued to harass Samnites despite Roman peace overtures.</li>
+                <li>Latins and Campanians feared Rome's rising power and perceived their alliances as domination.</li>
+                <li>Latins demanded equal status within the league and a share in Roman governance, which was rejected.</li>
+                <li>Campania and Capua joined the Latins in an open revolt, known as the Latin War.</li>
+                <li>Rome's recent and future enemy, the Samnites, sided with Rome.</li>
+                <li>In 340 BC, the Latin War began with an overwhelming Roman victory at the Battle of Trifanum, led by Consul Titus Manlius Imperiosus Torquatus, with Samnite support.</li>
+                <li>Campanians immediately capitulated and returned to Roman control.</li>
+                <li>Two years of bitter fighting were needed to suppress Latin resistance.</li>
+                <li>In 338 BC, Rome dismantled the Latin League and came to terms with its neighbors.</li>
+                <li>Some Latin city-states were fully incorporated into the Republic; others received lesser Roman citizenship.</li>
+                <li>Rights like *Commercium* (business with Rome) and *Connubium* (inter-marriage) were granted, but only with Rome, not between other tribes.</li>
+                <li>The right to make alliances was reserved only for Rome, and city-states lost autonomy.</li>
+                <li>*Civitas sine suffragio* (citizenship without voting rights) became a standard Romanization policy for building the Empire.</li>
+                <li>Latin rights (*ius Latii*) served as a stepping stone for absorbed communities to gain full citizenship after accepting Roman rule.</li>
+                <li>Most cities no longer paid taxes but provided men for the legions.</li>
+                <li>Most cities retained their governing systems under Roman supervision.</li>
+                <li>The Latin War strengthened Rome's grip on Latium and the Italian peninsula, providing more land for settlement.</li>
+                <li>Rome became a centralized government, no longer just the most powerful member of an alliance.</li>
+                <li>Revolts by Italian communities continued for centuries, but with the Latin League's elimination, Rome became the master of central Italy.</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- Section: The Samnite Wars -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🛡️</span> The Samnite Wars
+        </summary>
+        <div class="details-content">
+            <ul>
+                <li>After surviving Gallic invasions, Rome aimed for further expansion in the mid-4th century BC.</li>
+                <li>Rome reconquered and absorbed Latin and Etruscan towns that had rebelled during the Gallic occupation, consolidating its position in Central Italy.</li>
+                <li>Romans looked south towards Campania, where Samnites had moved into fertile lands from the Appenines.</li>
+                <li>Samnites controlled Capua and Cumae to the south of Rome, and held sway to the east.</li>
+                <li>Rome entered an alliance with the Samnites in 354 BC to protect its flanks.</li>
+                <li>Conflict over Campanian dominance was inevitable, leading to a series of wars from 343-290 BC.</li>
+                <li><strong>First Samnite War (343-341 BC):</strong>
+                    <ul>
+                        <li>War broke out near Neapolis (Naples), a Greek colony, due to Samnite invasions into Campania.</li>
+                        <li>Neapolis appealed to Rome for assistance.</li>
+                        <li>Roman intervention was reportedly rebuffed by Samnites, leading to war.</li>
+                        <li>Marked by Roman victories, but cut short by a revolt of Rome's Latin neighbors.</li>
+                        <li>Latins revolted over conscription into a Roman war outside their territory, seeing Samnite pre-occupation as an opportunity.</li>
+                        <li>Rome broke off southern conquests to deal with the Latin revolt.</li>
+                        <li>Resulted in the major acquisition of the rich lands of Campania, including Capua.</li>
+                        <li>Illustrated Roman diplomacy: alliance leading to absorption of allies into Rome's dominion.</li>
+                        <li>Campania became firmly attached to Rome, adding wealth and territory, boosting manpower for future legions.</li>
+                    </ul>
+                </li>
+                <li><strong>Second Samnite War (327-304 BC):</strong>
+                    <ul>
+                        <li>Romans expanded into Aurunci and Sidicini territory and reasserted control of Campania.</li>
+                        <li>Rome established a colony at Fregellae on the Liris River in 328 BC, provoking Samnites.</li>
+                        <li>Samnites were pre-occupied with a conflict against Tarentum and King Alexander of Epirus until 331 BC.</li>
+                        <li>Romans claimed Samnites encouraged Neapolis to expand, necessitating colonies in disputed areas.</li>
+                        <li>Samnites garrisoned Neapolis; Roman army arrived in 327 BC, expelled garrison, starting the war.</li>
+                        <li>Samnites controlled twice as much territory as Rome, mostly mountainous.</li>
+                        <li>Initially favored Rome, prompting Samnium to sue for peace in 321 BC, but Rome's lopsided terms were rejected.</li>
+                        <li>Samnites used mountainous terrain to their advantage.</li>
+                        <li>Battle of the Claudine Forks (321 BC): Romans trapped in a mountain pass, forced to march under a "yoke of spears" in ultimate humiliation.</li>
+                        <li>Romans reportedly gave up 600 Equites as hostages and agreed to a five-year peace, giving up Fregellae and Cales.</li>
+                        <li>During the five-year respite (321-316 BC), Romans strengthened military position, absorbing Oufentina and Falerna tribes.</li>
+                        <li>Romans surrounded Samnites with allies by attacking Apulia and Lucania.</li>
+                        <li>When operations resumed in 316 BC, Rome initially lost several engagements, including Lautulae (315 BC).</li>
+                        <li>Campania nearly rejected Rome; Romans sued for peace with some Samnite factions.</li>
+                        <li>Samnites encouraged Etruscans to join them; Etruscans joined in 311 BC after a 40-year treaty.</li>
+                        <li>Between 311 and 304 BC, Rome won a series of victories against both Etruscans and Samnites.</li>
+                        <li>Etruscans forced to capitulate on severe terms in 308 BC; Samnites followed suit in 304 BC.</li>
+                        <li>Rome gained considerable territory and established many new colonies.</li>
+                        <li>Romans adopted the Samnite manipular military formation, more flexible than the Greek hoplite system.</li>
+                        <li>This system evolved into the cohort formation of Roman legions.</li>
+                        <li>Construction of Via Appia (312 BC, Rome to Capua) and Via Valeria (306 BC) facilitated military movement.</li>
+                        <li>Final decade of 4th century BC saw resistance from Aequi, Hernici, Marsi, Marrucini, Paeligni, Frentani, and Vestini.</li>
+                        <li>In 305 BC, Roman victory led Paeligni and Hernici to surrender.</li>
+                        <li>Aequi defeated in 304 BC, same year Samnites sued for peace; other Central Italian tribes allied with Rome within two years.</li>
+                        <li>Conflict with Samnites renewed within a decade.</li>
+                    </ul>
+                </li>
+                <li><strong>Third Samnite War (298-290 BC):</strong>
+                    <ul>
+                        <li>Began in 298 BC after only six years of peace, as Samnites sought to stop Roman expansion.</li>
+                        <li>Samnites convinced Rome's old enemies (Etruscans, Umbrians, Gauls, other regional tribes) to form a coalition.</li>
+                        <li>Threat to Rome was real, facing coordinated enemies from all sides.</li>
+                        <li>Early in the conflict, Rome shattered a Samnite army in the south.</li>
+                        <li>Pivotal Battle of Sentinum (295 BC) in Umbria: more combatants than any previous Italian encounter.</li>
+                        <li>Celtic Gauls initially pushed Romans back, but Roman military discipline crushed the coalition.</li>
+                        <li>Samnites held out for five more years, finally capitulating in 290 BC.</li>
+                        <li>Rome granted Samnium a favorable treaty, forcing them into an alliance and ending their unified resistance.</li>
+                        <li>Campanian cities (Italian and Greek), including Capua, became undisputed allies with varying independence.</li>
+                        <li>Sabines ceded territory; 13 Roman colonies settled in Campania and eastern Samnium.</li>
+                        <li>Years surrounding Samnite Wars saw public works: Circus Maximus facelift (329 BC), Via Appia (312 BC), Aqua Appia (first Roman aqueduct, 312 BC).</li>
+                        <li>These structures proved Rome's flourishing status even during war and expansion.</li>
+                        <li>By end of Samnite Wars, Rome had 150,000 people (one of Mediterranean's largest cities), 1,000,000 citizens, and vast numbers obligated through Latin rights/allied status.</li>
+                        <li>Rome was master of nearly the entire Italian peninsula, save for Gauls in the north and Greek cities like Tarentum in the south.</li>
+                        <li>Rome's growing power attracted attention from Greece and Carthage.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- Section: The Pyrrhic War -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🐘</span> The Pyrrhic War
+        </summary>
+        <div class="details-content">
+            <ul>
+                <li>With the conclusion of the Samnite Wars, Rome consolidated its position as master of central Italy.</li>
+                <li>Rome's rising power led to inevitable conflict with Greek city-states (Magna Graecia) in southern Italy.</li>
+                <li>Lucanians and Bruttians attacked Greek colonies; these colonies appealed to Rome for help in 283 BC.</li>
+                <li>Tarentum, the most influential city of Magna Graecia, was an important Mediterranean trade hub.</li>
+                <li>Tarentum had the most powerful navy of any Italian city and a treaty with Rome (since 302 BC) denying Roman fleets access to its bay.</li>
+                <li>Rome sent troops by sea to garrison Thurii in 282 BC, aiding cities like Locri, Rhegim, Croton, and Thurii against Lucanians.</li>
+                <li>Tarentum considered this a treaty breach and hostile act, sinking the Roman fleet and expelling the Thurii garrison.</li>
+                <li>The Roman Senate sent an embassy to Tarentum to demand amends; Romans were insulted, and Rome declared war.</li>
+                <li>Tarentum, fearing retaliation, turned to King Pyrrhus of Epirus for assistance.</li>
+                <li>Pyrrhus, a distant relative of Alexander the Great, sought expansion and glory, likely aiming for Sicily.</li>
+                <li>Epirote armies were more modern and well-equipped than Roman counterparts.</li>
+                <li>In 280 BC, Pyrrhus landed in Italy with 25,000 men, including cavalry, archers, and 20 war elephants (first time seen by Italians).</li>
+                <li>Romans prepared to fight, encouraged by Greek cities uninterested in Pyrrhus's interference.</li>
+                <li>First engagement at Heraclea: Romans (50,000 men) under Publius Laverius Laevinius drove into Lucanian territory.</li>
+                <li>Battle of Heraclea was evenly fought; Epirote elephants drove through Roman lines, causing panic.</li>
+                <li>Roman army was nearly destroyed, but a wounded elephant caused panic among others, forcing Pyrrhus to call off pursuit.</li>
+                <li>Ancient writers suggest Roman losses of 7,000-15,000 and Epirote losses of 4,000-13,000.</li>
+                <li>Pyrrhus's losses were substantial; an invading army could not endure such casualties while outnumbered.</li>
+                <li>Pyrrhus hoped for rebellion from Rome's enemies, but only some Samnites and Lucanians joined him, showing Rome's growing stability.</li>
+                <li>Pyrrhus's treatment of Greek allies also turned them against him.</li>
+                <li>Second major conflict: Battle of Ausculum (279 BC), a massive two-day engagement in Apulia.</li>
+                <li>Romans used terrain to reduce effect of Epirote cavalry and elephants; first day was a draw.</li>
+                <li>Second day was a stalemate until elephants were brought forward; Romans' ox-drawn war wagons were overwhelmed.</li>
+                <li>Estimates: 6,000 Roman and 3,500 Epirote casualties; Pyrrhus commanded the field but at great cost.</li>
+                <li>"Pyrrhic Victory" term attributed to Ausculum; Plutarch quotes Pyrrhus: "one other such (victory) would utterly undo him."</li>
+                <li>Pyrrhus offered peace terms to Rome, but was refused as long as he remained in Italy.</li>
+                <li>Appius Claudius encouraged the Senate to refuse simple terms for Tarentum's independence.</li>
+                <li>Rome negotiated an alliance with Carthage, also concerned about Pyrrhus in Sicily.</li>
+                <li>Pyrrhus, hoping to turn Rome and Carthage against each other, became target of both.</li>
+                <li>In 278 BC, he sailed to Sicily to defend Greek cities, but Carthaginians were besieging Syracuse.</li>
+                <li>Pyrrhus evaded capture and defeated the Carthaginian army, capturing Panormus and Eryx.</li>
+                <li>Carthage refused his peace offer, fearing loss of Sardinia.</li>
+                <li>On Italian mainland, Rome pressed Tarentum; Pyrrhus sustained heavy losses in Sicily and feared entrapment.</li>
+                <li>Returned to Italy in 275 BC, faced Romans at Malventum (southern Italy).</li>
+                <li>This time, no "Pyrrhic Victory"; Epirotes defeated, retreated to Tarentum.</li>
+                <li>Romans learned to deal with war elephants by attacking their sides with spears, a tactic later used against Carthage.</li>
+                <li>Malventum was renamed Beneventum ("Good Omen") in recognition of Roman victory.</li>
+                <li>Pyrrhus left Italy shortly after, returning to Epirus without most of his army or gains.</li>
+                <li>Plutarch quotes Pyrrhus's parting words: "What a battlefield I am leaving for Carthage and Rome."</li>
+                <li>With Pyrrhus gone, Tarentum and other Greek cities accepted Rome's lenient peace offer.</li>
+                <li>Tarentum was allowed self-rule under a Roman garrison; other city-states and tribes surrendered.</li>
+                <li>By 272 BC, Rome was the confirmed master of the Italian peninsula.</li>
+                <li>Ptolemy II of Egypt confirmed Rome's power by opening a permanent embassy.</li>
+                <li>Roman colonies were founded all over Italy, strengthening Rome's rule.</li>
+                <li>Victory in the Pyrrhic War showed Rome's adaptability and change were mightier than any regional force.</li>
+                <li>Greek Phalanx lost dominance, replaced by adaptable Roman legions.</li>
+                <li>Romans' greatest strength was perseverance, continuing expansion for over half a millennium despite setbacks.</li>
+                <li>Pyrrhus returned to Epirus, considered a grand adventurer and great general by Hannibal.</li>
+                <li>Despite army destruction, he invaded Macedonia with Gallic allies, then set sights on Sparta and Argos.</li>
+                <li>Plutarch states Pyrrhus was killed in Argos in 272 BC when an old woman threw a tile from a roof, stunning him, leading to his beheading by a soldier.</li>
+            </ul>
+        </div>
+    </details>
+
+</div>
+</body>
+</html>

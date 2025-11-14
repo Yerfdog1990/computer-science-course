@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Persian Wars: An Interactive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+            color: #334155; /* Darker text for readability */
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+        }
+        details {
+            margin-bottom: 1rem;
+            background-color: #f1f5f9; /* Lighter background for details */
+            border-radius: 0.75rem;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+        summary {
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            background-color: #e2e8f0; /* Slightly darker for summary */
+            border-bottom: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.2s ease-in-out;
+            color: #1e293b;
+            border-radius: 0.75rem; /* Apply to summary */
+            list-style: none; /* Remove default marker */
+            position: relative;
+            padding-left: 1.5rem; /* Space for custom arrow */
+        }
+        summary::-webkit-details-marker {
+            display: none; /* Hide default marker in Webkit */
+        }
+        summary::before {
+            content: '+'; /* Custom plus sign */
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] summary::before {
+            content: '-'; /* Custom minus sign when open */
+            transform: rotate(0deg); /* Ensure it doesn't rotate */
+        }
+        details[open] summary {
+            background-color: #d1d5db; /* Even darker when open */
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        summary:hover {
+            background-color: #cbd5e1;
+        }
+        .details-content {
+            padding: 1rem 1.5rem;
+            line-height: 1.6;
+            color: #475569;
+        }
+        .details-content p {
+            margin-bottom: 0.75rem;
+        }
+        .details-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .details-content ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .example-box {
+            background-color: #e0f2fe; /* Light blue for examples */
+            border-left: 4px solid #38b2ac; /* Teal border */
+            padding: 0.75rem 1rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.5rem;
+            color: #1a202c;
+            font-style: italic;
+        }
+        .key-takeaway {
+            background-color: #dbeafe; /* Lighter blue for key takeaways */
+            border-left: 5px solid #2563eb; /* Stronger blue border */
+            padding: 1rem 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            color: #1e40af;
+            line-height: 1.5;
+        }
+        h1, h2, h3 {
+            color: #1e293b; /* Darker headings */
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0f172a;
+        }
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .section-title-icon {
+            margin-right: 0.75rem;
+            font-size: 1.2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-8">The Persian Wars: Clash of Empires</h1>
+    <p class="text-center text-lg text-gray-600 mb-6">A series of pivotal conflicts between the Achaemenid Empire and the Hellenic world.</p>
+    <p class="text-sm text-center text-gray-500 mb-8">Author: Mark Cartwright | Published: May 2, 2018 | Source: World History Encyclopedia</p>
+
+    <!-- Section: Definition & Overview -->
+    <details open>
+        <summary class="text-2xl">
+            <span class="section-title-icon">📜</span> Definition & Overview
+        </summary>
+        <div class="details-content">
+            <p>The <strong>Persian Wars</strong> (499-449 BCE) were a series of conflicts fought between the Achaemenid Empire of Persia and the city-states of the Hellenic world during the Greek classical period. This conflict saw the rise of Athens and ultimately led to its Golden Age. The wars began with the Ionian Revolt in 499 BCE and concluded around 449 BCE.</p>
+            <p>The Persian Wars led to the rise of Athens as the head of the Delian League.</p>
+
+            <h3>Key Terms:</h3>
+            <ul class="list-disc ml-6">
+                <li><strong>Persian Wars:</strong> A series of conflicts, from 499-449 BCE, between the Achaemenid Empire of Persia and city-states of the Hellenic world.</li>
+                <li><strong>hoplites:</strong> A citizen-soldier of one of the ancient Greek city-states, armed primarily with spears and a shield.</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- Section: Origins of the Conflict -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🌍</span> Origins of the Conflict
+        </summary>
+        <div class="details-content">
+            <p>Greeks of the classical period believed, and historians generally agree, that after the fall of Mycenaean civilization, many Greek tribes emigrated and settled in Asia Minor. These settlers included Aeolians, Dorians, and Ionians. The Ionians settled along the coasts of Lydia and Caria, founding 12 politically separate towns that shared a cultural heritage, forming an exclusive Ionian "cultural league."</p>
+
+            <p>The Lydians of western Asia Minor conquered the Ionian cities, bringing the region into conflict with the Median Empire, the precursor to the Achaemenid Empire. In 553-550 BCE, the Persian prince Cyrus led a successful revolt against the last Median king Astyages, founding the Achaemenid Empire. The famous Lydian king Croesus, seeing an opportunity, attacked the Persians after receiving an ambiguous oracle: "if Croesus was to cross the Halys [River] he would destroy a great empire." Croesus attacked, but destroyed his own empire, with Lydia falling to Prince Cyrus.</p>
+
+            <p>The Ionians sought to maintain autonomy under the Persians as they had under the Lydians, and resisted militarily for some time. However, due to their unwillingness to rise against the Lydians during previous conflicts, they were not granted special terms. Finding the Ionians difficult to rule, the Persians installed tyrants in every city as a means of control.</p>
+
+            <div class="example-box">
+                <strong>Example of Persian Expansion and Ionian Subjugation:</strong><br>
+                Cyrus the Great's conquest of Lydia, after King Croesus misinterpreted the Oracle of Delphi, brought the Ionian Greek cities under Persian rule. The Persians, finding the Ionians rebellious, installed tyrants in each city, which fueled deep dissatisfaction and set the stage for revolt.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: The Ionian Revolt -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon"> uprising </span> The Ionian Revolt
+        </summary>
+        <div class="details-content">
+            <p>In 499 BCE, Greeks in the region rose up against Persian rule in the <strong>Ionian Revolt</strong>. At the heart of the rebellion lay a deep dissatisfaction with the tyrants who were appointed by the Persians to rule the local Greek communities. Specifically, the riot was incited by the Milesian tyrant Aristagoras, who, in the wake of a failed expedition to conquer Naxos, utilized Greek unrest against Persian king Darius the Great for his own political purposes.</p>
+
+            <p>Athens and other Greek cities sent aid, but were quickly forced to back down after defeat in 494 BCE, at the Battle of Lade. As a result, Asia Minor returned to Persian control. Nonetheless, the Ionian Revolt remains significant as the first major conflict between Greece and the Persian Empire, as well as the first phase of the Persian Wars. Darius vowed to exact revenge against Athens and developed a plan to conquer all Greeks in an attempt to secure the stability of his empire.</p>
+
+            <div class="example-box">
+                <strong>Example of the Revolt's Ignition:</strong><br>
+                The Ionian Revolt was sparked by Aristagoras, the tyrant of Miletus, who capitalized on deep dissatisfaction with Persian-appointed tyrants after his own failed attempt to conquer Naxos. This demonstrates how local grievances and individual ambition could ignite larger conflicts.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: First Persian Invasion of Greece -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">⚔️</span> First Persian Invasion of Greece
+        </summary>
+        <div class="details-content">
+            <p>In 492 BCE, the Persian general, Mardonius, led a campaign through Thrace and Macedonia. During this campaign, Mardonius re-subjugated Thrace and forced Macedonia to become a fully submissive client of the Persian Empire, whereas before they had maintained a broad degree of autonomy. While victorious, he was wounded and forced to retreat back into Asia Minor. Additionally, he lost his 1200-ship naval fleet to a storm off the coast of Mount Athos.</p>
+
+            <p>Darius then sent ambassadors to all Greek cities to demand full submission in light of the recent Persian victory, and all cities submitted, with the exceptions of Athens and Sparta, both of which executed their respective ambassadors. These actions signaled Athens’ continued defiance and brought Sparta into the conflict.</p>
+
+            <p>In 490 BCE, approximately 100,000 Persians landed in Attica intending to conquer Athens, but were defeated at the <strong>Battle of Marathon</strong> by a Greek army of 9,000 Athenian hoplites and 1,000 Plataeans, led by the Athenian general, <strong>Miltiades</strong>. The Persian fleet continued to sail to Athens but, seeing it garrisoned, decided not to attempt an assault. The Battle of Marathon was a watershed moment in the Persian Wars, in that it demonstrated to the Greeks that the Persians could be defeated. It also demonstrated the superiority of the more heavily armed Greek hoplites.</p>
+
+            <div class="example-box">
+                <strong>Example of a Decisive Early Victory: The Battle of Marathon</strong><br>
+                In 490 BCE, a Persian force of approximately 100,000 landed in Attica. They were decisively defeated at the Battle of Marathon by a much smaller Greek army (9,000 Athenian hoplites and 1,000 Plataeans) led by Miltiades. This battle was a watershed moment, proving to the Greeks that the seemingly invincible Persians could be beaten and showcasing the effectiveness of Greek hoplites.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Interbellum (490-480 BCE) -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">⏸️</span> Interbellum (490-480 BCE)
+        </summary>
+        <div class="details-content">
+            <p>After the failure of the first Persian invasion, Darius raised a large army with the intent of invading Greece again. However, in 486 BCE, Darius’s Egyptian subjects revolted, postponing any advancement against Greece. During preparations to march on Egypt, Darius died and his son, <strong>Xerxes I</strong>, inherited the throne. Xerxes quickly crushed the Egyptians and resumed preparations to invade Greece.</p>
+        </div>
+    </details>
+
+    <!-- Section: Second Invasion of Greece -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🌊</span> Second Invasion of Greece
+        </summary>
+        <div class="details-content">
+            <p>In 480 BCE, Xerxes sent a much more powerful force of 300,000 soldiers by land, with 1,207 ships in support, across a double pontoon bridge over the Hellespont. This army took Thrace before descending on Thessaly and Boeotia, whilst the Persian navy skirted the coast and resupplied the ground troops. The Greek fleet, meanwhile, dashed to block Cape Artemision.</p>
+
+            <p>After being delayed by <strong>Leonidas I</strong>, the Spartan king of the Agiad Dynasty, at the <strong>Battle of Thermopylae</strong> (a battle made famous due to the sheer imbalance of forces, with 300 Spartans facing the entire Persian Army), Xerxes advanced into Attica, where he captured and burned Athens. But the Athenians had evacuated the city by sea, and under the command of <strong>Themistocles</strong>, defeated the Persian fleet at the <strong>Battle of Salamis</strong>.</p>
+
+            <p>In 483 BCE, during the period of peace between the two Persian invasions, a vein of silver ore had been discovered in the Laurion (a small mountain range near Athens), and the ore that was mined there paid for the construction of 200 warships to combat Aeginetan piracy. A year later, the Greeks, under the Spartan <strong>Pausanias</strong>, defeated the Persian army at <strong>Plataea</strong>. Meanwhile, the allied Greek navy won a decisive victory at the <strong>Battle of Mycale</strong>, destroying the Persian fleet, crippling Xerxes’ sea power, and marking the ascendancy of the Greek fleet. Following the Battle of Plataea and the Battle of Mycale, the Persians began withdrawing from Greece and never attempted an invasion again.</p>
+
+            <div class="example-box">
+                <strong>Example of Strategic Defense and Naval Power:</strong><br>
+                The Battle of Thermopylae (480 BCE), where 300 Spartans valiantly delayed Xerxes' massive army, bought crucial time for Greek mobilization. Subsequently, the Athenian fleet, funded by Laurion silver mines and led by Themistocles, achieved a decisive victory at the Battle of Salamis, crippling Persian sea power and preventing further advances.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Greek Counterattack -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🏹</span> Greek Counterattack
+        </summary>
+        <div class="details-content">
+            <p>The Battle of Mycale was in many ways a turning point, after which the Greeks went on the offensive against the Persian fleet. The Athenian fleet turned to chasing the Persians from the Aegean Sea, and in 478 BCE, the fleet then proceeded to capture Byzantium. In the course of doing so, Athens enrolled all the island states, and some mainland states, into an alliance called the <strong>Delian League</strong>—so named because its treasury was kept on the sacred island of Delos, whose purpose was to continue fighting the Persian Empire, prepare for future invasions, and organize a means of dividing the spoils of war.</p>
+
+            <p>The Spartans, although they had taken part in the war, withdrew into isolation afterwards. The Spartans believed that the war’s purpose had already been reached through the liberation of mainland Greece and the Greek cities of Asia Minor. Historians also speculate that Sparta was unconvinced of the ability of the Delian League to secure long-term security for Asian Greeks. The Spartan withdrawal from the League allowed Athens to establish unchallenged naval and commercial power within the Hellenic world.</p>
+
+            <div class="key-takeaway">
+                <strong>Key Takeaway:</strong><br>
+                The Persian Wars began in 499 BCE, when Greeks in the Persian-controlled territory rose in the Ionian Revolt. Athens, and other Greek cities, sent aid, but were quickly forced to back down after defeat in 494 BCE. Subsequently, the Persians suffered many defeats at the hands of the Greeks, led by the Athenians. Silver mining contributed to the funding of a massive Greek army that was able to rebuke Persian assaults and eventually defeat the Persians entirely. The end of the Persian Wars led to the rise of Athens as the leader of the Delian League.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Effects of the Persian Wars -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">📈</span> Effects of the Persian Wars
+        </summary>
+        <div class="details-content">
+            <p>Despite their victories in the Persian Wars, the Greek city-states emerged from the conflict more divided than united.</p>
+
+            <h3>Key Points:</h3>
+            <ul class="list-disc ml-6">
+                <li>After the second Persian invasion of Greece was halted, Sparta withdrew from the Delian League and reformed the Peloponnesian League with its original allies.</li>
+                <li>Many Greek city-states had been alienated from Sparta following the violent actions of Spartan leader Pausanias during the siege of Byzantium.</li>
+                <li>Following Sparta’s departure from the Delian League, Athens was able to use the resources of the League to its own ends, which led it into conflict with less powerful members of the League.</li>
+                <li>The Persian Empire adopted a divide-and-rule strategy in relation to the Greek city-states in the wake of the Persian Wars, stoking already simmering conflicts, including the rivalry between Athens and Sparta, to protect the Persian Empire against further Greek attacks.</li>
+            </ul>
+
+            <h3>Key Terms:</h3>
+            <ul class="list-disc ml-6">
+                <li><strong>Peloponnesian League:</strong> An alliance formed around Sparta in the Peloponnesus, from the 6th to 4th centuries BCE.</li>
+                <li><strong>Delian League:</strong> An association of Greek city-states under the leadership of Athens, the purpose of which was to continue fighting the Persian Empire after the Greek victories at the end of the Second Persian invasion of Greece.</li>
+                <li><strong>hegemony:</strong> The political, economic, or military predominance or control of one state over others.</li>
+            </ul>
+        </div>
+    </details>
+
+    <!-- Section: Aftermath of the Persian Wars -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon"> aftermath </span> Aftermath of the Persian Wars
+        </summary>
+        <div class="details-content">
+            <p>As a result of the allied Greek success, a large contingent of the Persian fleet was destroyed and all Persian garrisons were expelled from Europe, marking an end of Persia’s advance westward into the continent. The cities of Ionia were also liberated from Persian control. Despite their successes, however, the spoils of war caused greater inner conflict within the Hellenic world. The violent actions of Spartan leader Pausanias at the siege of Byzantium, for instance, alienated many of the Greek states from Sparta, and led to a shift in the military command of the Delian League from Sparta to Athens. This set the stage for Sparta’s eventual withdrawal from the Delian League.</p>
+        </div>
+    </details>
+
+    <!-- Section: Two Leagues -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🤝</span> Two Leagues
+        </summary>
+        <div class="details-content">
+            <p>Following the two Persian invasions of Greece, and during the Greek counterattacks that commenced after the Battles of Plataea and Mycale, Athens enrolled all island and some mainland city-states into an alliance, called the <strong>Delian League</strong>, the purpose of which was to pursue conflict with the Persian Empire, prepare for future invasions, and organize a means of dividing the spoils of war.</p>
+
+            <p>The Spartans, although they had taken part in the war, withdrew from the Delian League early on, believing that the war’s initial purpose had been met with the liberation of mainland Greece and the Greek cities of Asia Minor. Historians also speculate that Sparta decided to leave the League for pragmatic reasons, remaining unconvinced that it was possible to secure long-term security for Greeks residing in Asia Minor, and as a result of their unease with Athenian efforts to increase their power. Once Sparta withdrew from the Delian League after the Persian Wars, it reformed the <strong>Peloponnesian League</strong>, which had originally been formed in the 6th century and provided the blueprint for what was now the Delian League. The Spartan withdrawal from the League had the effect, however, of allowing Athens to establish unchallenged naval and commercial power, unrivaled throughout the Hellenic world. In fact, shortly after the League’s inception, Athens began to use the League’s navy for its own purposes, which frequently led it into conflict with other, less powerful League members.</p>
+
+            <div class="example-box">
+                <strong>Example of Shifting Power Dynamics:</strong><br>
+                Sparta's withdrawal from the Delian League, driven by its belief that the war's purpose was met and unease with Athenian power, inadvertently allowed Athens to establish unchallenged naval and commercial hegemony. This illustrates how strategic decisions by one power can create significant opportunities for another.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Delian League Rebellions -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">💥</span> Delian League Rebellions
+        </summary>
+        <div class="details-content">
+            <p>A series of rebellions occurred between Athens and the smaller city-states that were members of the League. For example, <strong>Naxos</strong> was the first member of the League to attempt to secede, in approximately 471 BCE. It was later defeated and forced to tear down its defensive city walls, surrender its fleet, and lost voting privileges in the League.</p>
+
+            <p><strong>Thasos</strong>, another League member, also defected when, in 465 BCE, Athens founded the colony of Amphipolis on the Strymon River, which threatened Thasos’ interests in the mines of Mt Pangaion. Thasos allied with Persia and petitioned Sparta for assistance, but Sparta was unable to help because it was facing the largest helot revolution in its history. Nonetheless, relations between Athens and Sparta were soured by the situation. After a three-year long siege, Thasos was recaptured and forced back into the Delian League, though it also lost its defensive walls and fleet, its mines were turned over to Athens, and the city-state was forced to pay yearly tribute and fines. According to Thucydides, the siege of Thasos marked the transformation of the League from an alliance into a hegemony.</p>
+
+            <div class="example-box">
+                <strong>Example of Athenian Repression: Naxos and Thasos</strong><br>
+                Athens' transformation of the Delian League into an empire is evident in its harsh suppression of revolts. Naxos (c. 471 BCE) was forced to dismantle walls and surrender its fleet. Thasos (465 BCE), after a three-year siege, suffered the same fate, lost its mines to Athens, and was forced to pay tribute, marking the League's shift to Athenian hegemony.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Persia's Divide-and-Rule Strategy -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">♟️</span> Persia's Divide-and-Rule Strategy
+        </summary>
+        <div class="details-content">
+            <p>Following their defeats at the hands of the Greeks, and plagued by internal rebellions that hindered their ability to fight foreign enemies, the Persians adopted a policy of <strong>divide-and-rule</strong>. Beginning in 449 BCE, the Persians attempted to aggravate the growing tensions between Athens and Sparta, and would even bribe politicians to achieve these aims. Their strategy was to keep the Greeks distracted with in-fighting, so as to stop the tide of counterattacks reaching the Persian Empire. Their strategy was largely successful, and there was no open conflict between the Greeks and Persia until 396 BCE, when the Spartan king Agesilaus briefly invaded Asia Minor.</p>
+
+            <div class="example-box">
+                <strong>Example of Persian Geopolitical Strategy:</strong><br>
+                After their defeats, Persia implemented a "divide-and-rule" strategy (from 449 BCE). They actively stoked tensions between Athens and Sparta, even bribing Greek politicians, to keep the Greek city-states embroiled in internal conflicts. This successfully prevented further Greek counterattacks against the Persian Empire for decades.
+            </div>
+        </div>
+    </details>
+</div>
+</body>
+</html>

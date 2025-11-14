@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greco-Roman Precedents</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide-v0.320.0"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s ease-in-out;
+        }
+        .icon {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+<div class="min-h-screen p-4 sm:p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-center mb-6 text-slate-900">
+            Greco-Roman Precedents for Modern Culture
+        </h1>
+        <p class="text-center text-slate-600 mb-10 max-w-2xl mx-auto text-sm sm:text-base">
+            Explore the lasting innovations, intellectual ideas, and societal structures of ancient Greece and Rome that form the bedrock of modern Western civilization.
+        </p>
+
+        <!-- Tab-based navigation -->
+        <div id="tab-container" class="flex justify-center mb-10 p-1 rounded-full bg-slate-200/50 shadow-inner max-w-md mx-auto">
+            <button id="greek-tab" class="flex-1 py-3 px-6 rounded-full text-sm font-semibold transition-all duration-300">
+                Greek Contributions
+            </button>
+            <button id="roman-tab" class="flex-1 py-3 px-6 rounded-full text-sm font-semibold transition-all duration-300">
+                Roman Contributions
+            </button>
+        </div>
+
+        <!-- Content Section -->
+        <div id="content-container" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Content will be dynamically inserted here by JavaScript -->
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const contentContainer = document.getElementById('content-container');
+        const greekTab = document.getElementById('greek-tab');
+        const romanTab = document.getElementById('roman-tab');
+
+        // Define the content data structure
+        const content = {
+            greek: {
+                items: [
+                    {
+                        title: 'Political Systems and Law',
+                        points: [
+                            { icon: 'Scale', text: 'Democracy: The ancient Greeks created the world\'s first direct democracy, where male citizens voted directly on laws and issues. This system is the direct predecessor to modern representative democracies, influencing the foundational principles of government in many Western nations.' },
+                            { icon: 'Gavel', text: 'Trial by Jury: The concept of a trial by a jury of one\'s peers originated in ancient Athens. Jurors were randomly selected citizens, and their verdict was determined by a majority vote. This system laid the groundwork for the modern legal principle of a jury trial, a cornerstone of legal systems worldwide.' },
+                        ],
+                    },
+                    {
+                        title: 'Intellectual and Academic Foundations',
+                        points: [
+                            { icon: 'Book', text: 'The Alphabet: The Greek alphabet, an adaptation of the Phoenician system, was the first Western alphabet to include distinct letters for both vowels and consonants. Its first two letters, "alpha" and "beta," give us the word "alphabet," and many of its letters, such as A, B, E, and O, are precursors to our own.' },
+                            { icon: 'Library', text: 'The Library: The Library of Alexandria, built in Greek-controlled Egypt, was the first major library designed to collect all the world\'s knowledge. It became a hub for scientific discovery and scholarly thought, setting the precedent for modern libraries and the systematic preservation of human knowledge.' },
+                            { icon: 'Atom', text: 'Science and Mathematics: Ancient Greek thinkers established the intellectual foundations for many fields. **Archimedes** anticipated modern calculus, **Eratosthenes** accurately calculated the Earth\'s circumference, and **Aristarchus** was the first to propose a heliocentric universe. These ideas laid the foundation for modern scientific inquiry.' },
+                            { icon: 'HeartPulse', text: 'Standardized Medicine: Hippocrates, the "father of medicine," established a standardized system based on diagnosis, prognosis, and ethics. His famous **Hippocratic Oath**—which includes principles like "do no harm"—remains a cornerstone of medical ethics today. He was also the first to categorize illnesses as acute, chronic, and epidemic.' },
+                        ],
+                    },
+                    {
+                        title: 'Art, Culture, and Recreation',
+                        points: [
+                            { icon: 'Swords', text: 'The Olympics: The ancient Olympic Games, held every four years in Olympia to honor the god Zeus, are the direct precedent for the modern Olympics. They featured similar athletic events and an emphasis on competition and glory, and traditions like the torch relay and flame-lighting continue today.' },
+                            { icon: 'Building', text: 'Architecture: Greek architecture is defined by precision and synergy. The three classical orders—**Doric, Ionic, and Corinthian**—are differentiated by their column styles. This architectural vocabulary has been widely adopted in Western architecture, with examples seen in countless public buildings, including the White House and the U.S. Capitol building.' },
+                            { icon: 'Dices', text: 'Mythology: Greek myths served to explain natural phenomena and human nature. Today, they are a powerful form of entertainment and have a huge influence on modern culture. For example, the athletic brand **Nike** is named after the Greek goddess of victory, and the term "**Achilles\' heel**" comes from the mythological story of the hero Achilles.' },
+                            { icon: 'Anchor', text: 'The Lighthouse: The Lighthouse of Alexandria, one of the Seven Wonders of the Ancient World, was an engineering marvel and served as the model for all future lighthouses. Its design allowed for safe passage for ships and was a symbol of maritime power.' },
+                            { icon: 'Theater', text: 'The Theater: The physical structure and art form of theater originated in ancient Greece. Playwrights like **Aeschylus, Sophocles, and Euripides** created the first comedies and tragedies. The narrative forms and dramatic structures they established continue to be a foundation for storytelling in modern cinema and stage productions.' },
+                        ],
+                    },
+                ],
+            },
+            roman: {
+                items: [
+                    {
+                        title: 'Art and Architecture',
+                        points: [
+                            { icon: 'Hammer', text: 'Engineering and Arches: The Romans were master engineers who adopted Greek columns but made them more decorative. Their most significant architectural advancement was the use of large-scale arches. This innovation allowed for the construction of massive, durable bridges and aqueducts, many of which still stand today, like the **Pont du Gard** in France.' },
+                            { icon: 'LandPlot', text: 'Concrete: The Romans developed a remarkably strong, self-healing cement from volcanic ash. This material allowed them to construct incredibly durable structures that have survived for thousands of years, such as the **Colosseum** and the **Pantheon**. Modern scientists are still studying this unique formula to replicate its longevity.' },
+                            { icon: 'Building', text: 'Stadiums: Roman amphitheaters like the Colosseum were built in an oval shape with tiered seating. This basic design is the direct precedent for almost all modern sports stadiums and arenas, providing optimal sightlines for large crowds at events.' },
+                            { icon: 'Palette', text: 'Sculpture: Roman sculptures, often made of marble, served as monuments to human achievements and leaders. These realistic and detailed works, such as the statues of emperors like **Augustus**, were used for public commemoration and are still displayed in museums worldwide.' },
+                        ],
+                    },
+                    {
+                        title: 'Technology and Science',
+                        points: [
+                            { icon: 'Route', text: 'Road Networks: The Romans built an expansive road network that was so large, it was said that "all roads lead to Rome." Their durable roads, built by laying gravel and then paving with rock slabs, were a great achievement in civil engineering and established a precedent for modern interstate highway systems.' },
+                            { icon: 'Wheat', text: 'Agriculture: Romans became successful farmers through a deep understanding of climate and soil. They developed and refined agricultural techniques like **crop rotation, pruning, and grafting**, which are still widely used in farming practices today to improve crop yields and health.' },
+                            { icon: 'Scroll', text: 'Harnessing Water: Roman engineers had a sophisticated understanding of physics, allowing them to construct extensive systems of aqueducts to transport fresh water to cities. They also harnessed water as a source of energy to power mines and mills, demonstrating an early application of hydrodynamics.' },
+                        ],
+                    },
+                    {
+                        title: 'Literature, Language, and Law',
+                        points: [
+                            { icon: 'Book', text: 'Literature: Roman literature had a lasting impact on Western civilization. The poetry of **Virgil** (**The Aeneid**), **Horace**, and **Ovid** (**Metamorphoses**) inspired countless later authors. For example, Shakespeare drew heavily on Roman history and drama for his plays like **Julius Caesar** and **Coriolanus**.' },
+                            { icon: 'Speech', text: 'Language: The ancient Romans spoke Latin, and as their empire expanded, so did the language. Latin became the foundation for a group of languages known as the "Romance languages"—**French, Spanish, Italian, and Portuguese**. A vast number of English words also have Latin roots.' },
+                            { icon: 'Scale', text: 'Law: The Roman justice system, though harsh, provided a foundational framework for how modern court proceedings happen today. It included a preliminary hearing to determine if there were grounds for a case. The legal concepts and vocabulary from Roman law form a direct foundation for the justice systems of many modern countries.' },
+                        ],
+                    },
+                ],
+            },
+        };
+
+        // Function to render the content based on the active tab
+        function renderContent(tab) {
+            // Clear existing content
+            contentContainer.innerHTML = '';
+
+            // Update active button state
+            if (tab === 'greek') {
+                greekTab.classList.add('bg-slate-800', 'text-slate-50', 'shadow-md');
+                greekTab.classList.remove('text-slate-600', 'hover:bg-slate-300', 'hover:text-slate-900');
+                romanTab.classList.remove('bg-slate-800', 'text-slate-50', 'shadow-md');
+                romanTab.classList.add('text-slate-600', 'hover:bg-slate-300', 'hover:text-slate-900');
+            } else {
+                romanTab.classList.add('bg-slate-800', 'text-slate-50', 'shadow-md');
+                romanTab.classList.remove('text-slate-600', 'hover:bg-slate-300', 'hover:text-slate-900');
+                greekTab.classList.remove('bg-slate-800', 'text-slate-50', 'shadow-md');
+                greekTab.classList.add('text-slate-600', 'hover:bg-slate-300', 'hover:text-slate-900');
+            }
+
+            // Get the data for the active tab
+            const items = content[tab].items;
+
+            // Loop through and create HTML for each card
+            items.forEach(section => {
+                let pointsHtml = '';
+                section.points.forEach(point => {
+                    pointsHtml += `
+                            <li class="flex items-start space-x-3 text-slate-700">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center">
+                                    ${lucide.createIcons()[point.icon].toSvg({ class: 'w-4 h-4 text-slate-600' })}
+                                </div>
+                                <p class="flex-1 mt-1 text-sm md:text-base">${point.text}</p>
+                            </li>
+                        `;
+                });
+
+                const cardHtml = `
+                        <div class="p-6 border border-slate-200 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 bg-slate-50/50 backdrop-blur-sm">
+                            <h3 class="text-xl font-bold text-slate-800 mb-4">${section.title}</h3>
+                            <ul class="space-y-4">
+                                ${pointsHtml}
+                            </ul>
+                        </div>
+                    `;
+                contentContainer.innerHTML += cardHtml;
+            });
+        }
+
+        // Event listeners for the tabs
+        greekTab.addEventListener('click', () => renderContent('greek'));
+        romanTab.addEventListener('click', () => renderContent('roman'));
+
+        // Initial render
+        renderContent('greek');
+    });
+</script>
+
+</body>
+</html>

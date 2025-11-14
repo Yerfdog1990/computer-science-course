@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Peloponnesian War: An Interactive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+            color: #334155; /* Darker text for readability */
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Stronger shadow */
+        }
+        details {
+            margin-bottom: 1rem;
+            background-color: #f1f5f9; /* Lighter background for details */
+            border-radius: 0.75rem;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+        summary {
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            background-color: #e2e8f0; /* Slightly darker for summary */
+            border-bottom: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.2s ease-in-out;
+            color: #1e293b;
+            border-radius: 0.75rem; /* Apply to summary */
+            list-style: none; /* Remove default marker */
+            position: relative;
+            padding-left: 1.5rem; /* Space for custom arrow */
+        }
+        summary::-webkit-details-marker {
+            display: none; /* Hide default marker in Webkit */
+        }
+        summary::before {
+            content: '+'; /* Custom plus sign */
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            transition: transform 0.2s ease-in-out;
+        }
+        details[open] summary::before {
+            content: '-'; /* Custom minus sign when open */
+            transform: rotate(0deg); /* Ensure it doesn't rotate */
+        }
+        details[open] summary {
+            background-color: #d1d5db; /* Even darker when open */
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        summary:hover {
+            background-color: #cbd5e1;
+        }
+        .details-content {
+            padding: 1rem 1.5rem;
+            line-height: 1.6;
+            color: #475569;
+        }
+        .details-content p {
+            margin-bottom: 0.75rem;
+        }
+        .details-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .details-content ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .example-box {
+            background-color: #e0f2fe; /* Light blue for examples */
+            border-left: 4px solid #38b2ac; /* Teal border */
+            padding: 0.75rem 1rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.5rem;
+            color: #1a202c;
+            font-style: italic;
+        }
+        .key-takeaway {
+            background-color: #dbeafe; /* Lighter blue for key takeaways */
+            border-left: 5px solid #2563eb; /* Stronger blue border */
+            padding: 1rem 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            color: #1e40af;
+            line-height: 1.5;
+        }
+        h1, h2, h3 {
+            color: #1e293b; /* Darker headings */
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0f172a;
+        }
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .section-title-icon {
+            margin-right: 0.75rem;
+            font-size: 1.2em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-8">The Peloponnesian War: Athens vs. Sparta</h1>
+    <p class="text-center text-lg text-gray-600 mb-6">A long and complex conflict that reshaped ancient Greece.</p>
+    <p class="text-sm text-center text-gray-500 mb-8">Author: Mark Cartwright | Published: May 2, 2018 | Source: World History Encyclopedia</p>
+
+    <!-- Section: Definition & Introduction -->
+    <details open>
+        <summary class="text-2xl">
+            <span class="section-title-icon">📜</span> Definition & Introduction
+        </summary>
+        <div class="details-content">
+            <p>The Peloponnesian War was a protracted conflict between <strong>Athens</strong> and <strong>Sparta</strong> and their respective allies, occurring in two main stages: from approximately 460 to 446 BCE (the First Peloponnesian War) and from 431 to 404 BCE (the Second Peloponnesian War). Fought across various theaters, both at home in Greece and abroad, this complex war inflicted significant damage on both sides. Ultimately, Sparta, aided financially by Persia, secured victory by decisively destroying the Athenian fleet at Aegospotami in 405 BCE.</p>
+        </div>
+    </details>
+
+    <!-- Section: Causes of the War -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🔥</span> Causes of the War
+        </summary>
+        <div class="details-content">
+            <p>In the 5th century BCE, Sparta and Athens stood as the two dominant powers in Greece, making a clash of their expanding spheres of influence almost inevitable. Sparta harbored particular alarm at Athens' burgeoning power, fueled by its ability to construct an ever-larger fleet through tributes from its allies and dependent states. Spartan suspicion was further aroused by Athens' project to rebuild its Long Wall fortifications, which safeguarded its vital harbor of Piraeus. Additionally, Sparta feared that inaction on its part would push another major Greek power, Corinth, to align with Athens.</p>
+
+            <p>What has become known as The First Peloponnesian War (c. 460-446 BCE) was less intense than the second and fought mainly between Athens and Corinth with occasional intervention by Sparta. This war was followed by the Thirty Years' Peace although in reality hostilities never fully ceased and broke out into full war once again from 431 BCE.</p>
+
+            <p>A critical flashpoint in Spartan-Athenian relations occurred at Poteidaia in 432 BCE. Athens, seeking timber and minerals from Thrace, demanded that Poteidaia dismantle its fortifications. The Poteidaians appealed to Sparta for protection and received a promise of assistance. Despite this, Athens proceeded to lay siege to the city. Shortly thereafter, Athens issued the Megarian Decrees, which prohibited Megara from using any port controlled by Athens or its allies, effectively imposing a trade embargo. Sparta, a long-standing ally of Megara, urged Athens to repeal the decree, as it threatened to make Megara entirely dependent on Athens. However, the Athenians, persuaded by <strong>Pericles</strong>, refused. Despite this refusal, Sparta initially withheld a formal declaration of war, possibly due to their state of unreadiness for another long conflict. Nevertheless, hostilities soon flared elsewhere when Thebes attacked Plataea, an ally of Athens. Consequently, in 431 BCE, the Peloponnesian army, led by the Spartan king Archidamos, invaded and ravaged Attica, signaling the full resumption of the war.</p>
+
+            <div class="example-box">
+                <strong>Example of a Flashpoint: Poteidaia and Megarian Decrees</strong><br>
+                Athens' demand for Poteidaia to remove its fortifications and the subsequent siege, coupled with the imposition of the Megarian Decrees (a trade embargo against Megara), served as direct provocations. These Athenian actions, driven by strategic and economic interests and supported by Pericles, pushed Sparta's allies to seek intervention and ultimately led to the formal outbreak of the Peloponnesian War.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Athens & Her Allies (Delian League) -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">⚓</span> Athens & Her Allies (The Delian League)
+        </summary>
+        <div class="details-content">
+            <p>Following the Persian Wars of the early 5th century BCE, Greek city-states (poleis) began forming protective alliances. Many states, particularly those from Ionia, aligned with Athens, collectively forming the <strong>Delian League</strong> around 478 BCE. At its largest, the League comprised over 300 members. These members paid tribute to Athens, either in the form of ships or money, in exchange for Athenian naval protection against a perceived threat from Persia and potentially Mediterranean pirates. The League's treasury was initially located on the sacred island of Delos in the Cyclades.</p>
+
+            <p>However, starting with the repression of Naxos, the Delian League rapidly began to function more as an Athenian <strong>empire</strong> rather than a confederation of equal allies. This transformation was solidified when the League's treasury was moved to Athens in 454 BCE. Regardless of the political implications, the practical consequence of the League was that Athens' powerful navy could project force anywhere in the Aegean, especially after the rival sea-power Aegina was subdued. This naval dominance caused significant supply problems for several cities throughout the war, most notably Corinth.</p>
+
+            <div class="example-box">
+                <strong>Example of Athenian Imperialism within the Delian League:</strong><br>
+                The Delian League, originally a defensive alliance, transformed into an Athenian empire. A key indicator was the repression of Naxos, an allied city, followed by the relocation of the League's treasury from Delos to Athens in 454 BCE, solidifying Athens' control and financial dominance over its "allies."
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Sparta & Her Allies (Peloponnesian League) -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">💪</span> Sparta & Her Allies (The Peloponnesian League)
+        </summary>
+        <div class="details-content">
+            <p>Sparta's rigorous military training, known as the <strong>agōgē</strong> (starting from age seven), produced a professional <strong>hoplite</strong> army. This army was renowned for its exceptional discipline and sophisticated battle maneuvers, making Spartans widely feared throughout Greece. This military prowess is perhaps underscored by Sparta's notable lack of fortifications for most of its history, relying instead on its formidable soldiers.</p>
+
+            <p>The regional instability in Greece during the late 6th century BCE led to the formation of the <strong>Peloponnesian League</strong> (c. 505 to 365 BCE). This alliance included Corinth, Elis, Tegea, and other states (though notably never Argos). Members of the League swore to share the same enemies and allies as Sparta. Unlike the Delian League, membership did not require tribute payments to Sparta; instead, it mandated the provision of troops under Spartan command. This League enabled Sparta to establish and maintain its hegemony over and dominate the Peloponnese region until the 4th century BCE.</p>
+
+            <div class="example-box">
+                <strong>Example of Spartan Military Prowess:</strong><br>
+                The agōgē, Sparta's harsh military training system, produced highly disciplined hoplite armies. This professional military was so feared that Sparta itself notably lacked fortifications for much of its history, relying on its soldiers as its primary defense.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Innovations in Warfare -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🛠️</span> Innovations in Warfare
+        </summary>
+        <div class="details-content">
+            <p>Like all major conflicts, the Peloponnesian War spurred significant changes and developments in warfare. While the heavily armed hoplite in the <strong>phalanx formation</strong> (lines of closely packed hoplites protecting each other with their shields) continued to dominate the Greek battlefield, the phalanx itself evolved, becoming both deeper (more rows of men) and wider (a longer front of men) during this period. The traditional dominance of the hoplite was also threatened by the increasing deployment of <strong>combined arms</strong>, utilizing mixed troops—hoplites, light infantry, and cavalry—a tactic that became progressively more widespread.</p>
+
+            <p>Other notable developments in warfare included:</p>
+            <ul class="list-disc ml-6">
+                <li>An increase in the use of slaves, mercenaries, and foreigners in Greek armies.</li>
+                <li>Improved logistics, which allowed armies to remain in the field for longer durations.</li>
+                <li>Greater attention paid to skills and experience when selecting military leaders.</li>
+            </ul>
+            <p>While weapons generally did not see significant development compared to earlier conflicts, there were exceptions. For instance, primitive flame throwers were employed against the wooden fortifications of Delion in 424 BCE, showcasing a rare technological innovation.</p>
+
+            <div class="example-box">
+                <strong>Example of Warfare Innovation:</strong><br>
+                The Peloponnesian War saw the increased use of "combined arms" tactics, integrating hoplites with light infantry and cavalry, challenging the traditional dominance of the phalanx. A specific technological innovation was the use of primitive flame throwers against the wooden fortifications of Delion in 424 BCE.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Sparta's Invasions of Attica & The Plague -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🌾</span> Sparta's Invasions of Attica & The Plague
+        </summary>
+        <div class="details-content">
+            <p>With one side predominantly a land-based army (Sparta) and the other a great maritime power (Athens), it is unsurprising that the war dragged on for decades with indecisive victories and ineffectual raids. The principal Spartan strategy involved annually attacking Athenian lands, beginning in 431 BCE, aiming to cause as much destruction as possible by burning farms, chopping down olive trees, and vineyards. However, the actual impact of this on the Athenian economy remains unclear, especially since Athens could always be resupplied by sea via its port of Piraeus, which was protected by the formidable Long Walls. It is speculated that this Spartan strategy was also intended to lure the Athenians out from behind their fortifications into open battle, a temptation that Athens, and particularly <strong>Pericles</strong>, consistently resisted. Athens, in turn, could and did retaliate by landing troops by sea into Spartan territory, inflicting similar damage.</p>
+
+            <p>Athens was severely impacted by a devastating <strong>plague</strong> (believed to have arrived from Egypt via Persia) in 430 BCE. The epidemic was so severe that Sparta even postponed its annual invasion to avoid it. In the same year, Pericles was ousted from power, and Athens, weakened by the plague, sued for peace, but their overture was rejected by Sparta. Despite these setbacks, under the leadership of Kleon and Nikias, the Athenians achieved a successful campaign in the Corinthian Gulf in 429 BCE, which made hopes for an early Spartan victory seem overly ambitious.</p>
+
+            <div class="example-box">
+                <strong>Example of Strategic Stalemate & External Shock:</strong><br>
+                Sparta's annual invasions of Attica aimed to draw Athens into open battle and cripple its economy. However, Athens' Long Walls and naval resupply capabilities via Piraeus neutralized this land-based strategy. The unforeseen "Plague of Athens" in 430 BCE, which devastated the city and led to Pericles' ousting, was a major external shock that severely weakened Athens, independent of Spartan military action.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Sieges -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🏰</span> Sieges
+        </summary>
+        <div class="details-content">
+            <p>Sieges were another common and increasingly brutal feature of the Peloponnesian War. While already present in Greek warfare, their number dramatically increased during these conflicts, reaching approximately 100, with 58 of them proving successful for the attackers. Siegecraft primarily involved two main strategies:</p>
+            <ol class="list-decimal ml-6">
+                <li><strong>Direct Assault:</strong> Repeatedly attacking the city directly until the defenders capitulated or the walls were breached.</li>
+                <li><strong>Circumvallation:</strong> Surrounding the city with a wall (or walls) to starve the city into surrender. This strategy also harbored the hope that internal betrayal and infighting might compromise the defenders. This second strategy was considerably more costly and time-consuming, often requiring years to achieve success.</li>
+            </ol>
+            <p>If a city finally fell after a siege, the usual grim result for the defeated population was either death or slavery.</p>
+
+            <p>The siege of Plataea (c. 429-427 BCE) exemplifies elements of both siege strategies. Initially, the Peloponnesian forces employed aggressive tactics, blockading the town with a wooden palisade and constructing an earth ramp to compromise the walls. However, the Plataeans countered this threat by building even higher walls. The Peloponnesians then deployed battering rams (embole) against the walls, but the defenders again thwarted the attackers by dropping large beams on chains to break the rams. Faced with this stubborn resistance, the attackers decided to settle in for a long siege, adopting the waiting game strategy. This proved ultimately successful, as they starved the Plataeans into surrendering, though only after two years.</p>
+
+            <div class="example-box">
+                <strong>Example of Siege Warfare: The Siege of Plataea</strong><br>
+                The siege of Plataea (429-427 BCE) illustrates both direct assault and circumvallation tactics. Peloponnesian forces used a wooden palisade, earth ramps, and battering rams, but the Plataeans countered with higher walls and defensive beams. Ultimately, the Peloponnesians resorted to a two-year starvation siege, highlighting the prolonged and brutal nature of siege warfare.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: The War Rumbles On -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">⏳</span> The War Rumbles On
+        </summary>
+        <div class="details-content">
+            <p>The war continued with various campaigns and shifting fortunes. In 428 BCE, Athens ruthlessly crushed a revolt on Lesbos involving Mytilene. In 427 BCE, the fall of Plataea was followed by a civil war on Kerkyra (Corfu) and a failed Athenian attempt to support Leontinoi in Sicily. In 426 BCE, <strong>Demosthenes</strong> led 40 triremes in a campaign against Pylos (they were actually en route to Sicily) where they defeated the Spartans occupying Sphakteria.</p>
+
+            <p>In 424 BCE, the Athenians launched an expedition against Megara and Boeotia, but this proved to be another failure, resulting in a heavy defeat near Delion. Despite this setback, Athens did manage to capture the Spartan island of Kythera. The Spartans also achieved successes, now commanded by <strong>Brasidas</strong> and notably using non-Spartan hoplites for the first time. They captured several poleis in Attica, most notably Amphipolis, though both Kleon (Athenian commander) and Brasidas were killed in the battle.</p>
+
+            <p>In 423/421 BCE, a truce was called, and a 50-year peace was agreed upon. There were some territorial concessions on both sides but principally the situation returned to the pre-war status quo. However, individual commanders in the field often refused to hand over cities, and new alliances quickly formed. In 420 BCE, Sparta formed an alliance with Boeotia. Also in 420 BCE, the new Athenian leader <strong>Alcibiades</strong> brokered an alliance between Athens, Argos, Elis, and Mantineia. It became clear that both sides were maneuvering for a resumption of hostilities.</p>
+
+            <p>In 418 BCE, a major battle occurred at Mantineia, where Sparta, led by Agis II, defeated Argos and her allies. Following this, the war took on an even more brutal aspect, with Sparta killing all the citizens of Hysiai (417/16 BCE) and Athens, in the same period, executing the citizens of Melos, highlighting the increasing savagery of the conflict.</p>
+        </div>
+    </details>
+
+    <!-- Section: The Sicilian Expedition -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🚢</span> The Sicilian Expedition
+        </summary>
+        <div class="details-content">
+            <p>In 415 BCE, the Athenian general <strong>Alcibiades</strong> was the mastermind behind the invasion of Sicily, which became the largest single operation of the entire war. Athens desired Sicilian timber for its fleet and the pretext for the attack was a request for help from the small polis of Segesta, which sought protection from Syracuse, a powerful Greek city-state on Sicily and a friend of Sparta.</p>
+
+            <p>However, on the very eve of departure, Alcibiades was implicated in serious accusations of impiety and was consequently stripped of his command. Not wishing to face what he felt would be a biased trial, Alcibiades promptly fled to Sparta, where he provided valuable intelligence and encouraged them to send aid to Syracuse. The military operation in Sicily continued under Nikias but proved to be a complete disaster. An ineffectual siege of Syracuse was ultimately broken by a Spartan army led by Glypus. The Athenian fleet was routed in the harbor of Syracuse, and both Nikias and Demosthenes were executed in 413 BCE, marking a catastrophic loss for Athens.</p>
+
+            <div class="example-box">
+                <strong>Example of a Catastrophic Strategic Failure:</strong><br>
+                The Athenian invasion of Sicily (415 BCE), masterminded by Alcibiades, was the largest operation of the war but became a complete disaster. Alcibiades' defection to Sparta on the eve of departure, coupled with the subsequent military leadership of Nikias, led to the Athenian fleet being routed in Syracuse harbor and the execution of key generals, severely crippling Athens' military capacity.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Aegospotami & Victory -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon">🎉</span> Aegospotami & Victory
+        </summary>
+        <div class="details-content">
+            <p>Despite the catastrophic Sicilian Expedition, Athens was not yet defeated and continued to raid the Peloponnese from the sea. Sparta, acting on the advice of Alcibiades, constructed a fort at Dekeleia to more easily disrupt Attic agriculture with annual attacks on Athenian farmland. Agis, the Spartan king, made his headquarters at Dekeleia and began receiving envoys from various poleis, notably Chios and Miletos, who wished to defect from the Delian League. Crucially, Persia also made overtures to Sparta, offering substantial financial assistance to build a fleet that could finally challenge Athens at sea, in return for Sparta recognizing Persian sovereignty in Asia Minor.</p>
+
+            <p>The War was finally won by Sparta, somewhat ironically, in a naval battle. After a long series of naval defeats to the Athenians and even an unsuccessful plea for peace following a naval defeat to Alcibiades at Kyzikos in 410 BCE, Sparta was able to construct a massive fleet of 200 triremes using Persian money and timber. With this formidable new weapon, the Spartan admiral <strong>Lysander</strong> inflicted a final and total defeat on the Athenians at <strong>Aegospotami</strong> near the Hellespont in 405 BCE. In this decisive engagement, 170 Athenian ships were captured on the beach, and at least 3,000 Athenian captives were executed. With no means to man another fleet, the Delian League disbanded, and Athens itself under siege, the Athenians had no option but to sue for peace. The harsh conditions of surrender included the dismantling of the Long Walls, the prohibition of rebuilding a fleet larger than 12 ships, and the payment of tribute to Sparta, which was now, finally, recognized by all as the dominant power in Greece.</p>
+
+            <div class="example-box">
+                <strong>Example of Decisive Victory: The Battle of Aegospotami</strong><br>
+                Sparta's victory at Aegospotami in 405 BCE was decisive due to Persian financial aid, allowing Sparta to build a massive fleet of 200 triremes under Lysander. This naval superiority enabled them to capture 170 Athenian ships and execute 3,000 captives, effectively destroying Athens' naval power and forcing its surrender.
+            </div>
+        </div>
+    </details>
+
+    <!-- Section: Aftermath -->
+    <details>
+        <summary class="text-2xl">
+            <span class="section-title-icon"> aftermath </span> Aftermath
+        </summary>
+        <div class="details-content">
+            <p>Sparta's position as the leading city-state in Greece, however, proved to be short-lived. Continued Spartan ambitions in central and northern Greece, Asia Minor, and Sicily soon dragged the city into another protracted conflict: the <strong>Corinthian Wars</strong> (396 to 387 BCE) against an alliance of Athens, Thebes, Corinth, and Persia. This conflict resulted in the 'King's Peace', where Sparta ceded its empire to Persian control but retained dominance over Greece.</p>
+
+            <p>However, in its efforts to crush Thebes, Sparta suffered a crucial defeat at the <strong>Battle of Leuctra</strong> in 371 BCE against the brilliant Theban general <strong>Epaminondas</strong>. This battle not only ended Spartan hegemony but established Thebes as the new Greek hegemon. Thebes' prestige, too, was brief. Far to the north, the powerful Greek kingdom of Macedon, under King <strong>Philip II</strong>, harbored intentions of unifying Greece under a single empire as a counterpoise to mighty Persia. Under Philip, all of lower Greece, including Thebes and Athens (but notably excluding Sparta), fell under Macedonian control. Philip's son, <strong>Alexander the Great</strong>, completed this task, effectively bringing the great age of Greek democracy to a close.</p>
+        </div>
+    </details>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture in Classical Sparta: An Interactive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: The application is designed as a thematic exploration, breaking down Spartan society into four core, interconnected pillars: Governance, Social Hierarchy, The Spartan Man, and The Spartan Woman. This structure allows the user to digest complex information in manageable, focused sections rather than a linear text dump. Navigation is handled by a clear top bar, allowing users to jump to any topic of interest. The key interaction is clicking on elements within each section to reveal detailed information. This is more intuitive than complex filters for this narrative content. The goal is to guide the user through a story, from the laws that governed Sparta to the lives of its people, making the societal structure and its implications clear and memorable. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: Spartan Governance (Kings, Ephors, Gerousia). Goal: Organize. Viz/Method: Interactive diagram using HTML/CSS Flexbox. Interaction: Clicking on a component (e.g., 'Kings') reveals a detailed text block. Justification: A visual diagram clarifies the power structure more effectively than text alone. The interaction encourages exploration without overwhelming the user. Library: Vanilla JS for click events.
+        - Report Info: Social classes (Spartiates, Mothakes, Perioikoi, Helots). Goal: Inform/Compare. Viz/Method: Doughnut Chart (Chart.js) and interactive cards. The chart visualizes the population imbalance, a key tension. Interaction: Clicking on chart segments or associated buttons filters the information cards displayed below. Justification: The chart provides immediate impact, showing the minority rule of the Spartiates. Cards allow for a direct comparison of rights and roles. Library: Chart.js for the visual, Vanilla JS for filtering.
+        - Report Info: Male military training (agoge). Goal: Show Change/Process. Viz/Method: A horizontal timeline built with HTML/CSS. Interaction: Clicking on an age milestone on the timeline displays a description of that life stage. Justification: A timeline is the most intuitive way to represent a life journey, clearly showing the progression from birth to full citizenship. Library: Vanilla JS for click events.
+        - Report Info: Status and life of Spartan women. Goal: Compare/Inform. Viz/Method: Side-by-side comparison cards (Spartan vs. other Greek women). Interaction: Simple, clear presentation of comparative facts. Justification: Direct comparison highlights the unique and elevated status of women in Sparta, which is a key takeaway from the source material. Library: N/A (static display).
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .nav-button {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-button.active, .nav-button:hover {
+            color: #C0392B;
+            border-bottom-color: #C0392B;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .timeline-item {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .timeline-item.active {
+             background-color: #E74C3C;
+             color: white;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#C0392B] mb-2">The Culture of Classical Sparta</h1>
+            <p class="text-lg text-gray-600">An interactive exploration of a society built on military discipline.</p>
+        </header>
+
+        <nav class="flex justify-center border-b-2 border-gray-200 mb-12">
+            <button data-target="governance" class="nav-button active text-lg font-semibold py-4 px-6 border-b-4 border-transparent">Governance</button>
+            <button data-target="society" class="nav-button text-lg font-semibold py-4 px-6 border-b-4 border-transparent">Social Hierarchy</button>
+            <button data-target="man" class="nav-button text-lg font-semibold py-4 px-6 border-b-4 border-transparent">A Spartan Man's Life</button>
+            <button data-target="woman" class="nav-button text-lg font-semibold py-4 px-6 border-b-4 border-transparent">A Spartan Woman</button>
+        </nav>
+
+        <main>
+            <section id="governance" class="content-section">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-2">The Spartan Political Machine</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">Sparta was an oligarchy, a system where power rested with a small group of people. This structure was a complex interplay between hereditary kings, elected officials, and an assembly of elders. Click on each component below to understand its role in maintaining Sparta's unique political stability and military focus.</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row justify-center items-start gap-4 mb-6">
+                    <div data-info="kings" class="gov-component card p-4 w-full md:w-1/3 text-center cursor-pointer border-2 border-transparent hover:border-[#C0392B]">
+                        <h3 class="text-xl font-bold">Two Kings</h3>
+                        <p class="text-sm">Hereditary Rulers</p>
+                    </div>
+                    <div data-info="ephors" class="gov-component card p-4 w-full md:w-1/3 text-center cursor-pointer border-2 border-transparent hover:border-[#C0392B]">
+                        <h3 class="text-xl font-bold">Ephors</h3>
+                        <p class="text-sm">5 Elected Officials</p>
+                    </div>
+                    <div data-info="gerousia" class="gov-component card p-4 w-full md:w-1/3 text-center cursor-pointer border-2 border-transparent hover:border-[#C0392B]">
+                        <h3 class="text-xl font-bold">Gerousia</h3>
+                        <p class="text-sm">Council of Elders</p>
+                    </div>
+                </div>
+
+                <div id="gov-info-display" class="card p-6 min-h-[150px]">
+                    <h4 id="gov-info-title" class="text-2xl font-bold text-[#C0392B] mb-2">Click a component above</h4>
+                    <p id="gov-info-text">Select a part of the government to learn about its powers and responsibilities.</p>
+                </div>
+            </section>
+
+            <section id="society" class="content-section hidden">
+                 <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-2">The Spartan Social Pyramid</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">Spartan society was rigidly structured into distinct classes, each with specific rights and duties. The Spartiates, though citizens, were a small minority ruling over a vast population of non-citizens and state-owned serfs known as Helots. This imbalance was a source of constant tension and heavily influenced Spartan life and policy. Explore the chart and cards to see how each group fit into the whole.</p>
+                </div>
+                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="chart-container">
+                        <canvas id="societyChart"></canvas>
+                    </div>
+                    <div>
+                        <div id="spartiates-card" class="social-card card p-6 mb-4">
+                            <h3 class="text-2xl font-bold text-red-700">Spartiates</h3>
+                            <p class="font-semibold">Full citizens, the military elite.</p>
+                            <p class="mt-2">The ruling class, required to undergo rigorous military training (agoge) and dedicate their lives to the state. They were forbidden from engaging in agriculture or trade, focusing solely on warfare.</p>
+                        </div>
+                        <div id="perioikoi-card" class="social-card card p-6 mb-4 hidden">
+                            <h3 class="text-2xl font-bold text-orange-600">Perioikoi</h3>
+                            <p class="font-semibold">"Dwellers around," free non-citizens.</p>
+                            <p class="mt-2">They handled Sparta's commerce and crafts, work forbidden to Spartiates. While they had no political rights in Sparta, they were autonomous in their own settlements and served in the army.</p>
+                        </div>
+                        <div id="helots-card" class="social-card card p-6 mb-4 hidden">
+                            <h3 class="text-2xl font-bold text-gray-600">Helots</h3>
+                            <p class="font-semibold">State-owned serfs, the majority population.</p>
+                            <p class="mt-2">Tied to the land, they worked as farmers and laborers, turning over half their produce to their Spartiate masters. Though enslaved, they could marry and own some property, but lived under constant threat from the state.</p>
+                        </div>
+                         <div id="mothakes-card" class="social-card card p-6 hidden">
+                            <h3 class="text-2xl font-bold text-yellow-600">Mothakes</h3>
+                            <p class="font-semibold">Free non-Spartans raised as Spartans.</p>
+                            <p class="mt-2">Often the illegitimate sons of Spartiate fathers and Helot mothers, they underwent the agoge alongside Spartiates. They could achieve distinction in battle but rarely full citizenship.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="man" class="content-section hidden">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-2">The Life of a Spartan Man</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">The life of a male Spartiate was a relentless path of state-mandated training and service, known as the <span class="font-bold">agoge</span>. From childhood, he was molded into a disciplined soldier, where loyalty to the state surpassed all other bonds. This journey was marked by key milestones, each demanding greater toughness and commitment. Click on the ages below to trace the path from boy to warrior.</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6">
+                    <div data-age="7" class="timeline-item active p-3 md:p-4 rounded-lg border-2 border-gray-300">
+                        <h4 class="font-bold text-center">Age 7</h4>
+                    </div>
+                    <div data-age="20" class="timeline-item p-3 md:p-4 rounded-lg border-2 border-gray-300">
+                        <h4 class="font-bold text-center">Age 20</h4>
+                    </div>
+                    <div data-age="30" class="timeline-item p-3 md:p-4 rounded-lg border-2 border-gray-300">
+                        <h4 class="font-bold text-center">Age 30</h4>
+                    </div>
+                    <div data-age="60" class="timeline-item p-3 md:p-4 rounded-lg border-2 border-gray-300">
+                        <h4 class="font-bold text-center">Age 60</h4>
+                    </div>
+                </div>
+
+                <div class="card p-6 min-h-[150px]">
+                    <h4 id="timeline-title" class="text-2xl font-bold text-[#C0392B] mb-2"></h4>
+                    <p id="timeline-text"></p>
+                </div>
+            </section>
+
+            <section id="woman" class="content-section hidden">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-2">The Spartan Woman: A Class Apart</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">In a world where women were often confined and uneducated, Spartan women experienced a level of freedom and respect that was unique in Classical Greece. Their primary role was to bear strong children for the state, a duty which afforded them significant status and influence. The differences between a Spartan woman's life and that of her counterparts in cities like Athens were stark and profound.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card p-6 border-t-4 border-red-500">
+                        <h3 class="text-2xl font-bold mb-4">Spartan Women</h3>
+                        <ul class="space-y-3 list-inside list-disc">
+                            <li><span class="font-semibold">Educated:</span> Received formal education in reading, writing, music, and dance.</li>
+                            <li><span class="font-semibold">Physically Active:</span> Fed the same as boys and encouraged to exercise and compete in sports to ensure they were fit for childbearing.</li>
+                            <li><span class="font-semibold">Late Marriage:</span> Married in their late teens or early 20s, improving health and survival rates during childbirth.</li>
+                            <li><span class="font-semibold">Social Freedom:</span> Moved freely in public, wore practical clothing, and managed estates while men were at war.</li>
+                            <li><span class="font-semibold">Economic Power:</span> Could inherit and own property, giving them significant economic influence.</li>
+                        </ul>
+                    </div>
+                     <div class="card p-6 border-t-4 border-gray-500">
+                        <h3 class="text-2xl font-bold mb-4">Athenian Women (for comparison)</h3>
+                        <ul class="space-y-3 list-inside list-disc">
+                            <li><span class="font-semibold">Uneducated:</span> Generally received no formal education and were taught only domestic skills.</li>
+                            <li><span class="font-semibold">Secluded:</span> Confined to the home and rarely seen in public. Their lives were spent indoors.</li>
+                            <li><span class="font-semibold">Early Marriage:</span> Married as young as 12 or 13, leading to high-risk pregnancies.</li>
+                            <li><span class="font-semibold">Restricted:</span> Wore heavy, concealing clothing and had no freedom of movement without a male escort.</li>
+                            <li><span class="font-semibold">No Economic Power:</span> Could not own property or conduct business. They were entirely dependent on male relatives.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    contentSections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+            
+            const govData = {
+                kings: {
+                    title: "The Two Kings (Archagetai)",
+                    text: "Sparta was led by two hereditary kings from the Agiad and Eurypontid families. Their powers were mainly religious, judicial, and military. They served as chief priests, held some judicial authority (though it diminished over time), and, most importantly, led the Spartan army in battle. Their authority was checked by each other and by the ephors."
+                },
+                ephors: {
+                    title: "The Ephors",
+                    text: "Five men elected annually, the ephors held significant civil power. They could decide civil and criminal cases, oversaw foreign policy, and even had the authority to challenge the kings. Two ephors would accompany a king on military campaigns, further limiting the monarch's absolute power in the field."
+                },
+                gerousia: {
+                    title: "The Gerousia",
+                    text: "A council of 28 elders, all over the age of 60, elected for life, plus the two kings. The Gerousia prepared and debated high state policy, effectively setting the agenda for the citizen assembly. Their lifelong tenure and experience gave them immense influence over Spartan politics."
+                }
+            };
+            
+            const govComponents = document.querySelectorAll('.gov-component');
+            const govInfoTitle = document.getElementById('gov-info-title');
+            const govInfoText = document.getElementById('gov-info-text');
+
+            govComponents.forEach(component => {
+                component.addEventListener('click', () => {
+                    const infoKey = component.dataset.info;
+                    govInfoTitle.textContent = govData[infoKey].title;
+                    govInfoText.textContent = govData[infoKey].text;
+                    
+                    govComponents.forEach(c => c.classList.remove('border-[#C0392B]'));
+                    component.classList.add('border-[#C0392B]');
+                });
+            });
+
+            const timelineData = {
+                '7': {
+                    title: "Age 7: The Agoge Begins",
+                    text: "At this age, boys left their homes to enter the Agoge, a state-sponsored military training program. They lived in communal barracks, were intentionally underfed to encourage resourcefulness, and endured harsh discipline. The focus was on physical toughness, obedience, and loyalty to the Spartan state above all else."
+                },
+                '20': {
+                    title: "Age 20: Full-Time Soldier",
+                    text: "Having completed the initial stage of the agoge, the young man becomes a full-time soldier. He is now eligible to join a 'syssitia,' a common dining mess of about 15 men. This was compulsory and crucial for building the bonds of camaraderie essential for the phalanx battlefield formation."
+                },
+                '30': {
+                    title: "Age 30: Full Citizenship",
+                    text: "At 30, a Spartan man achieved the full rights and duties of a citizen. He could now marry, live in his own home (though still taking meals at the syssitia), and be elected to public office. His primary duty remained as a soldier, ready for battle at any time."
+                },
+                '60': {
+                    title: "Age 60: Retirement and Service",
+                    text: "Upon reaching 60, a Spartan man retired from front-line military service. He was now eligible for election to the prestigious Gerousia, the council of elders, where he could serve for the rest of his life, shaping state policy with his experience."
+                }
+            };
+
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const timelineTitle = document.getElementById('timeline-title');
+            const timelineText = document.getElementById('timeline-text');
+
+            function updateTimeline(age) {
+                timelineTitle.textContent = timelineData[age].title;
+                timelineText.textContent = timelineData[age].text;
+                timelineItems.forEach(item => {
+                    item.classList.toggle('active', item.dataset.age === age);
+                });
+            }
+            
+            timelineItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    updateTimeline(item.dataset.age);
+                });
+            });
+            updateTimeline('7');
+            
+            const socialCards = document.querySelectorAll('.social-card');
+            const societyCtx = document.getElementById('societyChart').getContext('2d');
+            const societyChart = new Chart(societyCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Helots', 'Perioikoi', 'Spartiates & Mothakes'],
+                    datasets: [{
+                        label: 'Population Distribution (Estimate)',
+                        data: [80, 15, 5],
+                        backgroundColor: [
+                            '#7F8C8D',
+                            '#E67E22',
+                            '#C0392B'
+                        ],
+                        borderColor: '#FDFBF8',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                             labels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: Approximately ${context.raw}% of the population`;
+                                }
+                            }
+                        }
+                    },
+                    onClick: (evt, elements) => {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const label = societyChart.data.labels[index];
+                            let cardId;
+                            if (label.includes('Helots')) cardId = 'helots-card';
+                            else if (label.includes('Perioikoi')) cardId = 'perioikoi-card';
+                            else cardId = 'spartiates-card';
+
+                            socialCards.forEach(card => {
+                                if (card.id === cardId) {
+                                    card.classList.remove('hidden');
+                                } else {
+                                    card.classList.add('hidden');
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

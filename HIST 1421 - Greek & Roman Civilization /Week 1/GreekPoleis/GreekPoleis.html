@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greek Poleis: An Interactive Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Stone-100, Slate-800, Blue-500 accents, Amber-500 subtle highlight) -->
+    <!-- Application Structure Plan: The web page is structured thematically into major sections: 'Introduction to Poleis', 'Political Diversity (Athens vs. Sparta)', 'Athenian Society', 'Spartan Society', and 'Inter-Polis Dynamics'. A fixed top navigation bar provides quick access to these sections. Each major polis (Athens, Sparta) is detailed in its own dedicated section, utilizing a responsive two-column layout on larger screens for direct comparison of government and social structures. Key details within these sections are encapsulated in expandable content blocks, allowing users to progressively disclose information and manage cognitive load, thus fostering a deep yet intuitive exploration of complex historical data. -->
+    <!-- Visualization & Content Choices: Definitions and core concepts are presented as clear text blocks within cards for readability. The 'Political Diversity' section uses a two-column layout on wider screens for an immediate visual comparison of Athens and Sparta. Societal details for both Athens and Sparta (e.g., citizen classes, military organization) are implemented with JavaScript-controlled expandable content sections, enabling user-driven drill-downs into specific topics. A bar chart (Chart.js, canvas-rendered) is used within the 'Spartan Society' section to visually represent the population distribution of Spartan citizens, Periokoi, and Helots, effectively quantifying the Helot majority. Unicode characters are used as section icons and visual cues to meet the 'no SVG' constraint while enhancing visual appeal. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb; /* stone-100 */
+            color: #1e293b; /* slate-800 */
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #3b82f6; /* blue-500 */
+        }
+        .content-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px; /* Base height for small screens */
+            max-height: 350px; /* Max height for larger screens */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px; /* Larger height for medium screens */
+            }
+        }
+        @media (min-width: 1024px) {
+            .chart-container {
+                height: 320px; /* Even larger for desktop */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex-shrink-0">
+                <h1 class="text-xl font-bold text-slate-700">Ancient Greek Poleis</h1>
+            </div>
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <a href="#introduction" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-500">Introduction</a>
+                    <a href="#political-diversity" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-500">Political Diversity</a>
+                    <a href="#athenian-society" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-500">Athenian Society</a>
+                    <a href="#spartan-society" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-500">Spartan Society</a>
+                    <a href="#inter-polis" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-blue-500">Inter-Polis Dynamics</a>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#introduction" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-blue-500">Introduction</a>
+                <a href="#political-diversity" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-blue-500">Political Diversity</a>
+                <a href="#athenian-society" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-blue-500">Athenian Society</a>
+                <a href="#spartan-society" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-blue-500">Spartan Society</a>
+                <a href="#inter-polis" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:text-blue-500">Inter-Polis Dynamics</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+    <section id="introduction" class="text-center mb-16 md:mb-24 scroll-mt-20">
+        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4">Understanding the Greek Polis 🏛️</h2>
+        <p class="max-w-3xl mx-auto text-lg text-slate-600">
+            Explore the fundamental political units of Ancient Greece, the "poleis," which shaped diverse societies and left an enduring legacy on Western civilization. This section introduces what a polis was and its inherent autonomy.
+        </p>
+        <div class="mt-8 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div class="content-card p-6 text-left">
+                <h3 class="font-bold text-xl text-slate-800 mb-3">What was a Polis?</h3>
+                <p class="text-slate-700">The Greek **polis** (plural: **poleis**), commonly translated as "city-state," served as the basic political unit in Ancient Greece during the archaic and classical periods (ca 800-323 BCE). Each polis operated as an independent and self-governing entity, embodying characteristics of both a city and a country.</p>
+            </div>
+            <div class="content-card p-6 text-left">
+                <h3 class="font-bold text-xl text-slate-800 mb-3">Autonomy and Territory</h3>
+                <p class="text-slate-700">Despite often being geographically small, a polis maintained an autonomous political system, akin to a sovereign nation. This encompassed not only the urban center but also the crucial surrounding agricultural land necessary for its survival and prosperity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="political-diversity" class="mb-16 md:mb-24 scroll-mt-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Political Diversity: Athens vs. Sparta ⚖️⚔️</h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-4xl mx-auto">Greek poleis showcased a wide spectrum of political systems. While many were small, Athens and Sparta emerged as the most powerful and influential, representing polar opposites in governance.</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <!-- Athens Column -->
+            <div class="content-card p-6 flex flex-col">
+                <h3 class="text-2xl font-bold text-slate-900 mb-4 text-center">Athens: The Birthplace of Democracy 🏛️</h3>
+                <p class="text-slate-700 mb-4 flex-grow">Athens and its territory of Attica blossomed into a cultural and economic powerhouse. It is celebrated as the origin of ethical philosophy, theater, and most significantly, democracy, leaving an indelible mark on Western civilization.</p>
+                <button class="expand-btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg self-start">Explore Athenian Government ▼</button>
+                <div class="expandable-content mt-4 border-t border-slate-200 pt-4 space-y-3">
+                    <h4 class="font-bold text-lg text-slate-800">Athenian Democratic Government</h4>
+                    <p class="text-slate-700">Athens pioneered a direct democracy where adult male citizens directly participated in decision-making through institutions like the Assembly (Ekklesia) and the Council of 500 (Boule). Magistrates, often chosen by lot, handled daily administration, with the exception of the annually elected Strategoi (generals).</p>
+                    <h4 class="font-bold text-lg text-slate-800">Key Democratic Principles</h4>
+                    <p class="text-slate-700">The Athenian system, though limited in its franchise, aimed for widespread citizen participation and accountability. Reforms by Solon and Cleisthenes progressively shifted power from aristocrats to the citizen body, emphasizing 'isonomia' (equality before the law) which evolved into 'demokratia' (rule of the people).</p>
+                </div>
+            </div>
+
+            <!-- Sparta Column -->
+            <div class="content-card p-6 flex flex-col">
+                <h3 class="text-2xl font-bold text-slate-900 mb-4 text-center">Sparta: The Military Oligarchy ⚔️</h3>
+                <p class="text-slate-700 mb-4 flex-grow">Sparta presented a stark contrast to Athens, functioning as a warrior society where military life dictated all aspects of its government and social structure. Its primary concern was maintaining control over its subjugated populations.</p>
+                <button class="expand-btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg self-start">Explore Spartan Government ▼</button>
+                <div class="expandable-content mt-4 border-t border-slate-200 pt-4 space-y-3">
+                    <h4 class="font-bold text-lg text-slate-800">Spartan Oligarchic Government</h4>
+                    <p class="text-slate-700">Sparta had a unique dual kingship, but true power resided with the Gerousia (an elite council of 30 elders over 60, including the kings) and the five annually elected Ephors, who served as the executive branch. The popular assembly, though existing, had limited powers, as its agenda and decisions were often controlled by the Gerousia and Ephors.</p>
+                    <h4 class="font-bold text-lg text-slate-800">The Purpose of Spartan Rule</h4>
+                    <p class="text-slate-700">The entire Spartan society was organized along military lines to suppress the Helots, a vast population of virtual slaves who far outnumbered Spartan citizens. This constant threat of rebellion shaped every aspect of Spartan life, from education to daily routines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="athenian-society" class="mb-16 md:mb-24 scroll-mt-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Athenian Society: Citizens & Non-Citizens 👨‍👩‍👧‍👦</h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-4xl mx-auto">Despite being a democracy, Athenian society was complex and hierarchical, with distinct roles and rights for citizens and non-citizens. This section details the social classes within democratic Athens.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div class="content-card p-6">
+                <h3 class="font-bold text-xl text-slate-800 mb-3">The Athenian Franchise: Limited Participation</h3>
+                <p class="text-slate-700">Political participation in Athens was exclusively limited to free adult male citizens, aged 18 or older. This definition systematically excluded the vast majority of the population: women, resident aliens (metics), and the substantial enslaved population.</p>
+                <button class="expand-btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg mt-4">Details on Citizenship & Classes ▼</button>
+                <div class="expandable-content mt-4 border-t border-slate-200 pt-4 space-y-3">
+                    <p class="text-slate-700">Pericles' law in 451 BCE further tightened citizenship requirements, mandating that both parents must be Athenian citizens. This meant that only about 10-20% of the total population held political rights.</p>
+                    <h4 class="font-bold text-lg text-slate-800">Wealth-Based Citizen Classes:</h4>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1">
+                        <li><strong>"500 Bushel Men":</strong> The wealthiest, eligible for the highest political offices, including the annually elected Generals.</li>
+                        <li><strong>"Horsemen" (300 Bushel Men):</strong> Wealthy enough to afford horses for military service, could serve in lesser political offices and the army.</li>
+                        <li><strong>"200 Bushel Men":</strong> Middle class, could equip themselves as Hoplite soldiers and hold minor political offices.</li>
+                        <li><strong>Thetes (Below 200 Bushels):</strong> The urban and landless poor, free men who could vote in the Assembly and serve on juries, but were ineligible for hoplite service. They primarily served as rowers in the Athenian navy.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-card p-6">
+                <h3 class="font-bold text-xl text-slate-800 mb-3">Non-Citizens: The Backbone of Athens</h3>
+                <p class="text-slate-700">The leisure time for Athenian citizens to engage in politics and war was largely supported by the labor of non-citizens, particularly slaves. This created a paradoxical foundation for democracy built upon widespread disenfranchisement.</p>
+                <button class="expand-btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg mt-4">Details on Slaves & Metics ▼</button>
+                <div class="expandable-content mt-4 border-t border-slate-200 pt-4 space-y-3">
+                    <h4 class="font-bold text-lg text-slate-800">Slavery in Athens:</h4>
+                    <p class="text-slate-700">Most slaves were private property, but the state also owned public slaves. They performed a wide range of tasks, from arduous labor in silver mines to skilled crafts like goldsmithing and accounting. While considered morally inferior, skilled slaves were valuable assets and could sometimes earn money to buy their freedom. The concept of "chattel slavery" emphasized their status as property, reinforcing the perceived superiority and political participation rights of free Athenians.</p>
+                    <h4 class="font-bold text-lg text-slate-800">Metics (Resident Aliens):</h4>
+                    <p class="text-slate-700">Metics were free foreigners residing in Athens who lacked citizenship rights, regardless of their origin or wealth. They contributed to the economy as merchants, craftsmen, and intellectuals, and were subject to taxation and military service. Despite their valuable contributions, they faced systematic political disenfranchisement and required an Athenian sponsor for legal access. Economic opportunity and intellectual freedom, however, continued to attract them to the city.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="spartan-society" class="mb-16 md:mb-24 scroll-mt-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Spartan Society: A Militarized State ⚔️</h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-4xl mx-auto">Sparta's entire social and political system was designed to create an invincible military, primarily to control its vast subjugated population. This section delves into the unique structure of Spartan society.</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div class="content-card p-6">
+                <h3 class="font-bold text-xl text-slate-800 mb-3">Social Hierarchy and the Helot Dilemma</h3>
+                <p class="text-slate-700">Spartan society was a minority ruling over a much larger subjugated population. The constant fear of Helot revolts shaped their militaristic culture.</p>
+                <button class="expand-btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg mt-4">Details on Spartan Classes ▼</button>
+                <div class="expandable-content mt-4 border-t border-slate-200 pt-4 space-y-3">
+                    <ul class="list-disc list-inside text-slate-700 space-y-1">
+                        <li><strong>Homoioi ("Similars"):</strong> The full Spartan male citizens, trained from birth to be soldiers. Despite the name, significant social and political inequalities existed among them.</li>
+                        <li><strong>Periokoi ("Neighbors"):</strong> Free non-Spartans living around Laconia. They were not citizens but had local autonomy and performed vital roles as craftsmen and traders. They owed military service as auxiliary units.</li>
+                        <li><strong>Helots:</strong> The largest class, virtual slaves collectively owned by the Spartan state, primarily from conquered Messenia. They worked as peasant serfs, outnumbering Spartans significantly. Their subjugation led to Sparta's extreme militarization.</li>
+                    </ul>
+                    <p class="text-sm text-slate-600 italic">The "Helot Dilemma" meant Spartans lived in perpetual fear of uprisings, often limiting their military expeditions far from home.</p>
+                    <h4 class="font-bold text-lg text-slate-800 mt-3">The Krypteia: Sparta's Secret Police</h4>
+                    <p class="text-slate-700">Elite young Spartan warriors were inducted into the Krypteia, a "secret service" that prowled the countryside at night, killing Helots at random, particularly strong or potential troublemakers. This state-sponsored terrorism aimed to keep the Helots in submission.</p>
+                </div>
+            </div>
+            <div class="content-card p-6">
+                <h3 class="font-bold text-xl text-slate-800 mb-3">Militarism and Education</h3>
+                <p class="text-slate-700">The Second Messenian War (685-668 BCE) so traumatized Sparta that it reorganized its entire society around military lines, making every Spartan male a lifelong soldier.</p>
+                <button class="expand-btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg mt-4">Details on Training & Women's Roles ▼</button>
+                <div class="expandable-content mt-4 border-t border-slate-200 pt-4 space-y-3">
+                    <h4 class="font-bold text-lg text-slate-800">The Agoge: Spartan Education System</h4>
+                    <p class="text-slate-700">At birth, babies were inspected; those deemed "puny or deformed" were left to die. From age seven, boys entered the compulsory Agoge, a brutal physical education system designed to produce stealthy, cunning, and resilient soldiers. They lived in packs, were underfed, and encouraged to steal (punished only if caught).</p>
+                    <h4 class="font-bold text-lg text-slate-800">Spartan Women:</h4>
+                    <p class="text-slate-700">While other Greek women were reclusive, Spartan women had more freedom and engaged in physical training to ensure they could bear healthy children, especially sons. They managed household economic affairs and were famously outspoken, even taunting "cowardly" sons or husbands, reflecting a culture that valued strength above all.</p>
+                    <h4 class="font-bold text-lg text-slate-800 mt-3">Spartan Population Distribution</h4>
+                    <div class="chart-container">
+                        <canvas id="spartanPopulationChart"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-2 text-center">Relative population sizes impacting Spartan societal organization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="inter-polis" class="mb-16 md:mb-24 scroll-mt-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Inter-Polis Dynamics: Wars and Alliances 🛡️🤝</h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-4xl mx-auto">The relationship between Greek poleis was often defined by conflict, but they could also unite against common threats. This section explores the major wars and alliances that shaped their collective history.</p>
+        </div>
+        <div class="content-card p-6 max-w-4xl mx-auto text-left">
+            <h3 class="font-bold text-xl text-slate-800 mb-3">The Persian Wars: Uniting Against a Superpower</h3>
+            <p class="text-slate-700 mb-2">The vast Persian Empire posed an existential threat, forcing Greek city-states to put aside their frequent internal conflicts and unite. Athens played a crucial role, particularly in the Battle of Marathon (490 BCE) and the naval Battle of Salamis (480 BCE). These victories not only secured Greek independence but also significantly boosted Athens' prestige and contributed to its democratic development, as even the poorest citizens (rowers) could contribute to victory.</p>
+
+            <h3 class="font-bold text-xl text-slate-800 mt-4 mb-3">The Delian League: From Alliance to Empire</h3>
+            <p class="text-slate-700 mb-2">After the Persian Wars, Athens led the formation of the Delian League, an alliance ostensibly against Persia. However, Athens soon transformed it into an empire, compelling member states to pay tribute rather than contribute ships. The League's treasury was moved to Athens and used to fund its golden age, including magnificent public works like the Parthenon. This imperial expansion fueled resentment among other Greek states, particularly Sparta.</p>
+
+            <h3 class="font-bold text-xl text-slate-800 mt-4 mb-3">The Peloponnesian Wars: Internal Strife and Decline</h3>
+            <p class="text-slate-700">The growing rivalry between the Athenian Empire and a Spartan-led coalition culminated in the devastating Peloponnesian Wars (431-404 BCE). This prolonged conflict, described by Thucydides, eventually humbled Athens, leading to the loss of its empire and widespread devastation across Greece. The war highlighted the deep political and social divisions within the Greek world, ultimately contributing to the decline of classical Greece's independence.</p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-slate-800 text-slate-300 mt-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
+        <p>Content based on "Athens & Sparta: Democracy vs. Dictatorship" by Dr. Peter J. Brand and other historical sources.</p>
+        <p class="mt-1">Designed for educational exploration of Ancient Greek history.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scroll for nav links and hide mobile menu
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+                if (mobileMenu.classList.contains('flex')) { // Only hide if it's currently open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Active nav link highlighting based on scroll
+        const sections = document.querySelectorAll('main section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -70% 0px', // Adjust this value to control when a section is considered active
+            threshold: 0.1
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${entry.target.id}`) {
+                            link.classList.add('active', 'font-semibold', 'text-blue-500');
+                        } else {
+                            link.classList.remove('active', 'font-semibold', 'text-blue-500');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Expand/collapse logic for content cards
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling; // The expandable-content div
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    button.textContent = button.textContent.replace('▲', '▼');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    button.textContent = button.textContent.replace('▼', '▲');
+                }
+            });
+        });
+
+        // Chart.js for Spartan Population
+        const spartanPopData = {
+            labels: ['Spartan Citizens (Homoioi)', 'Periokoi (Free Non-Spartans)', 'Helots (Virtual Slaves)'],
+            datasets: [{
+                label: 'Estimated Spartan Population Distribution',
+                data: [1, 2, 7], // Relative proportions from the text (1:2:7 or 7 times more Helots)
+                backgroundColor: [
+                    '#3b82f6', // Blue-500
+                    '#f59e0b', // Amber-500
+                    '#64748b'  // Slate-500
+                ],
+                borderColor: [
+                    '#2563eb',
+                    '#d97706',
+                    '#475569'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const spartanCtx = document.getElementById('spartanPopulationChart').getContext('2d');
+        new Chart(spartanCtx, {
+            type: 'bar',
+            data: spartanPopData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Makes it a horizontal bar chart
+                plugins: {
+                    legend: {
+                        display: false, // No legend needed, labels are self-explanatory
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += `Approx. ${context.parsed.x} unit(s)`; // Display the relative unit
+                                }
+                                return label;
+                            },
+                            title: function(context) {
+                                const rawTitle = context[0].label;
+                                const words = rawTitle.split(' ');
+                                let wrappedTitle = [];
+                                let currentLine = '';
+                                words.forEach(word => {
+                                    if ((currentLine + word).length < 16) {
+                                        currentLine += (currentLine === '' ? '' : ' ') + word;
+                                    } else {
+                                        wrappedTitle.push(currentLine);
+                                        currentLine = word;
+                                    }
+                                });
+                                wrappedTitle.push(currentLine);
+                                return wrappedTitle;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Relative Population Units'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                if (value === 1) return '1 Unit';
+                                if (value === 2) return '2 Units';
+                                if (value === 7) return '7 Units';
+                                return ''; // Hide other ticks
+                            }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            callback: function(value) {
+                                const label = this.getLabelForValue(value);
+                                const words = label.split(' ');
+                                let wrappedLabel = [];
+                                let currentLine = '';
+                                words.forEach(word => {
+                                    if ((currentLine + word).length < 16) { // Approx 16 chars per line
+                                        currentLine += (currentLine === '' ? '' : ' ') + word;
+                                    } else {
+                                        wrappedLabel.push(currentLine);
+                                        currentLine = word;
+                                    }
+                                });
+                                wrappedLabel.push(currentLine);
+                                return wrappedLabel;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

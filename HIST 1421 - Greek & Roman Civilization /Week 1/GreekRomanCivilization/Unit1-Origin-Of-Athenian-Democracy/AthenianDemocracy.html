@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Athenian Democracy: An Interactive Exploration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Stone, Slate, Muted Blue-Gray) -->
+    <!-- Application Structure Plan: A thematic, multi-section single-page application. The structure uses a top-level navigation to guide users through key concepts: a Timeline for historical context, The People for demographics, Pillars of Democracy to detail government bodies, and Holding Power Accountable for control mechanisms. This non-linear, exploratory structure is chosen over a direct report-to-page conversion to enhance user engagement and understanding by grouping related concepts interactively, rather than following the original academic text flow. -->
+    <!-- Visualization & Content Choices: 1. Population: (Goal: Inform/Compare) -> Donut Chart (Chart.js) -> Interactive tooltips -> Justification: Visually striking way to show the small proportion of enfranchised citizens. 2. Constitutional History: (Goal: Change) -> Interactive Timeline (HTML/CSS/JS) -> Click to reveal details -> Justification: Effectively shows the evolution of democracy over time. 3. Government Bodies: (Goal: Organize) -> Interactive Cards (HTML/CSS/JS) -> Click to expand -> Justification: Breaks down complex institutions into digestible, user-initiated chunks, preventing information overload. 4. Control Mechanisms: (Goal: Organize) -> HTML/CSS Process Flow Diagram -> Hover/Click for details -> Justification: Visualizes the sequence and relationship between different forms of accountability. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #3b82f6; /* blue-500 */
+        }
+        .content-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+            padding-left: 2.5rem;
+        }
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0.25rem;
+            bottom: 0;
+            width: 2px;
+            background-color: #cbd5e1; /* slate-300 */
+        }
+        .timeline-item:last-child:before {
+            display: none;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            height: 1.25rem;
+            width: 1.25rem;
+            background-color: #ffffff;
+            border: 2px solid #64748b; /* slate-500 */
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .timeline-dot-inner {
+            height: 0.5rem;
+            width: 0.5rem;
+            background-color: #64748b; /* slate-500 */
+            border-radius: 9999px;
+            transition: background-color 0.3s ease;
+        }
+        .timeline-item:hover .timeline-dot-inner {
+            background-color: #3b82f6; /* blue-500 */
+        }
+        .pillar-card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex-shrink-0">
+                <h1 class="text-xl font-bold text-slate-700">Athenian Democracy</h1>
+            </div>
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <a href="#introduction" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Introduction</a>
+                    <a href="#timeline" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Timeline</a>
+                    <a href="#people" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">The People</a>
+                    <a href="#pillars" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Pillars of Democracy</a>
+                    <a href="#accountability" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Accountability</a>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#introduction" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600">Introduction</a>
+                <a href="#timeline" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600">Timeline</a>
+                <a href="#people" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600">The People</a>
+                <a href="#pillars" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600">Pillars of Democracy</a>
+                <a href="#accountability" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600">Accountability</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+    <section id="introduction" class="text-center mb-16 md:mb-24 scroll-mt-20">
+        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4">An Interactive Exploration of Athenian Democracy</h2>
+        <p class="max-w-3xl mx-auto text-lg text-slate-600">
+            This application provides an interactive journey into the world's first well-documented democracy. Explore the historical context, the people, the core institutions, and the unique mechanisms that defined the democratic constitution of Athens in the 5th and 4th centuries BCE.
+        </p>
+    </section>
+
+    <section id="timeline" class="mb-16 md:mb-24 scroll-mt-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">The Rise and Fall of a Democracy</h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">This timeline charts the critical moments in Athens' constitutional history, from early reforms to the end of its democratic era. Click on any event to learn more about its significance.</p>
+        </div>
+        <div class="relative max-w-3xl mx-auto" id="timeline-container"></div>
+    </section>
+
+    <section id="people" class="mb-16 md:mb-24 scroll-mt-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Who Were "The People"?</h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">Participation in Athenian democracy was surprisingly limited. This section explores the demographics of Attica and what it meant to be a citizen with political rights.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="content-card p-6">
+                <h3 class="font-bold text-xl mb-4 text-slate-800">The Demographics of Power</h3>
+                <div class="chart-container">
+                    <canvas id="populationChart"></canvas>
+                </div>
+                <p class="text-sm text-slate-500 mt-4 text-center">Population estimates for Attica in the 4th century BCE. Note the small fraction of enfranchised citizens.</p>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-slate-800">The Athenian Franchise</h3>
+                <p class="text-slate-600">Political rights were restricted to free adult male citizens over 18. This excluded a vast majority of the population, including women, resident aliens (metics), and the large enslaved population. In 451 BCE, Pericles' law further restricted citizenship, requiring both parents to be citizens. This meant political power was held by only 10-20% of the total population.</p>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-blue-800">Loss of Rights (Atimia)</h4>
+                    <p class="text-sm text-blue-700 mt-1">A citizen could be disfranchised for offenses like debt to the treasury, cowardice in battle, or failing to support his parents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pillars" class="mb-16 md:mb-24 scroll-mt-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">The Pillars of Democracy</h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">Athenian democracy was built on several key institutions, each with distinct roles and powers. Click on each pillar to uncover its structure and functions.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="pillars-container">
+        </div>
+    </section>
+
+    <section id="accountability" class="scroll-mt-20">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Holding Power Accountable</h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">The Athenians were deeply concerned with preventing tyranny. They developed a sophisticated set of procedures to scrutinize officials and punish misconduct.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="accountability-container">
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-slate-800 text-slate-300 mt-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
+        <p>An interactive visualization based on the paper "Introduction to the Athenian Democracy" by John A. Rothchild.</p>
+        <p class="mt-1">Designed as a tool for educational exploration.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const timelineData = [
+            { year: "594 BCE", title: "Reforms of Solon", text: "Solon was appointed to reform the laws to mediate strife between the rich and poor. He created the Council of 400 and gave citizens the right to appeal magistrate decisions, a key step towards accountability." },
+            { year: "546 BCE", title: "Tyranny of Peisistratos", text: "Peisistratos seized power as a 'tyrannos'. While he ruled moderately, this period of unconstitutional rule would later reinforce the Athenian desire for democracy." },
+            { year: "507 BCE", title: "Reforms of Cleisthenes", text: "Viewed as the founder of democracy, Cleisthenes broke the power of aristocratic clans by creating 10 new tribes and establishing the Council of 500. This reorganization was fundamental to the new democratic order." },
+            { year: "490 BCE", title: "First Persian Invasion", text: "Athens played a leading role in defeating the Persian invasion at the Battle of Marathon, boosting its prestige and confidence." },
+            { year: "462 BCE", title: "Reforms of Ephialtes", text: "Ephialtes led reforms that are considered the beginning of the 'radical democracy'. He stripped the aristocratic Areopagos of most powers and increased the authority of the Assembly and Jury Courts." },
+            { year: "451 BCE", title: "Pericles' Citizenship Law", text: "Pericles introduced a law restricting citizenship to those with both an Athenian father and mother, making the citizen body more exclusive." },
+            { year: "431 BCE", title: "Peloponnesian War Begins", text: "A long and devastating war began between Athens and its allies and the Spartan-led Peloponnesian League." },
+            { year: "411 BCE", title: "Oligarchic Coup", text: "Amidst the war, a brief oligarchic regime of 400 took power, but democracy was restored within a year." },
+            { year: "404 BCE", title: "End of Peloponnesian War", text: "Sparta defeated Athens and installed a brutal oligarchy known as the Thirty Tyrants. This experience left a lasting trauma and strengthened Athenian commitment to democracy." },
+            { year: "403 BCE", title: "Democracy Restored", text: "Exiles overthrew the Thirty Tyrants and restored the democracy. The procedure of nomothesia was introduced to make laws more stable." },
+            { year: "338 BCE", title: "Macedonian Control", text: "Philip II of Macedon defeated the Greek city-states at the Battle of Chaeronea, bringing Athens under Macedonian influence." },
+            { year: "322 BCE", title: "End of Democracy", text: "After a failed revolt following the death of Alexander the Great, the Macedonian general Antipater imposed an oligarchy, formally ending the classical Athenian democracy." }
+        ];
+
+        const pillarsData = [
+            {
+                icon: '🏛️',
+                title: 'The Assembly (Ekklesia)',
+                short: 'The sovereign body of Athens where all citizens could speak and vote.',
+                details: `
+                    <p><strong>Membership:</strong> All adult male citizens (potentially 30,000-60,000). Attendance was around 6,000, and members were paid for attending starting in the 390s BCE.</p>
+                    <p><strong>Frequency:</strong> Met about 40 times a year on the Pnyx hill.</p>
+                    <p><strong>Powers:</strong> Held ultimate legislative authority. It could declare war, ratify treaties, and vote on laws (nomoi) and decrees (psēphismata). Any citizen had the right to speak.</p>
+                `
+            },
+            {
+                icon: '⚖️',
+                title: 'The Council of 500 (Boule)',
+                short: 'The administrative and legislative preparatory body for the Assembly.',
+                details: `
+                    <p><strong>Membership:</strong> 500 citizens over 30, chosen by lot (50 from each of the 10 tribes). Served one-year terms, with a lifetime limit of two terms.</p>
+                    <p><strong>Function:</strong> Prepared the agenda for the Assembly (probouleumata). It was illegal for the Assembly to pass a law not first considered by the Council. Also handled foreign relations and financial oversight.</p>
+                `
+            },
+            {
+                icon: '👨‍⚖️',
+                title: 'The Jury Courts (Dikasteria)',
+                short: 'Massive juries of citizens who served as both judge and jury.',
+                details: `
+                    <p><strong>Membership:</strong> 6,000 jurors were enrolled annually, chosen by lot from citizens over 30. Juries were huge, typically 201 to 501 men, to prevent bribery.</p>
+                    <p><strong>Powers:</strong> Heard both public and private cases. There was no appeal from their verdict. They also performed non-judicial functions like the scrutiny of officials (dokimasia) and hearing challenges to laws (graphē paranomōn).</p>
+                `
+            },
+            {
+                icon: '🎖️',
+                title: 'The Magistrates',
+                short: 'Officials who carried out the day-to-day functions of the state.',
+                details: `
+                    <p><strong>Selection:</strong> Most of the ~700 magistrates were chosen by lot for one-year terms.</p>
+                    <p><strong>The Archons:</strong> The nine archons handled judicial and religious duties. After their term, they joined the Areopagos for life.</p>
+                    <p><strong>The Strategoi:</strong> The 10 generals were the most powerful magistrates because they were elected, not chosen by lot, and could be re-elected indefinitely.</p>
+                `
+            }
+        ];
+
+        const accountabilityData = [
+            { title: "Dokimasia (Scrutiny)", text: "Before taking office, every official (whether chosen by lot or elected) had to undergo an examination before the Council or a jury court to verify their qualifications (citizenship, age, etc.)." },
+            { title: "Epikheirotonia (Vote of Confidence)", text: "At every principal Assembly meeting (10 times a year), the people voted on the performance of their officials. A 'no' vote led to immediate suspension and a trial." },
+            { title: "Euthyna (Post-Term Audit)", text: "At the end of an official's term, they underwent a mandatory two-part audit. First, a financial review by the Logistai, and second, a general review by the Euthynoi where any citizen could bring a charge of misconduct." },
+            { title: "Eisangelia (Impeachment)", text: "A procedure to prosecute officials for serious offenses like treason, taking bribes, or subverting the democracy. It could be initiated at any time during an official's term." },
+            { title: "Graphē Paranomōn (Indictment for Illegal Proposals)", text: "Any citizen could charge another for proposing a law or decree that contradicted existing laws. This acted as a form of constitutional review, with a jury court deciding the law's legality." },
+            { title: "Apophasis (Areopagos Investigation)", text: "The Assembly could ask the Areopagos (the council of ex-archons) to investigate a potential crime or threat to the state and deliver a report, which could then lead to a trial." }
+        ];
+
+        const populationData = {
+            labels: ['Adult Male Citizens', 'Resident Aliens (Metics)', 'Enslaved Population'],
+            datasets: [{
+                label: 'Population of Attica (4th Century BCE)',
+                data: [30000, 25000, 200000],
+                backgroundColor: ['#3b82f6', '#f59e0b', '#64748b'],
+                hoverOffset: 4
+            }]
+        };
+
+        const ctx = document.getElementById('populationChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: populationData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += new Intl.NumberFormat('en-US').format(context.parsed);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const timelineContainer = document.getElementById('timeline-container');
+        timelineData.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'timeline-item cursor-pointer';
+            div.innerHTML = `
+                <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+                <div class="ml-4">
+                    <h4 class="font-bold text-slate-800">${item.year}: ${item.title}</h4>
+                    <p class="text-slate-600 mt-1 hidden">${item.text}</p>
+                </div>`;
+            div.addEventListener('click', () => {
+                const p = div.querySelector('p');
+                p.classList.toggle('hidden');
+            });
+            timelineContainer.appendChild(div);
+        });
+
+        const pillarsContainer = document.getElementById('pillars-container');
+        pillarsData.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'pillar-card';
+            div.innerHTML = `
+                <div class="content-card p-6 cursor-pointer pillar-card-header">
+                    <div class="text-4xl mb-4">${item.icon}</div>
+                    <h3 class="font-bold text-xl text-slate-800">${item.title}</h3>
+                    <p class="text-slate-500 mt-2">${item.short}</p>
+                    <div class="mt-4 text-left text-sm pillar-card-content space-y-2">
+                        ${item.details}
+                    </div>
+                </div>
+            `;
+            pillarsContainer.appendChild(div);
+        });
+
+        document.querySelectorAll('.pillar-card-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.querySelector('.pillar-card-content');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        const accountabilityContainer = document.getElementById('accountability-container');
+        accountabilityData.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'content-card p-6';
+            div.innerHTML = `
+                <h4 class="font-bold text-lg text-slate-800 mb-2">${item.title}</h4>
+                <p class="text-slate-600 text-sm">${item.text}</p>
+            `;
+            accountabilityContainer.appendChild(div);
+        });
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('main section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                    });
+                }
+            });
+        }, { rootMargin: "-50% 0px -50% 0px" });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(mobileMenu.offsetParent !== null){
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
