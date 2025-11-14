@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<person>
+    <name>
+        <first>Godfrey</first> 
+        <last>Ouma</last> 
+    </name> 
+    <occupation>Software Architect</occupation> 
+    <address>
+        <street>234, Valley Road</street> 
+        <city>Nairobi</city> 
+        <state>KE</state> 
+        <zip>10230</zip> 
+    </address> 
+    <hobbies>
+        <hobby>Watching soccer</hobby> 
+        <hobby>Watiching wildlife documentary</hobby> 
+    </hobbies> 
+</person>
+

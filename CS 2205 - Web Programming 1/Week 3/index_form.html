@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!--Using GET Method:-->
+<br>
+<h3><u>Using <em>GET</em> method</u></h3>
+<form action="/action_page.php" method="get">
+    <label for="username">Name:</label>
+    <input type="text" id="username" name="username"><br>
+    <label>Gender:</label>
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female<br>
+    <input type="submit" value="Submit">
+  </form>
+<br>
+<!--Using POST Method:-->
+<h3><u>Using <em>POST</em> method</u></h3>
+<form action="/action_page.php" method="post">
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname"><br>
+    <label for="lname">Last name:</label>
+    <input type="text" id="lname" name="lname"><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br>
+    <input type="submit" value="Submit">
+  </form>
+  <br>
+
+
+  <form>
+    <label>Marital Status:</label><br>
+    <input type="radio" name="marital_status" value="single"> Single<br>
+    <input type="radio" name="marital_status" value="married"> Married<br>
+    <input type="radio" name="marital_status" value="widow"> Widow<br>
+    <input type="radio" name="marital_status" value="prefer_not_to_say"> Prefer not to say<br>
+    <input type="submit" value="Submit">
+  </form>
+  <br>
+
+  
+  <form>
+    <label>Do you have a medical history of diabetes?</label><br>
+    <input type="radio" name="diabetes" value="yes"> Yes<br>
+    <input type="radio" name="diabetes" value="no"> No<br>
+    <input type="submit" value="Submit">
+  </form>
+  <br>
+
+
+  <form>
+    <label for="feedback">Your Feedback:</label><br>
+    <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br>
+    <input type="submit" value="Submit">
+  </form>
+  <br><br><br>
+</body>
+</html>

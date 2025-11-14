@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<programOfStudy>
+    <semester name="Fall 2008">
+        <course>
+            <code />PHIL 101</code> 
+            <name>Introduction to Philosophy</name> 
+            <goal>Goal 8</goal> 
+        </course> 
+        <course>
+            <code />ECON 201</code> 
+            <name>Principles of Microeconomics</name> 
+            <goal>Goal 11</goal> 
+        </course> 
+        <course>
+            <code />MGT 217</code> 
+            <name>Business Environment and Strategy</name> 
+            <type>Core</type> 
+        </course> 
+        <course>
+            <code />CIS 120</code> 
+            <name>Introduction to Computer Science</name> 
+            <type>Major</type> 
+        </course> 
+        <course>
+            <code />CIS 403</code> 
+            <name>Computer Networks</name> 
+            <type>Major</type> 
+        </course> 
+    </semester> 
+    <semester name="Spring 2009"> 
+        <course> 
+            <code />MGT 261</code> 
+            <name>Principles of Management</name> 
+            <type>Core</type> 
+        </course> 
+        <course> 
+            <code />MKTG 325</code> 
+            <name>Digital Marketing</name> 
+            <type>Core</type> 
+        </course> 
+        <course> 
+            <code />CIS 220</code> 
+            <name>Operating Systems</name> 
+            <type>Major</type> 
+        </course> 
+        <course> 
+            <code />CIS 407</code> 
+            <name>Advanced Database Management Systems</name> 
+            <type>Major</type> 
+        </course> 
+        <course> 
+            <code />CIS 490</code> 
+            <name>Project Management and Practice</name> 
+            <type>Major</type> 
+        </course> 
+    </semester> 
+</programOfStudy>
