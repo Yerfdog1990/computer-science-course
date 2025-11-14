@@ -1,0 +1,115 @@
+Embedded SQL: Definition, Features, and Use Cases
+Embedded SQL refers to SQL statements that are directly written within the code of a host programming language (such as Java, C, or COBOL). These SQL statements are executed at compile-time or runtime, and the host language interacts with the database management system (DBMS) through the embedded SQL commands. Unlike dynamic SQL, embedded SQL is typically predefined and static, meaning the SQL queries are hardcoded and compiled along with the program.
+
+Key Features of Embedded SQL
+Static Query Definition: The SQL statements are defined at compile-time, making them less flexible but more efficient and safer in terms of security.
+
+Tight Integration with Host Language: SQL statements are seamlessly integrated into the code, and they are precompiled for faster execution.
+
+Compile-Time Error Checking: SQL statements are checked during compilation, ensuring that issues like syntax errors or type mismatches are detected early.
+
+Simple Database Access: Ideal for simple and predefined database operations that don't require complex query generation.
+
+Use Cases for Embedded SQL
+Predefined Database Operations: When database operations are known in advance and do not require dynamic adjustments based on user input or other factors.
+High Performance: Embedded SQL is optimized during compilation, making it more efficient for operations that don't need the flexibility of dynamic SQL.
+Security: Since queries are fixed, there is no risk of SQL injection, making it more secure.
+Example of Embedded SQL in Java using JDBC
+Below is a simplified example of how to use Embedded SQL within Java code. In this example, we will assume that we have a predefined set of data to be inserted and fetched from a members table in a database.
+
+Scenario:
+The SQL queries are predefined and embedded in the Java code. We will insert a member into the members table and retrieve the member details.
+
+java
+Copy code
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class EmbeddedSQLExample {
+
+    public static void main(String[] args) {
+        // Predefined (embedded) values for member details
+        int member_id = 4;
+        String member_name = "Alice Brown";
+        String member_email = "alice.brown@example.com";
+        String member_phone = "0712345678";
+
+        // Database connection details
+        String jdbcURL = "jdbc:mysql://localhost:3306/library_system"; // Replace with your database name
+        String dbUser = "root"; // Replace with your MySQL username
+        String dbPassword = "Cyril@2019"; // Replace with your MySQL password
+
+        Connection connection = null;
+
+        try {
+            // Establish connection to the database
+            connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+
+            // Predefined SQL statement to insert a member (Embedded SQL)
+            String insertQuery = "INSERT INTO members (MemberID, Name, Email, Phone) VALUES (?, ?, ?, ?)";
+            PreparedStatement insertStmt = connection.prepareStatement(insertQuery);
+            insertStmt.setInt(1, member_id);
+            insertStmt.setString(2, member_name);
+            insertStmt.setString(3, member_email);
+            insertStmt.setString(4, member_phone);
+
+            // Execute the predefined query (insert operation)
+            insertStmt.executeUpdate();
+            System.out.println("Member inserted successfully!");
+
+            // Predefined SQL statement to retrieve member details (Embedded SQL)
+            String selectQuery = "SELECT Name, Email, Phone FROM members WHERE MemberID = ?";
+            PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
+            selectStmt.setInt(1, member_id);
+
+            // Execute the predefined query (select operation)
+            ResultSet resultSet = selectStmt.executeQuery();
+
+            // Process the result set
+            if (resultSet.next()) {
+                String retrievedName = resultSet.getString("Name");
+                String retrievedEmail = resultSet.getString("Email");
+                String retrievedPhone = resultSet.getString("Phone");
+
+                System.out.println("Member Name: " + retrievedName);
+                System.out.println("Member Email: " + retrievedEmail);
+                System.out.println("Member Phone: " + retrievedPhone);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the connection
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+Explanation of Code:
+Predefined SQL Queries:
+
+The SQL queries (INSERT and SELECT) are embedded within the Java code and are fixed. These queries will not change at runtime.
+Parameterized Query:
+
+Even though the query is embedded, we still use PreparedStatement to ensure that the values for MemberID, Name, Email, and Phone are passed securely into the query.
+Insert and Select Operations:
+
+First, we insert a new member into the members table, and then we retrieve the member’s details based on their MemberID.
+Advantages of Embedded SQL:
+Faster Execution: Since embedded SQL is compiled along with the host language code, it runs faster compared to dynamically generated SQL queries.
+Compile-Time Error Detection: SQL queries are checked for errors during the compilation of the host program, reducing the chances of runtime errors.
+Security: Since SQL statements are predefined and static, there is no risk of SQL injection attacks.
+Simplicity: Embedded SQL is straightforward when database operations are fixed and do not require dynamic query generation.
+Limitations of Embedded SQL:
+Lack of Flexibility: Unlike dynamic SQL, embedded SQL cannot handle varying queries or changes based on user inputs or conditions at runtime.
+Repetitive Code: If you need to perform multiple variations of the same query (e.g., with different conditions or parameters), you might end up duplicating code.
+Conclusion:
+Embedded SQL is ideal for situations where database operations are well-defined and fixed. It provides better performance, early error detection, and improved security. However, for applications that require query flexibility and dynamic behavior, embedded SQL may not be the best choice, and dynamic SQL might be more appropriate.

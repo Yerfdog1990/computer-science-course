@@ -1,0 +1,33 @@
+-- Create a table
+CREATE TABLE family(id INT PRIMARY KEY, name VARCHAR(255) NOT NULL, gender ENUM('M','F') NOT NULL);
+-- Insert some values
+INSERT INTO family VALUES (1, 'Godfrey', 'M');
+INSERT INTO family VALUES (2, 'Rosemary', 'F');
+INSERT INTO family VALUES (3, 'Cyril', 'M');
+INSERT INTO family VALUES (4, 'Cyrek', 'M');
+-- fetch some values
+SELECT * FROM family WHERE gender = 'M';
+SELECT * FROM family WHERE gender = 'F';
+-- show tables
+-- 1. Using DESCRIBE:
+DESCRIBE family;
+-- 2. Using SHOW COLUMNS:
+-- SHOW COLUMNS FROM family;
+-- ALTER Command: Modifying Table Structure
+-- (i) Modifying Column Size
+ALTER TABLE family MODIFY name VARCHAR(50);
+-- (ii) Modifying Column Data Type
+ALTER TABLE family MODIFY gender ENUM('M', 'F', 'A');
+-- (iii) Adding a New Column
+ALTER TABLE family ADD birthday DATE;
+-- (iv) Dropping a Column
+ALTER TABLE family DROP COLUMN birthday; -- Dropping the column we just added
+-- 2. Show table using SHOW COLUMNS:
+SHOW COLUMNS FROM family;
+-- RENAME: Changing the Name of the Table
+RENAME TABLE family TO family1;
+-- DROP: Removing a Table from the Database
+DROP TABLE family1;
+SHOW COLUMNS FROM family1;
+-- TRUNCATE: Removing All Rows from a Table
+TRUNCATE TABLE family1;

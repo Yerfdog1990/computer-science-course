@@ -1,0 +1,35 @@
+-- Create a table
+CREATE TABLE family(id INT PRIMARY KEY, name VARCHAR(255) NOT NULL, gender ENUM('M','F') NOT NULL);
+-- Insert some values
+INSERT INTO family VALUES (1, 'John', 'M');
+INSERT INTO family VALUES (2, 'Mary', 'F');
+INSERT INTO family VALUES (3, 'Charles', 'M');
+INSERT INTO family VALUES (4, 'Christopher', 'M');
+SELECT  * FROM family;
+
+-- Data Manipulation Language (DML) commands
+-- 1. INSERT into All Columns
+INSERT INTO family VALUES(5, 'Seline', 'F');
+INSERT INTO family VALUES(6, 'Azumi', 'F');
+-- 2. INSERT into Specified Columns
+INSERT INTO family(id, name) VALUES(7, 'Owino');  
+-- 4. INSERT Example for Multiple Rows with Specified Columns
+INSERT INTO family(id, name, gender) VALUES(8, 'Oloo', 'M'), (9, 'Akinyi', 'F');
+-- 1. Select All Rows and Columns
+SELECT * FROM family;
+-- 2. Select Specific Columns
+SELECT id, name FROM family;
+-- 3. Select with a Condition (WHERE Clause)
+SELECT * FROM family WHERE gender = 'F';
+SELECT * FROM family WHERE gender = 'M';
+-- Update using "WHERE clause"
+UPDATE family SET name = "Tom" WHERE id=4;
+-- Update without using "WHERE clause"
+SELECT * FROM family;
+UPDATE family SET gender = 'M';
+SELECT * FROM family;
+-- Delete with Condition: Deletes specific rows based on a condition.
+DELETE FROM family WHERE name = 'Owino';
+SELECT * FROM family;
+-- Delete All Rows: Deletes all rows from the table.
+DELETE FROM family;

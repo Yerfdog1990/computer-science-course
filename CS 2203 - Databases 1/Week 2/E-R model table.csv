@@ -1,0 +1,36 @@
+1.      Product Table:,,
+Column Name,Data Type,Constraints
+ProductID,INT,PRIMARY KEY
+ProductName,VARCHAR(255),NOT NULL
+ProductPrice,"DECIMAL(10,2)",NOT NULL
+ProductCategory,VARCHAR(100),NOT NULL
+ProductDescription,TEXT,
+2.      Customer Table:,,
+Column Name,Data Type,Constraints
+CustomerID,INT,PRIMARY KEY
+CustomerName,VARCHAR(255),NOT NULL
+CustomerEmail,VARCHAR(255),"NOT NULL, UNIQUE"
+CustomerPhone,VARCHAR(15),
+ShippingAddress,TEXT,
+3.      Order Table:,,
+Column Name,Data Type,Constraints
+OrderID,INT,PRIMARY KEY
+OrderDate,DATETIME,NOT NULL
+TotalAmount,"DECIMAL(10,2)",NOT NULL
+CustomerID,INT,FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
+,,
+4.      Inventory Table:,,
+Column Name,Data Type,Constraints
+InventoryID,INT,PRIMARY KEY
+ProductID,INT,FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+StockQuantity,INT,NOT NULL
+WarehouseLocation,VARCHAR(255),
+,,
+5.      OrderDetails Table (For many-to-many relationship between Order and Product):,,
+Column Name,Data Type,Constraints
+OrderID,INT,FOREIGN KEY (OrderID) REFERENCES Order(OrderID)
+ProductID,INT,FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+Quantity,INT,NOT NULL
+PriceAtTime,"DECIMAL(10,2)",NOT NULL
+"PRIMARY KEY (OrderID, ProductID)",,
+,,
