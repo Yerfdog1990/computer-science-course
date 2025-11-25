@@ -168,7 +168,7 @@ We classify algorithms by how they **scale**:
 | **O(1)**       | Constant              | Accessing array index |
 | **O(log n)**   | Very slow growth      | Binary search         |
 | **O(n)**       | Directly proportional | Single loops          |
-| **O(n log n)** | Faster than linear    | Efficient sorting     |
+| **O(n log n)** | Faster than linear    | Efficient fundamentals.arrays.sorting     |
 | **O(n²)**      | Steep growth          | Nested loops          |
 | **O(2ⁿ)**      | Explosive             | Brute-force search    |
 

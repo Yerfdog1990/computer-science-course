@@ -12,7 +12,7 @@ Algorithms and data structures are crucial for application performance. This cou
 ## What you will learn
 * Understand some of the fundamental concepts behind key algorithms
 * Express space and time complexities using Big O notation.
-* Correctly implement classic sorting algorithms like merge and quicksort, using native Java data structures
+* Correctly implement classic fundamentals.arrays.sorting algorithms like merge and quicksort, using native Java data structures
 * Correctly implement basic and complex data structures (like hash tables and binary trees)
 * Learn about different algorithm design paradigms, such as greedy, divide and conquer, and dynamic programming
 * Apply powerful string matching techniques and optimize your application logic
