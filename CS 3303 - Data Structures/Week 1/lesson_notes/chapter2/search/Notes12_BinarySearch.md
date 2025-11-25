@@ -232,7 +232,7 @@ If we draw how much time Binary Search needs to find a value in an array of n va
 
 **Binary Search Time Complexity**
 
-![img_15.png](img_15.png)
+![img_15.png](../sorting/img_15.png)
 
 ---
 

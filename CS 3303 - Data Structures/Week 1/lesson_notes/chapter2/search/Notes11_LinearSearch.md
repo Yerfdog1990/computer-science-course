@@ -156,7 +156,7 @@ If we draw how much time Linear Search needs to find a value in an array of *n* 
 
 (Time Complexity Graph)
 
-![img_14.png](img_14.png)
+![img_14.png](../sorting/img_14.png)
 
 Note that choosing "Random", "Descending" or "Ascending" has no effect on how fast Linear Search is.
 

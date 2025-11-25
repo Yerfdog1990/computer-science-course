@@ -179,7 +179,7 @@ Notice that this recursive method calls itself two times, not just one. This mak
 The number of calculations will explode when we increase the number of the Fibonacci number we want. 
 To be more precise, the number of function calls will double every time we increase the Fibonacci number we want by one.
 
-![img_5.png](img_5.png)
+![img_5.png](../sorting/img_5.png)
 
 Just take a look at the number of function calls for F(5):
 ```java
@@ -214,7 +214,7 @@ The number of calculations will explode when we increase the number of the Fibon
 To be more precise, the number of function calls will double every time we increase the Fibonacci number we want by one.
 To better understand the code, here is how the recursive function calls return values so that F(5) returns the correct value in the end:
 
-![img_4.png](img_4.png)
+![img_4.png](../sorting/img_4.png)
 
 Many calls repeat the same values again and again.
 
