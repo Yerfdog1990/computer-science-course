@@ -5,7 +5,7 @@
 
 ## **Computer Memory**
 
-To explain what linked lists are, and how linked lists are different from arrays, we need to understand some basics about how **computer memory** works.
+To explain what linked lists are, and how linked lists are different from arrays, we need to understand some operations about how **computer memory** works.
 
 Computer memory is the storage your program uses when it is running. This is where your **variables**, **arrays**, and **linked lists** are stored.
 
