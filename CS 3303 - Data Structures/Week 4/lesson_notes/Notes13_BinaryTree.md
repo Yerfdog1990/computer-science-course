@@ -25,7 +25,7 @@ It is commonly used in computer science for **efficient storage, retrieval, and 
 
 ---
 
-![img_1.png](img_1.png)
+![img_1.png](../img_1.png)
 
 ---
 ## Representation of a Binary Tree
@@ -51,7 +51,7 @@ class Node {
 ```
 
 ---
-![img_2.png](img_2.png)
+![img_2.png](../img_2.png)
 ---
 
 ## Terminologies in Binary Tree
@@ -69,13 +69,13 @@ class Node {
 * **Height:** Number of edges on the longest path from root to a leaf.
 
 ---
-![img_3.png](img_3.png)
+![img_3.png](../img_3.png)
 ---
 
 ## Creating a Binary Tree
 
 ---
-![img_4.png](img_4.png)
+![img_4.png](../img_4.png)
 ---
 
 Example: Creating a binary tree with four nodes 2, 3, 4, 5
@@ -103,7 +103,7 @@ Here’s a **complete Markdown-ready lesson note** using all the words and equat
 This lesson explores the **fundamental properties of a binary tree**, covering its structure, characteristics, and key relationships between nodes, edges, height, and levels.
 
 ---
-![img_5.png](img_5.png)
+![img_5.png](../img_5.png)
 ---
 
 ## Binary Tree Representation
@@ -248,7 +248,7 @@ Where:
 * Also known as a **proper binary tree**.
 
 ---
-![img_6.png](img_6.png)
+![img_6.png](../img_6.png)
 ---
 
 ### 1.2 Degenerate (Pathological) Tree
@@ -257,7 +257,7 @@ Where:
 * Such a tree is **performance-wise similar to a linked list**.
 
 ---
-![img_7.png](img_7.png)
+![img_7.png](../img_7.png)
 ---
 
 ### 1.3 Skewed Binary Tree
@@ -269,7 +269,7 @@ Where:
     * **Right-skewed binary tree**
 
 ---
-![img_8.png](img_8.png)
+![img_8.png](../img_8.png)
 ---
 
 ## 2. Types of Binary Tree (Based on Level Completion)
@@ -283,7 +283,7 @@ Where:
     2. All leaf elements **lean towards the left**.
 
 ---
-![img_9.png](img_9.png)
+![img_9.png](../img_9.png)
 ---
 
 ### 2.2 Perfect Binary Tree
@@ -297,7 +297,7 @@ L = T + 1
 ]
 
 ---
-![img_10.png](img_10.png)
+![img_10.png](../img_10.png)
 ---
 
 ### 2.3 Balanced Binary Tree
@@ -310,13 +310,13 @@ d = | \text{Height of Left Subtree} - \text{Height of Right Subtree} | \le 1
 ]
 
 ---
-![img_11.png](img_11.png)
+![img_11.png](../img_11.png)
 ---
 
 ## 3. Special Types of Binary Trees
 
 ---
-![img_12.png](img_12.png)
+![img_12.png](../img_12.png)
 ---
 
 ### 3.1 Binary Search Tree (BST)
@@ -328,7 +328,7 @@ d = | \text{Height of Left Subtree} - \text{Height of Right Subtree} | \le 1
     3. Left and right subtrees are **also BSTs**.
 
 ---
-![img_13.png](img_13.png)
+![img_13.png](../img_13.png)
 ---
 
 ### 3.2 AVL Tree
@@ -337,7 +337,7 @@ d = | \text{Height of Left Subtree} - \text{Height of Right Subtree} | \le 1
 * Difference between heights of left and right subtrees of all nodes ≤ 1.
 
 ---
-![img_14.png](img_14.png)
+![img_14.png](../img_14.png)
 ---
 ### 3.3 Red-Black Tree
 
@@ -345,7 +345,7 @@ d = | \text{Height of Left Subtree} - \text{Height of Right Subtree} | \le 1
 * Ensures **O(log n)** time for search, insertion, and deletion.
 
 ---
-![img_15.png](img_15.png)
+![img_15.png](../img_15.png)
 ---
 
 ### 3.4 B-Tree
