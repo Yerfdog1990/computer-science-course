@@ -12,7 +12,7 @@
 A **tree** is a hierarchical data structure used to organize and represent data in a **parent–child relationship**.
 It consists of **nodes**, where the **topmost node** is called the **root**, and every other node can have one or more **child nodes**.
 ---
-![img.png](img.png)
+![img_108.png](img_108.png)
 ---
 ![img_1.png](img_1.png)
 ---
