@@ -1,0 +1,62 @@
+/* Header and Footer Styling */
+header > h1 {
+    border-bottom: 1px dashed black;
+    font-style: italic;
+    font-size: x-large;
+}
+
+footer > p {
+    border-top: 1px dashed black;
+    font-style: italic;
+}
+
+/* Table Styling */
+table {
+    border-spacing: 5px;
+    width: 530px;
+}
+
+th {
+    color: #FFF;
+    background: #000;
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid black;
+    padding: 3px;
+    background: #F0F0F0;
+    text-align: left;
+    vertical-align: top;
+}
+
+/* Error Message Styling */
+p#err_msg {
+    color: #F00;
+    font-weight: bold;
+}
+
+/* Form Styling */
+form {
+    margin: 20px 0;
+}
+
+input[type="text"], input[type="email"] {
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"] {
+    padding: 8px 15px;
+    background: #333;
+    color: #FFF;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #555;
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .validation-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        .security-note {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        // Client-side validation
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var password = document.getElementById('password').value;
+            
+            // Name validation - letters only
+            var nameRegex = /^[a-zA-Z]+$/;
+            if (!nameRegex.test(name)) {
+                alert('Name must contain only letters (A-Z, a-z)');
+                return false;
+            }
+            
+            // Password validation - alphanumeric, dot, underscore, min 8 chars
+            var passwordRegex = /^[a-zA-Z0-9._]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                alert('Password must contain only letters, numbers, dots, and underscores, and be at least 8 characters long');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Real-time validation feedback
+        document.addEventListener('DOMContentLoaded', function() {
+            var nameInput = document.getElementById('name');
+            var passwordInput = document.getElementById('password');
+            
+            nameInput.addEventListener('input', function() {
+                var nameRegex = /^[a-zA-Z]+$/;
+                if (nameRegex.test(this.value)) {
+                    this.style.borderColor = '#28a745';
+                } else {
+                    this.style.borderColor = '#dc3545';
+                }
+            });
+            
+            passwordInput.addEventListener('input', function() {
+                var passwordRegex = /^[a-zA-Z0-9._]{8,}$/;
+                if (passwordRegex.test(this.value)) {
+                    this.style.borderColor = '#28a745';
+                } else {
+                    this.style.borderColor = '#dc3545';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Session Login Form</h1>
+        
+        <div class="info-box">
+            <h3>📋 About Sessions</h3>
+            <p>This form uses PHP sessions to store your login data on the server instead of cookies. Sessions are more secure and work even when cookies are disabled.</p>
+        </div>
+        
+        <form action="session_handler.php" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+                <div class="validation-hint">For Name: Enter Only Letters (A-Z, a-z)</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                <div class="validation-hint">For Password: Enter Only A-Z a-z 0-9 . _ (Minimum 8 Characters)</div>
+            </div>
+            
+            <button type="submit" class="btn">Login with Session</button>
+        </form>
+        
+        <div class="security-note">
+            <h3>🔒 Security Information</h3>
+            <ul>
+                <li>Your data is stored on the server, not in your browser</li>
+                <li>Sessions are more secure than cookies for sensitive data</li>
+                <li>Works even if you have cookies disabled</li>
+                <li>Session automatically expires after inactivity</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Data Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+        .warning {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .requirements {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .requirements h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍪 Cookie Data Storage Form</h1>
+        
+        <div class="info">
+            <strong>ℹ️ Information:</strong> This form demonstrates how to store user data in cookies for future use across the website.
+        </div>
+        
+        <div class="warning">
+            <strong>⚠️ Security Note:</strong> Storing passwords in cookies is not secure. This example is for educational purposes only.
+        </div>
+        
+        <div class="requirements">
+            <h3>📋 Form Requirements:</h3>
+            <ul>
+                <li>Username: Only alphanumeric characters allowed</li>
+                <li>Password: Any characters accepted</li>
+                <li>Both fields are required</li>
+            </ul>
+        </div>
+        
+        <form action="cookie_handler.php" method="POST">
+            <div class="form-group">
+                <label for="username">Enter Only AlphaNumeric Characters Name:</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    required 
+                    pattern="[a-zA-Z0-9]+" 
+                    title="Only alphanumeric characters are allowed"
+                    placeholder="e.g., john123"
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    placeholder="Enter your password"
+                >
+            </div>
+            
+            <button type="submit" class="btn">Store in Cookies</button>
+        </form>
+    </div>
+</body>
+</html>
