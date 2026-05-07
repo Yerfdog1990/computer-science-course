@@ -1,0 +1,96 @@
+Database Security: Views and Privilege Management
+
+Student Name
+Course: CS 3306 - Databases 2
+Instructor: [Instructor Name]
+Date: May 7, 2026
+
+Introduction
+
+Database security represents a critical component in modern information systems, requiring comprehensive approaches to protect sensitive data while maintaining appropriate access levels. This assignment explores the implementation of security measures through database views and privilege management within a car insurance company database context. The increasing volumes of crucial data stored digitally necessitate robust security frameworks that address multiple threat vectors while enabling legitimate business operations (Sharma et al., 2010).
+
+Part A: Creating DriverAccidentCount Table and Granting Privileges
+
+CREATE TABLE DriverAccidentCount AS
+SELECT p.driverID, p.driverName, COUNT(ad.accidentNo) AS accidentCount
+FROM Person p
+JOIN Owns o ON p.driverID = o.driverID
+JOIN AccidentDetails ad ON o.PossessID = ad.PossessID
+GROUP BY p.driverID, p.driverName;
+
+The CREATE TABLE statement above generates a new table called DriverAccidentCount that stores driver-wise accident statistics. This statement uses the AS keyword with a SELECT query to populate the table with aggregated data. The query joins three tables: Person (containing driver details), Owns (linking drivers to their possessed cars), and AccidentDetails (containing accident information). The GROUP BY clause ensures that each driver's accidents are counted and summarized individually.
+
+GRANT SELECT ON DriverAccidentCount TO Manager;
+
+The GRANT statement above grants SELECT privileges on the DriverAccidentCount table specifically to users with the Manager role. The SELECT permission allows managers to view the accident count data but prevents them from modifying, deleting, or inserting data into this table. This restricted access ensures data integrity while providing necessary information for managerial decision-making processes.
+
+Role Restriction and Database Security
+
+Role-based access control serves as a fundamental security mechanism that significantly enhances database protection through the principle of least privilege. By restricting access to the DriverAccidentCount table exclusively to users with the Manager role, the organization implements a layered security approach that minimizes unauthorized data exposure (Cherry, 2015). This restriction helps maintain security by ensuring that only authorized personnel can access sensitive accident statistics, thereby reducing the risk of data breaches and unauthorized information disclosure.
+
+The implementation of role-based restrictions aligns with established security frameworks that emphasize the importance of controlling access based on job functions and responsibilities (Sharma et al., 2010). Managers require access to accident count information for strategic decision-making, customer service improvements, and risk assessment purposes. However, other database users, such as data entry clerks or claims processors, do not need access to this aggregated statistical information for their daily operations.
+
+Furthermore, role-based restrictions provide audit advantages by creating clear accountability trails. When access is controlled through specific roles, organizations can more easily monitor who accesses sensitive information and when such access occurs. This capability enhances the organization's ability to detect unusual access patterns and potential security incidents (Cherry, 2015). The granular control offered by role-based access control also supports compliance with regulatory requirements that mandate strict data access controls for sensitive information.
+
+Part B: Creating Location-Specific Views
+
+CREATE VIEW SouthamptonAccidents AS
+SELECT a.accidentNo, a.date, a.location, ad.damageAmount, p.driverName, c.model, c.year
+FROM Accident a
+JOIN AccidentDetails ad ON a.accidentNo = ad.accidentNo
+JOIN Owns o ON ad.PossessID = o.PossessID
+JOIN Person p ON o.driverID = p.driverID
+JOIN Car c ON o.chassisNumber = c.chassisNumber
+WHERE a.location = 'Southampton';
+
+CREATE VIEW LeicesterAccidents AS
+SELECT a.accidentNo, a.date, a.location, ad.damageAmount, p.driverName, c.model, c.year
+FROM Accident a
+JOIN AccidentDetails ad ON a.accidentNo = ad.accidentNo
+JOIN Owns o ON ad.PossessID = o.PossessID
+JOIN Person p ON o.driverID = p.driverID
+JOIN Car c ON o.chassisNumber = c.chassisNumber
+WHERE a.location = 'Leicester';
+
+CREATE VIEW NottinghamAccidents AS
+SELECT a.accidentNo, a.date, a.location, ad.damageAmount, p.driverName, c.model, c.year
+FROM Accident a
+JOIN AccidentDetails ad ON a.accidentNo = ad.accidentNo
+JOIN Owns o ON ad.PossessID = o.PossessID
+JOIN Person p ON o.driverID = p.driverID
+JOIN Car c ON o.chassisNumber = c.chassisNumber
+WHERE a.location = 'Nottingham';
+
+Each CREATE VIEW statement above generates a virtual table that displays accident information specific to a particular geographic location. These views join multiple base tables to present comprehensive accident details including accident numbers, dates, locations, damage amounts, driver information, and vehicle details. The WHERE clause in each view filters the data to show only accidents occurring in the specified locations: Southampton, Leicester, or Nottingham.
+
+Views and Database Security Enhancement
+
+Database views serve as powerful security mechanisms that enhance data protection through selective data presentation and access control (Sharma et al., 2010). The location-specific views created above implement several important security benefits that contribute to the overall robustness of the database security framework.
+
+First, views enable data hiding by concealing sensitive information from unauthorized users while still providing access to relevant data. Users granted access to these views can see accident information for their specific geographic area without gaining access to data from other locations or the underlying base tables. This selective visibility reduces the risk of unauthorized data exposure and supports the principle of least privilege (Cherry, 2015).
+
+Second, views provide departmental access control by allowing different branches or offices to access only the data relevant to their operations. For instance, Southampton office personnel can access SouthamptonAccidents view without seeing data from Leicester or Nottingham locations. This geographic segmentation of data access supports organizational structure while maintaining security boundaries.
+
+Third, views simplify security management by allowing database administrators to grant permissions on views rather than complex base table structures. This approach reduces administrative overhead and minimizes the risk of configuration errors that could lead to security vulnerabilities (Sharma et al., 2010). When security requirements change, administrators can modify view definitions without affecting underlying table structures or application code.
+
+Fourth, views support audit and compliance requirements by creating clear boundaries for data access. Organizations can more easily track and report on who accessed specific geographic data, which is particularly valuable for regulatory compliance and internal security monitoring (Cherry, 2015). The clear separation of data by geographic location through views facilitates more precise access logging and anomaly detection.
+
+Additionally, views enhance security by preventing direct access to base tables, which protects the underlying data structure from unauthorized manipulation. Users interacting with views cannot modify the underlying table relationships or access data outside the defined view parameters, providing an additional layer of protection against SQL injection attacks and other security threats.
+
+The implementation of location-specific views also supports business continuity and disaster recovery scenarios by enabling geographic segmentation of data access. If one location experiences system issues, users from other locations can continue accessing their relevant data without being affected by problems in other geographic areas.
+
+Conclusion
+
+The implementation of role-based access control through GRANT statements and the creation of location-specific views demonstrates comprehensive database security practices that protect sensitive information while enabling legitimate business operations. These security measures align with established principles of database security, including the principle of least privilege, defense in depth, and separation of concerns (Cherry, 2015; Sharma et al., 2010).
+
+The DriverAccidentCount table with restricted Manager access exemplifies how role-based security can protect aggregated statistical information while ensuring appropriate access for decision-making purposes. Similarly, the location-specific views demonstrate how database views can provide granular access control that supports organizational structure and geographic distribution while maintaining strong security boundaries.
+
+Together, these security measures create multiple layers of protection that address various threat vectors while supporting business requirements. The combination of privilege management and view-based access control provides a robust security framework that can adapt to changing business needs while maintaining compliance with regulatory requirements and industry best practices for database security.
+
+References
+
+Cherry, D. (2015). Database security & protection: Securing SQL server. Elsevier Science & Technology Books.
+
+Duranti, L., & Stanfield, A. (2021). Authenticating electronic evidence. In S. Mason & D. Seng (Eds.), Electronic evidence and electronic signatures (CMB-Combined volume, 5). University of London Press.
+
+Sharma, N., Perniu, L., Chong, R. F., Iyer, A., Nandan, C., Mitea, A. C., Nonvinkere, M., & Danubianu, M. (2010). Database fundamentals (1st ed.). IBM Corporation.
