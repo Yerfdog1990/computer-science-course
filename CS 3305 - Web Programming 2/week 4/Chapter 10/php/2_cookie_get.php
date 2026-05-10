@@ -122,7 +122,7 @@ $page_title = 'Cookie Retrieval Script';
 
         echo '</div>';
 
-        echo '<a href="cookie_data.php" class="btn">🔍 View Cookie Data</a>';
+        echo '<a href="cookie_data.admin" class="btn">🔍 View Cookie Data</a>';
 
     } else {
         // No user cookie found

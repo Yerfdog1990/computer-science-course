@@ -92,7 +92,7 @@ if (isset($_POST['user'])) {
         $_SESSION['ip_address'] = $_SERVER['REMOTE_ADDR'];
         
         // Redirect to session getter page
-        header('Location: session_get.php');
+        header('Location: session_get.admin');
         exit();
         
     } else {

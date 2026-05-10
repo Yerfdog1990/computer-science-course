@@ -1,7 +1,7 @@
 <?php
 
 // Initialize a variable with an HTML code snippet
-$html = '<a href="login_process.php">Go to Index</a>';
+$html = '<a href="login_process.admin">Go to Index</a>';
 echo $html;
 echo '<br>';
 

@@ -4,7 +4,7 @@
 $str1 = 'PHP in easy steps';
 $str2 = 'PHP in easy steps';
 $str3 = 'PHP In Easy Steps';
-$str4 = 'php in easy steps';
+$str4 = 'admin in easy steps';
 
 // Case-sensitive comparisons using strcmp()
 echo "'$str1' versus '$str2' : " . strcmp($str1, $str2) . '<br>';  // 0 — identical

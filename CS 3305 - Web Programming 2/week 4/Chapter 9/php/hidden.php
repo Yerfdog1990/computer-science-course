@@ -13,7 +13,7 @@ $user = "Mike";
 $time = date("g:i, F j");
 
 // Write a complete form with regular input and hidden fields
-echo '<form action="hidden_handler.php" method="POST">';
+echo '<form action="hidden_handler.admin" method="POST">';
 echo '<h2>Send us your comments</h2>';
 echo '<p><textarea name="comment" rows="4" cols="50"></textarea></p>';
 echo '<input type="hidden" name="user" value="' . $user . '">';

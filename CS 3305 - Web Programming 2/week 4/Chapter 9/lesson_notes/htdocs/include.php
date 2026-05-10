@@ -49,18 +49,18 @@ function check_session_timeout() {
 
 function require_login() {
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['authenticated'])) {
-        header('Location: login.php');
+        header('Location: login.admin');
         exit();
     }
     
     if (!validate_session_integrity()) {
         session_destroy();
-        header('Location: login.php?security=1');
+        header('Location: login.admin?security=1');
         exit();
     }
     
     if (!check_session_timeout()) {
-        header('Location: login.php?timeout=1');
+        header('Location: login.admin?timeout=1');
         exit();
     }
 }
