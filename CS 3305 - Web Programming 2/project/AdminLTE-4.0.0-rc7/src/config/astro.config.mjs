@@ -5,7 +5,7 @@ import mdx from '@astrojs/mdx'
 export default defineConfig({
   output: 'static',
   build: {
-    // Example: Generate `page.html` instead of `page/index.html` during build.
+    // Example: Generate `page.html` instead of `page/index.php` during build.
     format: 'file'
   },
   compressHTML: false,
