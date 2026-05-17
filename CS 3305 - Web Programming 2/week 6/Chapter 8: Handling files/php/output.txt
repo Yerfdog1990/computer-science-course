@@ -1,0 +1,33 @@
+This is the first line.
+This is the second line with a tab:	Indented text.
+This is the third line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
+This is a new line appended to the file.
+Another appended line with a tab:	Indented text.
+Final appended line.
