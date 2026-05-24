@@ -1,5 +1,5 @@
 import typescript from '@rollup/plugin-typescript'
-import pkg from '../../package.json' with { type: 'json' }
+import pkg from '../../package.json' with { type: 'json-example' }
 
 const year = new Date().getFullYear()
 const banner = `/*!
@@ -18,7 +18,7 @@ export default {
   },
   plugins: [
     typescript({
-      tsconfig: './tsconfig.json',
+      tsconfig: './tsconfig.json-example',
       sourceMap: true
     })
   ]
