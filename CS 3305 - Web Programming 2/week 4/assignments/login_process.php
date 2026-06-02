@@ -76,7 +76,7 @@
                 // Hash password for secure storage
                 $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-                // Database insertion would go here with prepared statements
+                // database insertion would go here with prepared statements
                 // Redirect to success page
                 header("Location: registration_success.html");
                 exit();

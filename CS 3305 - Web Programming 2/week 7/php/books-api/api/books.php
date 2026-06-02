@@ -43,11 +43,11 @@ $id     = isset($parts[2]) && is_numeric($parts[2]) ? (int) $parts[2] : null;
 // Parse JSON request body for POST and PUT
 $body = [];
 if (in_array($method, ['POST', 'PUT'])) {
-    $raw  = file_get_contents('php://input');
+    $raw  = file_get_contents('http-and-session://input');
     $body = json_decode($raw, true) ?? [];
 }
 
-// ── Database connection ───────────────────────────────────────────────────────
+// ── database connection ───────────────────────────────────────────────────────
 $pdo = Database::getInstance()->getPdo();
 
 // ── Route requests ────────────────────────────────────────────────────────────

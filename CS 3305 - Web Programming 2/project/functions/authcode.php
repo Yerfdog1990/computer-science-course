@@ -14,7 +14,7 @@ if (isset($_POST['registration_btn']))
     $check_email_query_run = mysqli_query($conn, $check_email_query);
     if (mysqli_num_rows($check_email_query_run) > 0) {
         $_SESSION['message'] = "Email already exists";
-        header("Location: ../register.php");
+        header("Location: ../register.http-and-session");
         exit();
     }
 
@@ -25,17 +25,17 @@ if (isset($_POST['registration_btn']))
         $insert_query_run = mysqli_query($conn, $insert_query);
         if ($insert_query_run) {
             $_SESSION['message'] = "Registration successful";
-            header("Location: ../login.php");
+            header("Location: ../login.http-and-session");
         }
         else {
             $_SESSION['message'] = "Registration failed";
-            header("Location: ../register.php");
+            header("Location: ../register.http-and-session");
         }
     }
     else
     {
        $_SESSION['message'] = "Password do not match";
-       header("Location: ../register.php");
+       header("Location: ../register.http-and-session");
     }
     exit();
 }

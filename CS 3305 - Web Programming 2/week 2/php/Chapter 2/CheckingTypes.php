@@ -1,7 +1,7 @@
 <?php
 
 # Create a filestream resource and an array containing all data types
-$filestream = fopen( 'index.php' , 'r' ) ;
+$filestream = fopen( 'index.http-and-session' , 'r' ) ;
 
 $data = array( 'PHP' , 1 , 2.3 , TRUE , NULL , array() , new Directory , $filestream ) ;
 

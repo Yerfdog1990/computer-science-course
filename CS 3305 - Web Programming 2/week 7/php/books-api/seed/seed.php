@@ -3,8 +3,8 @@
 // Connect without a dbname first so we can create the database
 $pdo = new PDO(
     "mysql:host=127.0.0.1;port=3306;charset=utf8mb4",
-    'php-user',
-    'php-pass',
+    'http-and-session-user',
+    'http-and-session-pass',
     [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
 
@@ -12,7 +12,7 @@ $pdo = new PDO(
 $pdo->exec("CREATE DATABASE IF NOT EXISTS books_api CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 $pdo->exec("USE books_api");
 
-echo "Database 'books_api' ready." . PHP_EOL;
+echo "database 'books_api' ready." . PHP_EOL;
 
 // ── 2. Create the books table ─────────────────────────────────────────────────
 $pdo->exec("DROP TABLE IF EXISTS books");
@@ -112,7 +112,7 @@ foreach ($books as $book) {
         ':genre'     => $book['genre'],
         ':published' => $book['published'],
         ':isbn'      => $book['isbn'],
-        ':available' => $book['available'],
+        ':available' => $book['available'] ? 1 : 0,
     ]);
 }
 

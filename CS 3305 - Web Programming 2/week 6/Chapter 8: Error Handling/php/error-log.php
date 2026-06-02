@@ -4,7 +4,7 @@ $errorHandler = function (int $code, string $message, string $file, int $line) {
     static $stream; // Persists across multiple calls within the same script run
 
     if (is_null($stream)) {
-        $stream = fopen(__DIR__ . 'week 6/Chapter 8: Error Handling/php/app.log', 'a'); // Open once, append mode
+        $stream = fopen(__DIR__ . 'week 6/Chapter 8: Error Handling/http-and-session/app.log', 'a'); // Open once, append mode
     }
 
     fwrite(

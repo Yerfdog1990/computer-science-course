@@ -69,7 +69,7 @@ $_SESSION['vehicles'] = $vehicles;
 $_SESSION['message'] = $message;
 $_SESSION['comparison_result'] = $comparison_result;
 
-// Redirect back to form.php
-header('Location: form.php');
+// Redirect back to form.http-and-session
+header('Location: form.http-and-session');
 exit();
 ?>

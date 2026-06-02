@@ -8,7 +8,7 @@ class DatabaseSingleton
     private function __construct()
     {
         $dsn = "mysql:host=127.0.0.1;port=3306;dbname=demo;charset=utf8mb4";
-        $this->pdo = new PDO($dsn, "php-user", "php-pass", [
+        $this->pdo = new PDO($dsn, "http-and-session-user", "http-and-session-pass", [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
     }

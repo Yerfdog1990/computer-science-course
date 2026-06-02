@@ -2,7 +2,7 @@
 
 class Database
 {
-    private static ?Database $instance = null;
+    private static ?\Database $instance = null;
     private PDO $pdo;
 
     private function __construct()
@@ -15,7 +15,7 @@ class Database
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
 
-        $this->pdo = new PDO($dsn, 'php-user', 'php-pass', $options);
+        $this->pdo = new PDO($dsn, 'http-and-session-user', 'http-and-session-pass', $options);
     }
 
     public static function getInstance(): static

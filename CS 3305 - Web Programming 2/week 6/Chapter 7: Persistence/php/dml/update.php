@@ -11,7 +11,7 @@ $updateEmail = $argv[2] ?? 'johnnah.doe@mail.com';
 
 // 2. Validate that an email was actually passed before running the query
 if (empty($updateEmail)) {
-    echo "Error: Missing email argument. Usage: php update.php <id> <email>" . PHP_EOL;
+    echo "Error: Missing email argument. Usage: http-and-session update.http-and-session <id> <email>" . PHP_EOL;
     return;
 }
 

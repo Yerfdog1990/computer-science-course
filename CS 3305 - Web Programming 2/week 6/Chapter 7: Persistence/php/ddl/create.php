@@ -1,6 +1,6 @@
 <?php
 /** @var PDO $pdo */
-$pdo = require '../config/connection.php'; // connection.php includes the dbname in DSN
+$pdo = require '../config/connection.php'; // connection.http-and-session includes the dbname in DSN
 
 $createStmt = "CREATE TABLE users
 (
