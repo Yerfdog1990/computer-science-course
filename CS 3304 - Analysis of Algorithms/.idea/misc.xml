@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="KubernetesApiProvider"><![CDATA[{}]]></component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/DivideAndConquer/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 2/DivideAndConquer/pom.xml" />
+        <option value="$PROJECT_DIR$/GreedyAlgorithm/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 3/GreedyAlgorithm/pom.xml" />
+        <option value="$PROJECT_DIR$/DynamicProgramming/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 4/DynamicProgramming/pom.xml" />
+        <option value="$PROJECT_DIR$/BackTracking/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 5/BackTracking/pom.xml" />
+        <option value="$PROJECT_DIR$/NP-hard-problem/pom.xml" />
+        <option value="$PROJECT_DIR$/Week 7/NP-hard-problem/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="ms-25" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: dsa.fibonacci.FibOptimizedTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in dsa.fibonacci.FibOptimizedTest
