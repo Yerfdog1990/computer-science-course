@@ -1,0 +1,6 @@
+files.txt
+greet_arg.sh
+input.txt
+output.txt
+run_all.sh
+variables.sh

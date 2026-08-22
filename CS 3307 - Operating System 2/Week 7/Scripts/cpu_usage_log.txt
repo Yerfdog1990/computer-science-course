@@ -1,0 +1,14 @@
+CPU Usage Monitoring Log
+Started: Thu Aug  6 07:23:25 EAT 2026
+=========================================
+Sample 1 - Thu Aug  6 07:23:25 EAT 2026
+CPU usage: 11.77% user, 11.94% sys, 76.28% idle 
+-----------------------------------------
+Sample 2 - Thu Aug  6 07:24:28 EAT 2026
+CPU usage: 18.96% user, 13.13% sys, 67.90% idle 
+-----------------------------------------
+Sample 3 - Thu Aug  6 07:25:31 EAT 2026
+CPU usage: 7.97% user, 8.30% sys, 83.72% idle 
+-----------------------------------------
+
+
